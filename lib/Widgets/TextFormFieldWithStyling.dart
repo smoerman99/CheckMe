@@ -31,11 +31,11 @@ class TextFormFieldWithStyling extends StatelessWidget {
       maxLength: 50,
       cursorColor: Colors.black,
       validator: (userInput) {
-        if (_taskNameController.text == null ||
-            _taskNameController.text.isEmpty) {
+        if (userInput.isEmpty) {
           return "Please enter sometext";
+        } else {
+          return "null";
         }
-        return null;
       },
     );
   }
