@@ -58,19 +58,17 @@ class _ShowTasksState extends State<ShowTasks> {
     // _getAvailableChecks();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).navigationBarTheme.backgroundColor,
         title: Text(
           widget.title,
           style: TextStyle(
-              color: Theme.of(context).appBarTheme.textTheme.bodyText1.color,
-              fontFamily:
-                  Theme.of(context).appBarTheme.textTheme.bodyText1.fontFamily,
-              fontSize:
-                  Theme.of(context).appBarTheme.textTheme.bodyText1.fontSize),
+              color: Theme.of(context).navigationBarTheme.indicatorColor,
+              fontFamily: Theme.of(context).textTheme.bodyText2.fontFamily,
+              fontSize: Theme.of(context).textTheme.bodyText2.fontSize),
         ),
       ),
       body: Container(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).backgroundColor,
         child: ListView.builder(
             itemCount: _checkList.checkList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -88,13 +86,9 @@ class _ShowTasksState extends State<ShowTasks> {
                           _checkList.checkList[index].title
                               .makeFirstLetterCapitalize(),
                           style: TextStyle(
-                            fontSize: Theme.of(context)
-                                .appBarTheme
-                                .textTheme
-                                .bodyText2
-                                .fontSize,
+                            fontSize:
+                                Theme.of(context).textTheme.bodyText2.fontSize,
                             fontFamily: Theme.of(context)
-                                .appBarTheme
                                 .textTheme
                                 .bodyText2
                                 .fontFamily,
@@ -109,7 +103,7 @@ class _ShowTasksState extends State<ShowTasks> {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).buttonColor,
+        backgroundColor: Theme.of(context).backgroundColor,
         onPressed: _callCreateTask,
         tooltip: 'Increment',
         child: Icon(Icons.add),

@@ -27,7 +27,7 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
     return ElevatedButton(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all(Theme.of(context).buttonColor)),
+                MaterialStateProperty.all(Theme.of(context).primaryColor)),
         onPressed: () {
           if (widget.textController.text != "" ||
               widget.textController.text.isNotEmpty) {
@@ -38,7 +38,7 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
               ),
             );
 
-            widget.textController.text == "";
+            // widget.textController.text == "";
 
             if (widget.closePage) {
               Navigator.pop(context, false);
