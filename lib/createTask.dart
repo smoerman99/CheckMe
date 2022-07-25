@@ -1,4 +1,5 @@
 import 'package:checkit/JsonThings/wrapper.dart';
+import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'Entities/Check.dart';
 import 'Widgets/TextFormFieldWithStyling.dart';
@@ -36,7 +37,7 @@ class _CreateTaskState extends State<CreateTask> {
         ),
       ),
       body: Container(
-        color: Theme.of(context).accentColor,
+        color: Colors.black12,
         child: Column(
           children: [
             Container(
@@ -51,30 +52,23 @@ class _CreateTaskState extends State<CreateTask> {
                   children: <Widget>[
                     TextFormFieldWithStyling(
                         taskNameController: _taskNameController),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                Theme.of(context).buttonColor)),
-                        onPressed: () => {
-                              if (_taskNameController.text != "" ||
-                                  _taskNameController.text.isNotEmpty)
-                                {
-                                  print(_taskNameController.text),
-                                  _wrapper.executeWrite(new Check(
-                                      _taskNameController.text, false)),
-                                  _taskNameController.text == ""
-                                }
-                              else
-                                {
-                                  setState(() {
-                                    _errorMessage = "Please insert something";
-                                  })
-                                }
-                            },
-                        child: Text(
-                          "Create",
-                          style: TextStyle(color: Colors.black),
-                        ))
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            HandleElevatedButton(
+                              title: "Add",
+                              textController: _taskNameController,
+                              closePage: false,
+                            ),
+                            HandleElevatedButton(
+                              title: "Add & Close",
+                              textController: _taskNameController,
+                              closePage: true,
+                            )
+                          ]),
+                    ),
                   ],
                 ),
               ),
