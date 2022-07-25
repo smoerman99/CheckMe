@@ -1,7 +1,5 @@
-import 'package:checkit/JsonThings/wrapper.dart';
 import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:flutter/material.dart';
-import 'Entities/Check.dart';
 import 'Widgets/TextFormFieldWithStyling.dart';
 
 class CreateTask extends StatefulWidget {
@@ -12,8 +10,6 @@ class CreateTask extends StatefulWidget {
 }
 
 class _CreateTaskState extends State<CreateTask> {
-  final _wrapper = new Wrapper();
-
   final _formKey = GlobalKey<FormState>();
   final _taskNameController = TextEditingController();
 
@@ -33,7 +29,7 @@ class _CreateTaskState extends State<CreateTask> {
         title: Text(
           "Create new Task",
           style: TextStyle(
-              color: Theme.of(context).appBarTheme.textTheme.bodyText1.color),
+              color: Theme.of(context).navigationBarTheme.backgroundColor),
         ),
       ),
       body: Container(
