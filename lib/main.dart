@@ -11,32 +11,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo 123456',
+      title: 'Check Me',
       theme: ThemeData(
         //main section
-        //default color the background
-        backgroundColor: Colors.blueGrey,
+        //default background color for the app
+        backgroundColor: Colors.black12,
+
+        //for the rest what needs a color
         hintColor: Colors.black,
 
-        //default button background color
-        buttonColor: Colors.orange,
-        fontFamily: "Lato",
-        accentColor: const Color(0xffe0f2f1),
+        primaryColor: const Color(0xffe0f2f1),
 
-        appBarTheme: AppBarTheme(
-          textTheme: TextTheme(
-              //for the navigation
-              bodyText1: TextStyle(
-                color: Colors.orange,
-                fontFamily: "Lato",
-                fontSize: 25.00,
-              ),
-              //for the rest
-              bodyText2: TextStyle(
-                color: Colors.orange,
-                fontFamily: "Lato",
-                fontSize: 22.00,
-              )),
+        //navigation scheme settings
+        navigationBarTheme: NavigationBarThemeData(
+          backgroundColor: Colors.blueGrey,
+        ),
+
+        //styling for the buttons
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.orange,
+          textTheme: ButtonTextTheme.primary,
         ),
 
         //specific styling for cards
@@ -46,3 +40,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+//  textTheme: 
+//               //for the rest
+//               bodyText2: TextStyle(
+//                 color: Colors.orange,
+//                 fontFamily: "Lato",
+//                 fontSize: 22.00,
+//               )),
