@@ -1,5 +1,6 @@
+import 'package:checkit/Assets/NavigationWrapper.dart';
 import 'package:flutter/material.dart';
-import 'showTasks.dart';
+import 'Pages/showTasks.dart';
 
 // https://github.com/flutter/flutter/issues/17592
 
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
         //specific styling for cards
         cardTheme: CardTheme(),
       ),
-      home: ShowTasks(title: 'Tasks to do'),
+      home: NavigationWrapper(),
     );
   }
 }
