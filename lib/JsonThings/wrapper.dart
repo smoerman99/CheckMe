@@ -2,54 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:checkit/Entities/Check.dart';
-import 'package:checkit/Entities/CheckList.dart';
+import 'package:checkit/Entities/MotherObject.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Wrapper {
-  // -- Attribute
-  CheckList _availableToChecks = new CheckList([]);
+  MotherObject _motherObject = new MotherObject();
 
-  String _fileName = "tasksV3.json";
+  String _fileName = 'NeededData.json';
 
-  // -- To execute the read and write
-  Future<List<Check>> executeRead() async {
-    if (await _fileExists(_fileName)) {
-      return await _readAvailableChecks();
-    }
-
-    await _createNewFileIfNeeded();
-    return await _readAvailableChecks();
-  }
-
-  void executeWrite(Check newItem) async {
-    if (await _fileExists(_fileName)) {
-      await _gatherAndAdd(newItem);
-      return;
-    }
-
-    await _createNewFileIfNeeded();
-    await _gatherAndAdd(newItem);
-  }
-
-  Future<List<Check>> executeUpdate(Check toUpdateCheck) async {
-    _availableToChecks.checkList = await _readAvailableChecks();
-
-    _availableToChecks.checkList
-        .removeWhere((item) => item.title == toUpdateCheck.title);
-
-    _writeNewCheck(_availableToChecks);
-    return await _readAvailableChecks();
-  }
-
-  // -- The needed functionalities
-  Future<void> _gatherAndAdd(Check newItem) async {
-    _availableToChecks.checkList = await _readAvailableChecks();
-
-    _availableToChecks.checkList.add(newItem);
-
-    _writeNewCheck(_availableToChecks);
-  }
-
+  ///The private methods section
   Future<String> _getDirPath() async {
     final dir = await getApplicationDocumentsDirectory();
     return dir.path;
@@ -71,34 +32,79 @@ class Wrapper {
     new File('$path/$_fileName').create(recursive: true);
   }
 
-  Future<File> _writeNewCheck(newCheck) async {
-    final file = await _localFile;
+  void _prepareUserData(String content) {
+    Map<String, dynamic> decode = jsonDecode(content);
 
-    return file.writeAsString(jsonEncode(newCheck));
-  }
+    for (var i = 0; i < decode.length; i++) {
+      _motherObject.name = decode['name'];
+      _motherObject.mood = decode['mood'];
+      _motherObject.tasksEverCompleted = decode['tasksEverCompleted'];
 
-  Future<List<Check>> _readAvailableChecks() async {
-    CheckList _returnAvailableCheckItems = new CheckList([]);
-
-    try {
-      final file = await _localFile;
-
-      final String contents = await file.readAsString();
-
-      if (contents == "") {
-        return _returnAvailableCheckItems.checkList;
+      for (var j = 0; j < decode[i].length; j++) {
+        _motherObject.checkList.checkList.add(
+          new Check(title: "1", done: false),
+        );
       }
-
-      Map<String, dynamic> decode = jsonDecode(contents);
-
-      for (var i = 0; i < decode['checkItems'].length; i++) {
-        _returnAvailableCheckItems.checkList.add(new Check(
-            decode['checkItems'][i]["title"], decode['checkItems'][i]["done"]));
-      }
-
-      return _returnAvailableCheckItems.checkList;
-    } catch (e) {
-      return null;
     }
   }
+
+  ///
+
+  ///The public methods section
+  ///The needed functionalities
+  ///Create User, Update User data, Create task, Delete Task
+  Future<void> writeUser(user) async {
+    if (await _fileExists(_fileName)) {
+      final file = await _localFile;
+      return file.writeAsString(user);
+    } else {
+      _createNewFileIfNeeded();
+      writeUser(user);
+    }
+  }
+
+  Future<void> updateUser(MotherObject user) async {
+    if (await _fileExists(_fileName)) {
+      final file = await _localFile;
+
+      final String content = await file.readAsString();
+
+      _prepareUserData(content);
+
+      _motherObject.name = user.name;
+      _motherObject.mood = user.mood;
+
+      writeUser(_motherObject);
+    } else {
+      _createNewFileIfNeeded();
+      updateUser(user);
+    }
+  }
+
+  Future<MotherObject> readUserWithData() async {
+    if (await _fileExists(_fileName)) {
+      final file = await _localFile;
+
+      final String content = await file.readAsString();
+
+      if (content == "") {
+        return MotherObject(
+            name: "John Doe",
+            mood: "Is doing nothing",
+            tasksEverCompleted: 0,
+            checkList: null);
+      } else {
+        _prepareUserData(content);
+      }
+    } else {
+      _createNewFileIfNeeded();
+      readUserWithData();
+    }
+
+    return _motherObject;
+  }
+
+  Future<void> writeTask(Check task) async {}
+
+  ///
 }
