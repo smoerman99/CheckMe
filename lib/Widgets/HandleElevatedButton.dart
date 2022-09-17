@@ -31,10 +31,10 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
         onPressed: () {
           if (widget.textController.text != "" ||
               widget.textController.text.isNotEmpty) {
-            _wrapper.executeWrite(
+            _wrapper.writeTask(
               new Check(
-                widget.textController.text,
-                false,
+                title: widget.textController.text,
+                done: false,
               ),
             );
 
