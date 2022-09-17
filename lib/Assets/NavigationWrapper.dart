@@ -36,21 +36,25 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
       body: Container(
         child: _pageOptions.elementAt(_selectedPageIndex),
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(backgroundColor: Colors.black, items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.task),
-          label: 'Tasks',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task),
+            label: 'Tasks',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        currentIndex: _selectedPageIndex,
+        onTap: _onTappedNavigationItem,
+      ),
     );
   }
 }
