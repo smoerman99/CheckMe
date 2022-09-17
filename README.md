@@ -11,6 +11,7 @@ And a small settings dashboard
 
 ```
  
+ But all the data is stored locally
 
 ## The End
 
