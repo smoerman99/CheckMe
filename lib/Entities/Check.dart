@@ -2,7 +2,7 @@ class Check {
   String title;
   bool done;
 
-  Check(String title, bool done) {
+  Check({String title, bool done}) {
     this.title = title;
     this.done = done;
   }
