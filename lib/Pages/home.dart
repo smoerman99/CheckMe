@@ -15,7 +15,15 @@ class _HomePageState extends State<HomePage> {
   MotherObject _user = MotherObject();
 
   void initState() {
-    _wrapper.readUserWithData();
+    super.initState();
+    fetchData();
+  }
+
+  fetchData() async {
+    var result = await _wrapper.readUserWithData();
+    setState(() {
+      _user = result;
+    });
   }
 
   @override
