@@ -2,8 +2,6 @@ import 'package:checkit/Pages/home.dart';
 import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class NavigationWrapper extends StatefulWidget {
   const NavigationWrapper({Key key}) : super(key: key);

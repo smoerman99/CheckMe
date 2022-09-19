@@ -13,8 +13,6 @@ class _CreateTaskState extends State<CreateTask> {
   final _formKey = GlobalKey<FormState>();
   final _taskNameController = TextEditingController();
 
-  String _errorMessage = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
