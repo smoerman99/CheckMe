@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 
         textTheme: const TextTheme(
           bodyText1: TextStyle(
-            color: Colors.orange,
+            color: Colors.black,
             fontFamily: "Lato",
             fontSize: 25.00,
           ),

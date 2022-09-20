@@ -1,3 +1,4 @@
+import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -8,8 +9,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  TextEditingController _textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Text("Settings page");
+    return TextFormFieldWithStyling(taskNameController: _textEditingController);
   }
 }
