@@ -29,13 +29,16 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tasks to do!"),
+        elevation: 0,
+        title: Text("Tasks to do!!!11"),
+        backgroundColor: Color.fromRGBO(13, 32, 83, 0.8),
       ),
       body: Container(
+        color: Color.fromRGBO(13, 32, 83, 0.8),
         child: _pageOptions.elementAt(_selectedPageIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
