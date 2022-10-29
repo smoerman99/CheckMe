@@ -1,23 +1,22 @@
 import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Entities/MotherObject.dart';
+import 'package:checkit/JsonThings/Wrapper.dart';
 import 'package:checkit/Pages/createTask.dart';
 import 'package:flutter/material.dart';
 
 import '../Entities/Check.dart';
-import '../JsonThings/wrapper.dart';
 
 class ShowTasksPage extends StatefulWidget {
-  const ShowTasksPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  const ShowTasksPage({Key key, @required Wrapper wrapper})
+      : _wrapper = wrapper,
+        super(key: key);
+  final Wrapper _wrapper;
 
   @override
   State<ShowTasksPage> createState() => _ShowTasksPageState();
 }
 
 class _ShowTasksPageState extends State<ShowTasksPage> {
-  final _wrapper = Wrapper();
-
   MotherObject _user;
 
   @override
@@ -28,7 +27,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   }
 
   void _getAvailableChecks() async {
-    var result = await _wrapper.readUserWithData();
+    var result = await widget._wrapper.readUserWithData();
 
     setState(() {
       _user = result;
@@ -39,7 +38,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     await Navigator.push(
         context, MaterialPageRoute(builder: (context) => CreateTaskPage()));
 
-    var result = await _wrapper.readUserWithData();
+    var result = await widget._wrapper.readUserWithData();
     setState(() {
       _user = result;
     });
@@ -55,39 +54,47 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   @override
   Widget build(BuildContext context) {
     // _getAvailableChecks();
-    return Container(
-      color: Theme.of(context).backgroundColor,
-      child: ListView.builder(
-          itemCount: _user.checkList.checkList?.length,
-          itemBuilder: (BuildContext context, int index) {
-            if (_user.checkList.checkList[index].done != true &&
-                _user.checkList.checkList[index].title != null) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onDoubleTap: () =>
-                      _callRemoveTask(_user.checkList.checkList[index]),
-                  child: Card(
-                    color: Theme.of(context).backgroundColor,
-                    child: Padding(
+    return _user.checkList == null || _user.checkList.checkList.length == 0
+        ? Container()
+        : Container(
+            color: Theme.of(context).backgroundColor,
+            child: ListView.builder(
+                itemCount: _user.checkList.checkList?.length,
+                itemBuilder: (BuildContext context, int index) {
+                  if (_user.checkList.checkList[index].done != true &&
+                      _user.checkList.checkList[index].title != null) {
+                    return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        _user.checkList.checkList[index].title
-                            .makeFirstLetterCapitalize(),
-                        style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodyText2?.fontSize,
-                          fontFamily:
-                              Theme.of(context).textTheme.bodyText2?.fontFamily,
+                      child: GestureDetector(
+                        onDoubleTap: () =>
+                            _callRemoveTask(_user.checkList.checkList[index]),
+                        child: Card(
+                          color: Theme.of(context).backgroundColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: _user != null
+                                ? Text(
+                                    _user.checkList.checkList[index].title
+                                        .makeFirstLetterCapitalize(),
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.fontSize,
+                                      fontFamily: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.fontFamily,
+                                    ),
+                                  )
+                                : null,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-              );
-            }
-            return Text("data");
-          }),
-    );
+                    );
+                  }
+                  return Text("data");
+                }),
+          );
   }
 }

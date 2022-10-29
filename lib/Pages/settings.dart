@@ -10,24 +10,25 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _usernameEditingController = TextEditingController();
 
-  Wrapper _wrapper = Wrapper();
+  Wrapper wrapper = Wrapper();
 
-  MotherObject _user = MotherObject();
+  MotherObject _user;
 
   @override
   void initState() {
     super.initState();
 
-    _user = fetchData();
+    fetchData();
   }
 
-  fetchData() async {
-    // var result = await _wrapper.readUserWithData();
-    // setState(() {
-    //   _user = result;
-    // });
+  Future fetchData() async {
+    var result = await wrapper.readUserWithData();
+
+    setState(() {
+      _user = result;
+    });
   }
 
   @override
@@ -36,7 +37,9 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Text(_user.name),
+          _user != null && _user.name.length > 0
+              ? Text(_user.name)
+              : Text("loading"),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:checkit/Entities/MotherObject.dart';
-import 'package:checkit/JsonThings/wrapper.dart';
+import 'package:checkit/JsonThings/Wrapper.dart';
+
 import 'package:checkit/Widgets/TextWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -8,15 +9,17 @@ import 'package:pie_chart/pie_chart.dart';
 //!!!
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key key, @required Wrapper wrapper})
+      : _wrapper = wrapper,
+        super(key: key);
+
+  final Wrapper _wrapper;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Wrapper _wrapper = Wrapper();
-
   MotherObject _user;
 
   Map<String, double> dataMap = {
@@ -33,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future fetchData() async {
-    var result = await _wrapper.readUserWithData();
+    var result = await widget._wrapper.readUserWithData();
 
     Future.delayed(new Duration(milliseconds: 750), () {
       setState(() {

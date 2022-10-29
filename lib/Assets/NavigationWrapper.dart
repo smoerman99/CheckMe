@@ -1,3 +1,4 @@
+import 'package:checkit/JsonThings/Wrapper.dart';
 import 'package:checkit/Pages/home.dart';
 import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
@@ -13,9 +14,9 @@ class NavigationWrapper extends StatefulWidget {
 class _NavigationWrapperState extends State<NavigationWrapper> {
   int _selectedPageIndex = 0;
 
-  static const List<Widget> _pageOptions = <Widget>[
-    HomePage(),
-    ShowTasksPage(),
+  List<Widget> _pageOptions = <Widget>[
+    HomePage(wrapper: Wrapper()),
+    ShowTasksPage(wrapper: Wrapper()),
     SettingsPage()
   ];
 
