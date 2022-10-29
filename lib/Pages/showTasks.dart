@@ -54,7 +54,9 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   @override
   Widget build(BuildContext context) {
     // _getAvailableChecks();
-    return _user.checkList == null || _user.checkList.checkList.length == 0
+    return _user == null ||
+            _user.checkList == null ||
+            _user.checkList.checkList.length == 0
         ? Container()
         : Container(
             color: Theme.of(context).backgroundColor,
