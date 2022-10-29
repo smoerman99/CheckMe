@@ -30,7 +30,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Tasks to do!!!11"),
+        title: Text("Just Chilling"),
         backgroundColor: Color.fromRGBO(13, 32, 83, 0.8),
       ),
       body: Container(
