@@ -6,7 +6,7 @@ import 'package:checkit/Entities/MotherObject.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Wrapper {
-  MotherObject _motherObject = new MotherObject();
+  // MotherObject motherObject = new MotherObject();
 
   String _fileName = 'NeededData.json';
 
@@ -32,20 +32,23 @@ class Wrapper {
     new File('$path/$_fileName').create(recursive: true);
   }
 
-  void _prepareUserData(String content) {
+  MotherObject _prepareUserData(String content) {
     Map<String, dynamic> decode = jsonDecode(content);
 
+    MotherObject motherObject = MotherObject();
+
     for (var i = 0; i < decode.length; i++) {
-      _motherObject.name = decode['name'];
-      _motherObject.mood = decode['mood'];
-      _motherObject.tasksEverCompleted = decode['tasksEverCompleted'];
+      motherObject.name = decode['name'];
+      motherObject.mood = decode['mood'];
+      motherObject.tasksEverCompleted = decode['tasksEverCompleted'];
 
       for (var j = 0; j < decode[i].length; j++) {
-        _motherObject.checkList.checkList.add(
+        motherObject.checkList.checkList.add(
           new Check(title: "1", done: false),
         );
       }
     }
+    return motherObject;
   }
 
   ///
@@ -69,12 +72,12 @@ class Wrapper {
 
       final String content = await file.readAsString();
 
-      _prepareUserData(content);
+      MotherObject motherObject = _prepareUserData(content);
 
-      _motherObject.name = user.name;
-      _motherObject.mood = user.mood;
+      motherObject.name = user.name;
+      motherObject.mood = user.mood;
 
-      writeUser(_motherObject);
+      writeUser(motherObject);
     } else {
       _createNewFileIfNeeded();
       updateUser(user);
@@ -94,14 +97,14 @@ class Wrapper {
             tasksEverCompleted: 0,
             checkList: null);
       } else {
-        _prepareUserData(content);
+        return _prepareUserData(content);
       }
     } else {
       _createNewFileIfNeeded();
       readUserWithData();
     }
 
-    return _motherObject;
+    return null;
   }
 
   Future<void> writeTask(Check task) async {}
