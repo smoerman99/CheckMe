@@ -2,14 +2,14 @@ import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/TextFormFieldWithStyling.dart';
 
-class CreateTask extends StatefulWidget {
-  const CreateTask({Key key}) : super(key: key);
+class CreateTaskPage extends StatefulWidget {
+  const CreateTaskPage({Key key}) : super(key: key);
 
   @override
-  State<CreateTask> createState() => _CreateTaskState();
+  State<CreateTaskPage> createState() => _CreateTaskPageState();
 }
 
-class _CreateTaskState extends State<CreateTask> {
+class _CreateTaskPageState extends State<CreateTaskPage> {
   final _formKey = GlobalKey<FormState>();
   final _taskNameController = TextEditingController();
 

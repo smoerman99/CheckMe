@@ -1,7 +1,11 @@
 import 'package:checkit/Entities/MotherObject.dart';
 import 'package:checkit/JsonThings/wrapper.dart';
+import 'package:checkit/Widgets/TextWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+
+//https://pub.dev/packages/pie_chart
+//!!!
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -13,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Wrapper _wrapper = Wrapper();
 
-  MotherObject _user = MotherObject();
+  MotherObject _user;
 
   Map<String, double> dataMap = {
     "To do": 5,
@@ -21,15 +25,20 @@ class _HomePageState extends State<HomePage> {
     "Done": 2,
   };
 
+  @override
   void initState() {
     super.initState();
+
     fetchData();
   }
 
-  fetchData() async {
+  Future fetchData() async {
     var result = await _wrapper.readUserWithData();
-    setState(() {
-      _user = result;
+
+    Future.delayed(new Duration(milliseconds: 750), () {
+      setState(() {
+        _user = result;
+      });
     });
   }
 
@@ -48,13 +57,13 @@ class _HomePageState extends State<HomePage> {
                       image: AssetImage('assets/img/mewithoutbackground.png'),
                       height: 125),
                   Container(
-                    child: Text(
-                      "Hi " + _user.name,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontFamily: "RobotoMono"),
-                    ),
+                    child: _user != null && _user.name.length > 0
+                        ? TextWidget(
+                            content: "Hi " + _user.name,
+                            fontSize: 22,
+                          )
+                        : TextWidget(
+                            content: "Hang on\na moment", fontSize: 22),
                   ),
                 ],
               ),
@@ -67,10 +76,9 @@ class _HomePageState extends State<HomePage> {
             child: ListTile(
               title: Column(
                 children: [
-                  Text(
-                    _user.mood,
-                    style: TextStyle(fontSize: 18, fontFamily: "RobotoMono"),
-                  ),
+                  _user != null && _user.mood.length > 0
+                      ? TextWidget(content: _user.mood, fontSize: 18)
+                      : TextWidget(content: "Loading...", fontSize: 18),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                   ),

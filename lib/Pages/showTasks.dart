@@ -18,7 +18,7 @@ class ShowTasksPage extends StatefulWidget {
 class _ShowTasksPageState extends State<ShowTasksPage> {
   final _wrapper = Wrapper();
 
-  MotherObject _motherObject = MotherObject();
+  MotherObject _user;
 
   @override
   void initState() {
@@ -31,17 +31,17 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     var result = await _wrapper.readUserWithData();
 
     setState(() {
-      _motherObject = result;
+      _user = result;
     });
   }
 
   void _callCreateTask() async {
     await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CreateTask()));
+        context, MaterialPageRoute(builder: (context) => CreateTaskPage()));
 
     var result = await _wrapper.readUserWithData();
     setState(() {
-      _motherObject = result;
+      _user = result;
     });
   }
 
@@ -55,58 +55,39 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   @override
   Widget build(BuildContext context) {
     // _getAvailableChecks();
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).navigationBarTheme.backgroundColor,
-        title: Text(
-          widget.title,
-          style: TextStyle(
-              color: Theme.of(context).navigationBarTheme.indicatorColor,
-              fontFamily: Theme.of(context).textTheme.bodyText2?.fontFamily,
-              fontSize: Theme.of(context).textTheme.bodyText2?.fontSize),
-        ),
-      ),
-      body: Container(
-        color: Theme.of(context).backgroundColor,
-        child: ListView.builder(
-            itemCount: _motherObject.checkList.checkList?.length,
-            itemBuilder: (BuildContext context, int index) {
-              if (_motherObject.checkList.checkList[index].done != true) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onDoubleTap: () => _callRemoveTask(
-                        _motherObject.checkList.checkList[index]),
-                    child: Card(
-                      color: Theme.of(context).backgroundColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          _motherObject.checkList.checkList[index].title
-                              .makeFirstLetterCapitalize(),
-                          style: TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.bodyText2?.fontSize,
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.fontFamily,
-                          ),
+    return Container(
+      color: Theme.of(context).backgroundColor,
+      child: ListView.builder(
+          itemCount: _user.checkList.checkList?.length,
+          itemBuilder: (BuildContext context, int index) {
+            if (_user.checkList.checkList[index].done != true &&
+                _user.checkList.checkList[index].title != null) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onDoubleTap: () =>
+                      _callRemoveTask(_user.checkList.checkList[index]),
+                  child: Card(
+                    color: Theme.of(context).backgroundColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        _user.checkList.checkList[index].title
+                            .makeFirstLetterCapitalize(),
+                        style: TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.bodyText2?.fontSize,
+                          fontFamily:
+                              Theme.of(context).textTheme.bodyText2?.fontFamily,
                         ),
                       ),
                     ),
                   ),
-                );
-              }
-              return null;
-            }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).backgroundColor,
-        onPressed: _callCreateTask,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+                ),
+              );
+            }
+            return Text("data");
+          }),
     );
   }
 }
