@@ -1,5 +1,5 @@
 import 'package:checkit/Entities/CheckList.dart';
-import 'package:checkit/JsonThings/Wrapper.dart';
+import 'package:checkit/JsonThings/Wrapper_Firebase.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
