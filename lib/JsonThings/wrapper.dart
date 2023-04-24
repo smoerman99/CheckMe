@@ -2,12 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:checkit/Entities/Check.dart';
-import 'package:checkit/Entities/MotherObject.dart';
+
 import 'package:path_provider/path_provider.dart';
 
 class Wrapper {
-  // MotherObject motherObject = new MotherObject();
-
   String _fileName = 'NeededData.json';
 
   ///The private methods section
@@ -32,10 +30,10 @@ class Wrapper {
     new File('$path/$_fileName').create(recursive: true);
   }
 
-  MotherObject _prepareUserData(String content) {
+  CheckList _prepareUserData(String content) {
     Map<String, dynamic> decode = jsonDecode(content);
 
-    MotherObject motherObject = MotherObject();
+    CheckList motherObject = CheckList();
 
     for (var i = 0; i < decode.length; i++) {
       motherObject.name = decode['name'];
@@ -66,7 +64,7 @@ class Wrapper {
     }
   }
 
-  Future<void> updateUser(MotherObject user) async {
+  Future<void> updateUser(CheckList user) async {
     if (await _fileExists(_fileName)) {
       final file = await _localFile;
 

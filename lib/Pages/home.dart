@@ -1,4 +1,4 @@
-import 'package:checkit/Entities/MotherObject.dart';
+import 'package:checkit/Entities/CheckList.dart';
 import 'package:checkit/JsonThings/Wrapper.dart';
 
 import 'package:checkit/Widgets/TextWidget.dart';
@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MotherObject _user;
+  CheckList _user;
 
   Map<String, double> dataMap = {
     "To do": 5,
@@ -101,3 +101,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+// statistieken tonen van hoeveel taken nog te doen
+// hoeveel afgerond/
+// loop je op schema
+
+// wanneer je op add drukt wat wil je toevoegen
+// taak
+// youtube filmpje
+// wensen lijstje
