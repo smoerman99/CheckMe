@@ -1,4 +1,4 @@
-import 'package:checkit/Entities/MotherObject.dart';
+import 'package:checkit/Entities/CheckList.dart';
 import 'package:checkit/JsonThings/Wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -45,3 +45,9 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 }
+
+
+
+// hier kunnen projecten worden toegevoegd waar taken aan gekoppeld kunnen worden.
+// darkmode
+// over hoeveel dagen herinneringen sturen regelen
