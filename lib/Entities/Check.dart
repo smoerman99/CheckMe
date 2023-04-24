@@ -1,5 +1,11 @@
+import 'Enums/Priority.dart';
+
 class Check {
   String title;
+  String project;
+  Priorities priority;
+  DateTime dateTime;
+  int remember;
   bool done;
 
   Check({String title, bool done}) {

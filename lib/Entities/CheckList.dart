@@ -1,14 +1,11 @@
-import 'Check.dart';
+import 'package:checkit/Entities/Check.dart';
 
 class CheckList {
-  List<Check> checkList;
+  List<Check> checks;
 
-  CheckList(this.checkList);
+  CheckList({this.checks});
 
-  CheckList.fromJson(Map<String, dynamic> json)
-      : checkList = json['checkItems'] != null
-            ? List<Check>.from(json['checkItems'])
-            : null;
+  CheckList.fromJson(Map<String, dynamic> json) : checks = json['checks'];
 
-  Map<String, dynamic> toJson() => {'checkItems': checkList};
+  Map<String, dynamic> toJson() => {'checks': checks};
 }
