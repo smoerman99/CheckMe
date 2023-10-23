@@ -1,6 +1,3 @@
-import 'package:checkit/JsonThings/Wrapper_Firebase.dart';
-import 'package:checkit/Pages/home.dart';
-import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +12,14 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   int _selectedPageIndex = 0;
 
   List<Widget> _pageOptions = <Widget>[
-    HomePage(wrapper: Wrapper()),
-    ShowTasksPage(wrapper: Wrapper()),
-    SettingsPage()
+    // LoginWidget(),
+    // SignUpWidget(),
+    Text('What to do with love?'),
+    ShowTasksPage(),
+    Text('setting screen. hier komt ook een loguit')
+    // HomePage(wrapper: Wrapper()),
+    // ShowTasksPage(wrapper: Wrapper()),
+    // SettingsPage()
   ];
 
   void _onTappedNavigationItem(int index) {
@@ -31,7 +33,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Just Chilling"),
+        title: Text("Just Business"),
         backgroundColor: Color.fromRGBO(13, 32, 83, 0.8),
       ),
       body: Container(

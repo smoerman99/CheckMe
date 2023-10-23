@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "186270292150",
+    "project_id": "thehappyhippo-81adb",
+    "storage_bucket": "thehappyhippo-81adb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186270292150:android:2410b24d1582e9432dae17",
+        "android_client_info": {
+          "package_name": "com.example.checkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186270292150-h26g815jku9n6jia346fu1b60sv5iegb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvPHgmkKKleVl5qOdkzxzmlDlKd8aot0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186270292150-h26g815jku9n6jia346fu1b60sv5iegb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "186270292150-2fko3cimjtoach5ssja4he97j1hto9vo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quiztime"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186270292150:android:a45566669b2391012dae17",
+        "android_client_info": {
+          "package_name": "com.example.quiztime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186270292150-h26g815jku9n6jia346fu1b60sv5iegb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvPHgmkKKleVl5qOdkzxzmlDlKd8aot0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186270292150-h26g815jku9n6jia346fu1b60sv5iegb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "186270292150-2fko3cimjtoach5ssja4he97j1hto9vo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quiztime"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

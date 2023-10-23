@@ -1,53 +1,53 @@
-import 'package:checkit/JsonThings/wrapper.dart';
-import 'package:flutter/material.dart';
+// import 'package:checkit/JsonThings/wrapper.dart';
+// import 'package:flutter/material.dart';
 
-import '../Entities/Check.dart';
+// import '../Entities/Check.dart';
 
-class HandleElevatedButton extends StatefulWidget {
-  final String title;
-  final TextEditingController textController;
-  final bool closePage;
+// class HandleElevatedButton extends StatefulWidget {
+//   final String title;
+//   final TextEditingController textController;
+//   final bool closePage;
 
-  const HandleElevatedButton(
-      {Key key,
-      @required this.title,
-      @required this.textController,
-      @required this.closePage})
-      : super(key: key);
+//   const HandleElevatedButton(
+//       {Key key,
+//       @required this.title,
+//       @required this.textController,
+//       @required this.closePage})
+//       : super(key: key);
 
-  @override
-  State<HandleElevatedButton> createState() => _HandleElevatedButtonState();
-}
+//   @override
+//   State<HandleElevatedButton> createState() => _HandleElevatedButtonState();
+// }
 
-class _HandleElevatedButtonState extends State<HandleElevatedButton> {
-  final _wrapper = new Wrapper();
+// class _HandleElevatedButtonState extends State<HandleElevatedButton> {
+//   final _wrapper = new Wrapper();
 
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all(Theme.of(context).primaryColor)),
-        onPressed: () {
-          if (widget.textController.text != "" ||
-              widget.textController.text.isNotEmpty) {
-            _wrapper.writeTask(
-              new Check(
-                title: widget.textController.text,
-                done: false,
-              ),
-            );
+//   @override
+//   Widget build(BuildContext context) {
+//     return ElevatedButton(
+//         style: ButtonStyle(
+//             backgroundColor:
+//                 MaterialStateProperty.all(Theme.of(context).primaryColor)),
+//         onPressed: () {
+//           if (widget.textController.text != "" ||
+//               widget.textController.text.isNotEmpty) {
+//             _wrapper.writeTask(
+//               new Check(
+//                 title: widget.textController.text,
+//                 done: false,
+//               ),
+//             );
 
-            // widget.textController.text == "";
+//             // widget.textController.text == "";
 
-            if (widget.closePage) {
-              Navigator.pop(context, false);
-            }
-          } else {}
-        },
-        child: Text(
-          widget.title,
-          style: TextStyle(color: Colors.black),
-        ));
-  }
-}
+//             if (widget.closePage) {
+//               Navigator.pop(context, false);
+//             }
+//           } else {}
+//         },
+//         child: Text(
+//           widget.title,
+//           style: TextStyle(color: Colors.black),
+//         ));
+//   }
+// }

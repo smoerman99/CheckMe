@@ -29,6 +29,12 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  cloud_firestore: ^3.1.5
+  firebase_core: ^1.24.0
+  firebase_auth: ^3.11.2
+
+  indexed: ^0.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,6 +52,7 @@ flutter:
   assets:
     - assets/img/mewithoutbackground.png
     - assets/img/mewithbackground.png
+    - assets/img/background_general.png
 
     
 
