@@ -1,3 +1,4 @@
+import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,9 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   int _selectedPageIndex = 0;
 
   List<Widget> _pageOptions = <Widget>[
-    // LoginWidget(),
-    // SignUpWidget(),
-    Text('What to do with love?'),
+    Text('Here comes the home page with some facts!'),
     ShowTasksPage(),
-    Text('setting screen. hier komt ook een loguit')
+    SettingsPage()
     // HomePage(wrapper: Wrapper()),
     // ShowTasksPage(wrapper: Wrapper()),
     // SettingsPage()
@@ -33,8 +32,9 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Just Business"),
-        backgroundColor: Color.fromRGBO(13, 32, 83, 0.8),
+        title: Text("Check It"),
+        backgroundColor: Color.fromARGB(255, 121, 62, 62),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         color: Color.fromRGBO(13, 32, 83, 0.8),

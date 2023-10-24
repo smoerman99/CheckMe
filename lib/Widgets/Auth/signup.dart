@@ -225,7 +225,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       } else {
         print('object');
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => LoginWidget()));
+            .push(MaterialPageRoute(builder: (context) => SignInWidget()));
         // setState(() {
         //   message = 'Please insert something before submitting';
         // });

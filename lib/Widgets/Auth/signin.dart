@@ -1,17 +1,18 @@
+import 'package:checkit/Assets/NavigationWrapper.dart';
 import 'package:checkit/Widgets/Auth/signup.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:indexed/indexed.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({Key key}) : super(key: key);
+class SignInWidget extends StatefulWidget {
+  const SignInWidget({Key key}) : super(key: key);
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<SignInWidget> createState() => _LoginWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginWidgetState extends State<SignInWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -150,9 +151,12 @@ class _LoginWidgetState extends State<LoginWidget> {
   Future signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+        email: emailController.text,
+        password: passwordController.text,
       );
+
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => NavigationWrapper()));
     } on FirebaseAuthException catch (exception) {
       if (exception.code == 'user-not-found') {
         setState(() {

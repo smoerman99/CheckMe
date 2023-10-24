@@ -11,8 +11,8 @@ class FirebaseAuthentication {
     String res = 'something happened';
 
     try {
-      UserCredential userCre = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
 
       res = 'created new user';
     } catch (err) {
@@ -20,5 +20,9 @@ class FirebaseAuthentication {
     }
 
     return res;
+  }
+
+  void signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

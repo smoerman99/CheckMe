@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
           } else {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
-                return const LoginWidget();
+                return const SignInWidget();
 
               case ConnectionState.waiting:
                 return const Center(
@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
 
               case ConnectionState.active:
                 if (snapshot.data == null) {
-                  return const LoginWidget();
+                  return const SignInWidget();
                 } else {
                   return const NavigationWrapper();
                 }

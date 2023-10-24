@@ -1,53 +1,44 @@
-// import 'package:checkit/Entities/CheckList.dart';
-// import 'package:checkit/JsonThings/Wrapper_Firebase.dart';
-// import 'package:flutter/material.dart';
+import 'package:checkit/Firebase/Auth.dart';
+import 'package:checkit/Widgets/Auth/signin.dart';
+import 'package:flutter/material.dart';
 
-// class SettingsPage extends StatefulWidget {
-//   const SettingsPage({Key key}) : super(key: key);
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key key}) : super(key: key);
 
-//   @override
-//   State<SettingsPage> createState() => _SettingsPageState();
-// }
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
 
-// class _SettingsPageState extends State<SettingsPage> {
-//   TextEditingController _usernameEditingController = TextEditingController();
+class _SettingsPageState extends State<SettingsPage> {
+  //at some point you can change your username or password
+  // TextEditingController _usernameEditingController = TextEditingController();
+  // TextEditingController _passwordEditingController = TextEditingController();
 
-//   Wrapper wrapper = Wrapper();
+  FirebaseAuthentication _authentication = FirebaseAuthentication();
 
-//   MotherObject _user;
+  @override
+  void initState() {
+    super.initState();
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('settings screen from the pages list'),
+        TextButton(
+          onPressed: () {
+            _authentication.signOut();
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => SignInWidget()));
+          },
+          child: Text("Log uit!"),
+        ),
+      ],
+    );
+  }
+}
 
-//     fetchData();
-//   }
-
-//   Future fetchData() async {
-//     var result = await wrapper.readUserWithData();
-
-//     setState(() {
-//       _user = result;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.all(8.0),
-//       child: Column(
-//         children: [
-//           _user != null && _user.name.length > 0
-//               ? Text(_user.name)
-//               : Text("loading"),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-
-
-// // hier kunnen projecten worden toegevoegd waar taken aan gekoppeld kunnen worden.
-// // darkmode
-// // over hoeveel dagen herinneringen sturen regelen
+// hier kunnen projecten worden toegevoegd waar taken aan gekoppeld kunnen worden.
+// darkmode
+// over hoeveel dagen herinneringen sturen regelen

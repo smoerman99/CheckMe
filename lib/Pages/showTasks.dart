@@ -1,10 +1,5 @@
-import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Firebase/Firestore.dart';
-
-import 'package:checkit/JsonThings/Wrapper_Firebase.dart';
-import 'package:checkit/Pages/createTask.dart';
 import 'package:flutter/material.dart';
-
 import '../Entities/Check.dart';
 
 class ShowTasksPage extends StatefulWidget {
