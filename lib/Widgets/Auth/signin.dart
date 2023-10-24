@@ -62,7 +62,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                     child: Column(children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('Welcome', style: TextStyle(fontSize: 42)),
+                        child: Text('Welkom', style: TextStyle(fontSize: 42)),
                       ),
                       SizedBox(
                         height: 20,
@@ -91,15 +91,6 @@ class _LoginWidgetState extends State<SignInWidget> {
                                 : '',
                             style: TextStyle(fontSize: 13)),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: TextField(
-                      //     controller: passwordController,
-                      //     cursorColor: Colors.white,
-                      //     textInputAction: TextInputAction.next,
-                      //     decoration: InputDecoration(labelText: 'Password'),
-                      //   ),
-                      // ),
                     ]),
                   ),
                 ),
@@ -124,7 +115,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SignUpWidget()));
                       },
-                      child: Text("Don't have an account? Sign up"),
+                      child: Text("Nog geen account? Doe dat hier"),
                     ),
                   ],
                 ),

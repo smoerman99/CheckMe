@@ -1,3 +1,4 @@
+import 'package:checkit/Pages/home.dart';
 import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,9 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   int _selectedPageIndex = 0;
 
   List<Widget> _pageOptions = <Widget>[
-    Text('Here comes the home page with some facts!'),
+    HomePage(),
     ShowTasksPage(),
     SettingsPage()
-    // HomePage(wrapper: Wrapper()),
-    // ShowTasksPage(wrapper: Wrapper()),
-    // SettingsPage()
   ];
 
   void _onTappedNavigationItem(int index) {

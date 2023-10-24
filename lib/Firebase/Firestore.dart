@@ -17,6 +17,8 @@ class FireStore {
     var doc = await firestoreCollection.doc(documentId).get();
 
     if (doc.exists) {
+      var result = doc.data();
+
       return await jsonDecode(doc.data());
     }
 
