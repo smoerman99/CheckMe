@@ -53,8 +53,10 @@ flutter:
     - assets/img/mewithoutbackground.png
     - assets/img/mewithbackground.png
     - assets/img/background_general.png
-
-    
+    - assets/img/try.png
+    - assets/img/try2.png
+    - assets/img/try5.png
+    - assets/img/try10.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

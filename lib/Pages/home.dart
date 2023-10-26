@@ -1,4 +1,5 @@
 import 'package:checkit/Entities/CheckList.dart';
+import 'package:checkit/Pages/CreateTask.dart';
 
 import 'package:checkit/Widgets/TextWidget.dart';
 import 'package:flutter/material.dart';
@@ -41,62 +42,69 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-          child: Card(
-            child: ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Image(
-                      image: AssetImage('assets/img/mewithoutbackground.png'),
-                      height: 125),
-                  Text('Hier komen een bijbel teksten te staan')
-                ],
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-          child: Card(
-            child: ListTile(
-              title: Column(
-                children: [
-                  PieChart(
-                    dataMap: dataMap,
-                    animationDuration: Duration(milliseconds: 200),
-                    colorList: [Colors.red, Colors.grey, Colors.blue],
-                    chartValuesOptions: ChartValuesOptions(
-                        decimalPlaces: 1, showChartValuesInPercentage: true),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-          child: Card(
-            child: ListTile(
-              title: Column(
-                children: [
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blue),
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+            child: Card(
+              child: ListTile(
+                title: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      'Loof den HEERE, mijn ziel, en vergeet geen van Zijn weldaden. Die al uw ongerechtigheid vergeeft, die al uw krankheden geneest',
+                      textAlign: TextAlign.center,
                     ),
-                    onPressed: () {},
-                    child: Text('Nieuwe taak aanmaken'),
-                  )
-                ],
+                    Text('Psalm 103: 2-3')
+                  ],
+                ),
               ),
             ),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+            child: Card(
+              child: ListTile(
+                title: Column(
+                  children: [
+                    PieChart(
+                      dataMap: dataMap,
+                      animationDuration: Duration(milliseconds: 200),
+                      colorList: [Colors.black, Colors.grey, Colors.green],
+                      chartValuesOptions: ChartValuesOptions(
+                          decimalPlaces: 1, showChartValuesInPercentage: true),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+            child: Card(
+              child: ListTile(
+                title: Column(
+                  children: [
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CreateTaskPage()));
+                      },
+                      child: Text('Nieuwe taak aanmaken'),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

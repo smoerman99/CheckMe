@@ -17,22 +17,23 @@ class FireStore {
     var doc = await firestoreCollection.doc(documentId).get();
 
     if (doc.exists) {
-      var result = doc.data();
+      final result = doc.data() as Map<String, dynamic>;
 
-      return await jsonDecode(doc.data());
+      return result;
     }
 
     return null;
   }
 
   Future<Map<String, dynamic>> readAll(String collection) async {
-    CollectionReference firestoreCollection =
-        FirebaseFirestore.instance.collection(collection);
-
-    var docs = await firestoreCollection.get();
-
-    await firestoreCollection.get().then((value) {});
-
-    return null;
+    FirebaseFirestore.instance
+        .collection(collection)
+        .get()
+        .then((allValuesFromCollection) {
+      if (allValuesFromCollection.size >= 1) {
+        return allValuesFromCollection;
+      }
+      return null;
+    });
   }
 }

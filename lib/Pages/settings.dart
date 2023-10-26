@@ -23,18 +23,26 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('settings screen from the pages list'),
-        TextButton(
-          onPressed: () {
-            _authentication.signOut();
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => SignInWidget()));
-          },
-          child: Text("Log uit!"),
+    return Container(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('settings screen from the pages list'),
+            Text('hier kunnen nieuwe projecten aangemaakt worden'),
+            TextButton(
+              onPressed: () {
+                _authentication.signOut();
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SignInWidget()));
+              },
+              child: Text("Log uit!"),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

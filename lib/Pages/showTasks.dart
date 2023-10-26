@@ -11,7 +11,7 @@ class ShowTasksPage extends StatefulWidget {
 
 class _ShowTasksPageState extends State<ShowTasksPage> {
   FireStore _fireStore = FireStore();
-  List<Check> _checks;
+  Map<String, dynamic> _checks;
   String title;
 
   @override
@@ -23,11 +23,10 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
 
   void _getAvailableChecks() async {
     var result = await _fireStore.read('Check', 'uF3MCELOIFHI4ZkajOj1');
-    // var result = await _fireStore.readAll('Check');
+    _checks = await _fireStore.readAll('Check');
 
     setState(() {
       title = result.entries.elementAt(4).value;
-      print(title);
     });
   }
 
@@ -50,14 +49,16 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
 
   @override
   Widget build(BuildContext context) {
-    // _getAvailableChecks();
-    return Column(
-      children: [
-        title != null ? Text(title) : Text('data'),
-        TextButton(
-            onPressed: _getAvailableChecks,
-            child: Text('testging this button')),
-      ],
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          title != null ? Text(title) : Text('data'),
+          TextButton(
+              onPressed: _getAvailableChecks, child: Text('Create new task')),
+        ],
+      ),
     );
   }
 }

@@ -1,9 +1,7 @@
 import 'package:checkit/Assets/NavigationWrapper.dart';
 import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -37,12 +35,9 @@ class MyApp extends StatelessWidget {
         //main section
         //default background color for the app
         backgroundColor: Colors.grey,
-
         //for the rest what needs a color
         hintColor: Color.fromRGBO(4, 24, 31, 1),
-
         primaryColor: Color.fromRGBO(4, 24, 31, 1),
-
         textTheme: const TextTheme(
           bodyText1: TextStyle(
             color: Colors.black,
@@ -72,8 +67,6 @@ class MyApp extends StatelessWidget {
         //specific styling for cards
         cardTheme: CardTheme(),
       ),
-      // home: NavigationWrapper(),
-
       home: StreamBuilder(
         stream: authenticateUserStream(),
         builder: (context, snapshot) {
@@ -102,7 +95,9 @@ class MyApp extends StatelessWidget {
                 if (snapshot.data == null) {
                   return const SignInWidget();
                 } else {
-                  return const NavigationWrapper();
+                  return Container(
+                    child: const NavigationWrapper(),
+                  );
                 }
             }
 
@@ -110,13 +105,6 @@ class MyApp extends StatelessWidget {
           }
         },
       ),
-
-      // NavigationWrapper()
     );
-
-//deze nabouwen en daarna menu tonen en dan verder werken aan nieuwe idee
-// https://www.youtube.com/watch?v=4vKiJZNPhss
-
-//https://github.com/smoerman99/firebase/blob/master/lib/main.dart
   }
 }

@@ -28,18 +28,42 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
-        title: Text("Check It"),
-        backgroundColor: Color.fromARGB(255, 121, 62, 62),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Check It"),
+            Image(
+                image: AssetImage('assets/img/mewithoutbackground.png'),
+                height: 50),
+          ],
+        ),
+        backgroundColor: Color(0x44000000),
         automaticallyImplyLeading: false,
       ),
       body: Container(
-        color: Color.fromRGBO(13, 32, 83, 0.8),
-        child: _pageOptions.elementAt(_selectedPageIndex),
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new ExactAssetImage('assets/img/try10.jpg'),
+            fit: BoxFit.fill,
+          ),
+        ),
+        // color: Color.fromRGBO(13, 32, 83, 0.8),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+          child: _pageOptions.elementAt(_selectedPageIndex),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        selectedIconTheme: IconThemeData(color: Colors.greenAccent, size: 33),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        selectedLabelStyle: TextStyle(backgroundColor: Color(0x44000000)),
+        elevation: 0.0,
+        backgroundColor: Color(0x00ffffff),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
