@@ -1,9 +1,8 @@
 import 'package:checkit/Entities/CheckList.dart';
 import 'package:checkit/Pages/CreateTask.dart';
-
+import 'package:pie_chart/pie_chart.dart';
 import 'package:checkit/Widgets/TextWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 //https://pub.dev/packages/pie_chart
 //!!!
@@ -47,15 +46,23 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+            padding: const EdgeInsets.fromLTRB(32, 35, 32, 16),
             child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              color: Color.fromRGBO(16, 86, 120, 1),
               child: ListTile(
                 title: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      'Loof den HEERE, mijn ziel, en vergeet geen van Zijn weldaden. Die al uw ongerechtigheid vergeeft, die al uw krankheden geneest',
-                      textAlign: TextAlign.center,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Loof den HEERE, mijn ziel, en vergeet geen van Zijn weldaden. Die al uw ongerechtigheid vergeeft, die al uw krankheden geneest.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13),
+                      ),
                     ),
                     Text('Psalm 103: 2-3')
                   ],
@@ -63,23 +70,81 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-            child: Card(
-              child: ListTile(
-                title: Column(
-                  children: [
-                    PieChart(
-                      dataMap: dataMap,
-                      animationDuration: Duration(milliseconds: 200),
-                      colorList: [Colors.black, Colors.grey, Colors.green],
-                      chartValuesOptions: ChartValuesOptions(
-                          decimalPlaces: 1, showChartValuesInPercentage: true),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text('Priority'), Text('5 tasks')]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: 200,
+                width: 200,
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Boeken kopen",
+                      style: TextStyle(fontSize: 18),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              SizedBox(
+                height: 200,
+                width: 200,
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Firebase create task",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                          "hier komt dan een hele mooie omschrijving die na x tekens weggaat",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 160,
+                width: 415,
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: PieChart(
+                        dataMap: dataMap,
+                        animationDuration: Duration(milliseconds: 200),
+                        colorList: [
+                          Colors.black,
+                          Colors.blueGrey,
+                          Colors.lightBlueAccent
+                        ],
+                        chartValuesOptions: ChartValuesOptions(
+                            decimalPlaces: 1,
+                            showChartValuesInPercentage: true),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),

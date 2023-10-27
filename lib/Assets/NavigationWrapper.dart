@@ -13,6 +13,8 @@ class NavigationWrapper extends StatefulWidget {
 class _NavigationWrapperState extends State<NavigationWrapper> {
   int _selectedPageIndex = 0;
 
+  DateTime _date = new DateTime.now();
+
   List<Widget> _pageOptions = <Widget>[
     HomePage(),
     ShowTasksPage(),
@@ -29,39 +31,67 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        toolbarHeight: 150,
+        backgroundColor: Color.fromRGBO(243, 243, 243, 1),
+        elevation: 9,
+        title: Column(
           children: [
-            Text("Check It"),
-            Image(
-                image: AssetImage('assets/img/mewithoutbackground.png'),
-                height: 50),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 25, 8, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Good morning \nSander",
+                      style: TextStyle(color: Colors.black, fontSize: 32)),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Color.fromRGBO(14, 55, 98, 1),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image(
+                          image:
+                              AssetImage('assets/img/mewithoutbackground.png'),
+                          height: 50),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("${_date.day}-${_date.month}-${_date.year}",
+                      style: TextStyle(color: Colors.black, fontSize: 16)),
+                  Text('16 task to do!',
+                      style: TextStyle(color: Colors.black, fontSize: 18))
+                ],
+              ),
+            )
           ],
         ),
-        backgroundColor: Color(0x44000000),
         automaticallyImplyLeading: false,
       ),
       body: Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new ExactAssetImage('assets/img/try10.jpg'),
+            image: new ExactAssetImage('assets/img/try11.jpg'),
             fit: BoxFit.fill,
           ),
         ),
         // color: Color.fromRGBO(13, 32, 83, 0.8),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-          child: _pageOptions.elementAt(_selectedPageIndex),
-        ),
+        child: _pageOptions.elementAt(_selectedPageIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedIconTheme: IconThemeData(color: Colors.greenAccent, size: 33),
+        selectedIconTheme:
+            IconThemeData(color: Color.fromRGBO(14, 55, 98, 1), size: 40),
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        selectedLabelStyle: TextStyle(backgroundColor: Color(0x44000000)),
+        unselectedItemColor: Color.fromRGBO(255, 255, 255, 0.7),
         elevation: 0.0,
         backgroundColor: Color(0x00ffffff),
         items: [

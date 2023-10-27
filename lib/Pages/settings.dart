@@ -32,6 +32,9 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Text('settings screen from the pages list'),
             Text('hier kunnen nieuwe projecten aangemaakt worden'),
+            Text(
+                'bij create task een tussen pagina waarin je een soort activiteit selecteerd met daarbij mooie icons'),
+            Text('stel in na hoeveel tijd je een reminder wilt hebben'),
             TextButton(
               onPressed: () {
                 _authentication.signOut();
