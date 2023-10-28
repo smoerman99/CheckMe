@@ -3,7 +3,7 @@ import 'package:checkit/Entities/Enums/Priority.dart';
 import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import '../Widgets/TextFormFieldWithStyling.dart';
+import '../Widgets/textFormFieldWithStyling.dart';
 
 class CreateTaskPage extends StatefulWidget {
   const CreateTaskPage({Key key}) : super(key: key);

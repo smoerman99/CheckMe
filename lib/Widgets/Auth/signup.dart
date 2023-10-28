@@ -1,5 +1,5 @@
 import 'package:checkit/Widgets/Auth/signin.dart';
-import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
+import 'package:checkit/Widgets/textFormFieldWithStyling.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:indexed/indexed.dart';
