@@ -1,3 +1,4 @@
+import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Pages/home.dart';
 import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
@@ -42,7 +43,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Good morning \nSander",
+                  Text(doSomething() + " \nSander",
                       style: TextStyle(color: Colors.black, fontSize: 32)),
                   Container(
                     decoration: BoxDecoration(

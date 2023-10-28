@@ -41,12 +41,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(32, 35, 32, 16),
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(32, 35, 32, 16),
+          child: AspectRatio(
+            aspectRatio: 30 / 10,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               color: Color.fromRGBO(16, 86, 120, 1),
               child: ListTile(
                 title: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -70,106 +70,114 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Priority'), Text('5 tasks')]),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: 200,
-                width: 200,
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Boeken kopen",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 200,
-                width: 200,
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Firebase create task",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Text(
-                          "hier komt dan een hele mooie omschrijving die na x tekens weggaat",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+        ),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 100 * 4,
+            width: MediaQuery.of(context).size.width / 100 * 40,
+            child: Text('Priority'),
           ),
           SizedBox(
-            height: 12,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 160,
-                width: 415,
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      title: PieChart(
-                        dataMap: dataMap,
-                        animationDuration: Duration(milliseconds: 200),
-                        colorList: [
-                          Colors.black,
-                          Colors.blueGrey,
-                          Colors.lightBlueAccent
-                        ],
-                        chartValuesOptions: ChartValuesOptions(
-                            decimalPlaces: 1,
-                            showChartValuesInPercentage: true),
-                      ),
-                    ),
+            height: MediaQuery.of(context).size.height / 100 * 4,
+            width: MediaQuery.of(context).size.width / 100 * 40,
+            child: Text('5 tasks'),
+          )
+        ]),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 100 * 20,
+              width: MediaQuery.of(context).size.width / 100 * 46,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Boeken kopen",
+                    style: TextStyle(fontSize: 18),
                   ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-            child: Card(
-              child: ListTile(
-                title: Column(
-                  children: [
-                    TextButton(
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => CreateTaskPage()));
-                      },
-                      child: Text('Nieuwe taak aanmaken'),
-                    )
-                  ],
                 ),
               ),
             ),
-          )
-        ],
-      ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 100 * 20,
+              width: MediaQuery.of(context).size.width / 100 * 46,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Firebase create task",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Text(
+                        "hier komt dan een hele mooie omschrijving die na x tekens weggaat",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 100,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 100 * 20,
+              width: MediaQuery.of(context).size.width / 100 * 95,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    title: PieChart(
+                      dataMap: dataMap,
+                      animationDuration: Duration(milliseconds: 200),
+                      colorList: [
+                        Colors.black,
+                        Colors.blueGrey,
+                        Colors.lightBlueAccent
+                      ],
+                      chartValuesOptions: ChartValuesOptions(
+                          decimalPlaces: 1, showChartValuesInPercentage: true),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+          child: Card(
+            child: ListTile(
+              title: Column(
+                children: [
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CreateTaskPage()));
+                    },
+                    child: Text('Nieuwe taak aanmaken'),
+                  )
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
