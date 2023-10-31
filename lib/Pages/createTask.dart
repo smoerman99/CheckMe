@@ -1,9 +1,8 @@
 import 'package:checkit/Entities/Check.dart';
 import 'package:checkit/Entities/Enums/Priority.dart';
 import 'package:checkit/Widgets/HandleElevatedButton.dart';
+import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import '../Widgets/textFormFieldWithStyling.dart';
 
 class CreateTaskPage extends StatefulWidget {
   const CreateTaskPage({Key key}) : super(key: key);
@@ -40,28 +39,47 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
       ),
       body: Container(
         color: Colors.black12,
-        child: Column(
-          children: [
-            TextFormField(
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-            ),
-            HandleElevatedButton(
-              title: "Add",
-              textController: _titleController,
-              closePage: false,
-            ),
-            HandleElevatedButton(
-              title: "Add & Close",
-              textController: _titleController,
-              closePage: true,
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text('het mergen van de formuliervelden naar 1 mooie text input'),
+              TextFormField(
+                autovalidateMode: AutovalidateMode.always,
+                decoration: const InputDecoration(
+                  // icon: Icon(Icons.task),
+                  hintText: 'What are you up to?',
+                  labelText: 'Task',
+                ),
+                onSaved: (String value) {
+                  // This optional block of code can be used to run
+                  // code when the user saves the form.
+                  setState(() {
+                    _check.title = value;
+                  });
+                },
+                validator: (String value) {
+                  return value.contains('@') ? 'Do not use the @ char.' : null;
+                },
+              ),
+              TextFormFieldWithStyling(
+                  needsExpanding: false,
+                  hintText: 'Project',
+                  icon: Icon(Icons.access_alarm),
+                  taskNameController: TextEditingController(),
+                  textInputType: TextInputType.number),
+              HandleElevatedButton(
+                title: "Add",
+                textController: _titleController,
+                closePage: false,
+              ),
+              HandleElevatedButton(
+                title: "Add & Close",
+                textController: _titleController,
+                closePage: true,
+              )
+            ],
+          ),
         ),
       ),
     );
