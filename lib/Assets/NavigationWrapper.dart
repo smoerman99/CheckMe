@@ -31,11 +31,12 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: AppBar(
         toolbarHeight: 150,
-        backgroundColor: Color.fromRGBO(243, 243, 243, 1),
-        elevation: 9,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Column(
           children: [
             Padding(
@@ -43,12 +44,12 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(doSomething() + " \nSander",
-                      style: TextStyle(color: Colors.black, fontSize: 32)),
+                  Text(getGreeting() + " \nSander",
+                      style: TextStyle(color: Colors.white, fontSize: 32)),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Color.fromRGBO(14, 55, 98, 1),
+                      color: Color.fromRGBO(0, 0, 0, 1),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
@@ -68,9 +69,9 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("${_date.day}-${_date.month}-${_date.year}",
-                      style: TextStyle(color: Colors.black, fontSize: 16)),
+                      style: TextStyle(color: Colors.white, fontSize: 16)),
                   Text('16 task to do!',
-                      style: TextStyle(color: Colors.black, fontSize: 18))
+                      style: TextStyle(color: Colors.white, fontSize: 18))
                 ],
               ),
             )
@@ -81,16 +82,17 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
       body: Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new ExactAssetImage('assets/img/try11.jpg'),
+            image: new ExactAssetImage('assets/img/try16.png'),
             fit: BoxFit.fill,
           ),
         ),
-        // color: Color.fromRGBO(13, 32, 83, 0.8),
         child: _pageOptions.elementAt(_selectedPageIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedIconTheme:
-            IconThemeData(color: Color.fromRGBO(14, 55, 98, 1), size: 40),
+        selectedIconTheme: IconThemeData(
+          color: Colors.white,
+          size: 40,
+        ),
         selectedItemColor: Colors.white,
         unselectedItemColor: Color.fromRGBO(255, 255, 255, 0.7),
         elevation: 0.0,

@@ -40,13 +40,13 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromRGBO(4, 24, 31, 1),
         textTheme: const TextTheme(
           bodyText1: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontFamily: "Lato",
             fontSize: 25.00,
           ),
           //for the rest
           bodyText2: TextStyle(
-            color: Colors.orange,
+            color: Colors.white,
             fontFamily: "Lato",
             fontSize: 22.00,
           ),

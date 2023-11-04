@@ -51,13 +51,16 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          title != null ? Text(title) : Text('data'),
-          TextButton(
-              onPressed: _getAvailableChecks, child: Text('Create new task')),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(32, 200, 32, 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            title != null ? Text(title) : Text('data'),
+            TextButton(
+                onPressed: _getAvailableChecks, child: Text('Create new task')),
+          ],
+        ),
       ),
     );
   }

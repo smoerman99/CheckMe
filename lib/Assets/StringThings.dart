@@ -4,7 +4,7 @@ extension StringExtension on String {
   }
 }
 
-String doSomething() {
+String getGreeting() {
   final now = DateTime.now();
 
   if (now.hour >= 0 && now.hour < 12) {
