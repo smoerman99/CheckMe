@@ -1,1 +1,8 @@
-enum Categories { study, youtube, web, music, private, appointment }
+List<String> categories = [
+  'Study',
+  'Youtube',
+  'Web',
+  'Music',
+  'Private',
+  'Appointment'
+];

@@ -82,8 +82,8 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
       body: Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new ExactAssetImage('assets/img/try16.png'),
-            fit: BoxFit.fill,
+            image: new ExactAssetImage('assets/img/try17.png'),
+            fit: BoxFit.cover,
           ),
         ),
         child: _pageOptions.elementAt(_selectedPageIndex),

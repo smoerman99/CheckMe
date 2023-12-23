@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import '../Entities/Enums/Category.dart';
 import 'dart:math' as math;
 
+import '../Widgets/categoryContainer.dart';
+
 //https://pub.dev/packages/pie_chart
 //!!!
 
@@ -20,6 +22,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   CheckList _user;
+
+  int category1 = 2;
+  int category2 = 0;
+  int category3 = 3;
+  int category4 = 4;
+  int category5 = 5;
+  int category6 = 6;
 
   Map<String, double> dataMap = {
     "To do": 5,
@@ -56,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              color: Color.fromRGBO(179, 140, 90, 1),
+              color: Color.fromRGBO(255, 255, 255, 1),
               child: ListTile(
                 title: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -64,9 +73,13 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       'Loof den HEERE, mijn ziel, en vergeet geen van Zijn weldaden. Die al uw ongerechtigheid vergeeft, die al uw krankheden geneest.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 15, color: Color.fromRGBO(112, 29, 29, 1)),
                     ),
-                    Text('Psalm 103: 2-3')
+                    Text(
+                      'Psalm 103: 2-3',
+                      style: TextStyle(fontSize: 18),
+                    )
                   ],
                 ),
               ),
@@ -79,81 +92,35 @@ class _HomePageState extends State<HomePage> {
             height: MediaQuery.of(context).size.height / 100 * 4,
             width: MediaQuery.of(context).size.width / 100 * 40,
             child: Text('Category',
-                style: TextStyle(color: Colors.white, fontSize: 24)),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold)),
           ),
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
-          child: Row(children: [
+        Row(
+          children: [
             //provide all the things u want to horizontally scroll here
-            for (var item in Categories.values)
-              Container(
-                width: 120,
-                height: 150,
-                child: Card(
-                  color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-                      .withOpacity(1.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.abc),
-                        ],
-                      ),
-                      Row(
-                        children: [Text(item.name)],
-                      ),
-                      Row(
-                        children: [Text('2 tasks')],
-                      )
-                    ],
-                  ),
-                ),
+            for (var item in (categories.take(categories.length ~/ 2)))
+              CategoryContainer(
+                openDoings: 2,
+                title: item,
+                icon: Icon(Icons.abc),
               )
-          ]),
+          ],
+          mainAxisAlignment: MainAxisAlignment.center,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 100 * 20,
-              width: MediaQuery.of(context).size.width / 100 * 46,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Boeken kopen",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 100 * 20,
-              width: MediaQuery.of(context).size.width / 100 * 46,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Firebase create task",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        "hier komt dan een hele mooie omschrijving die na x tekens weggaat",
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            //provide all the things u want to horizontally scroll here
+            for (var item in (categories.skip(categories.length ~/ 2)))
+              CategoryContainer(
+                openDoings: 2,
+                title: item,
+                icon: Icon(Icons.abc),
+              )
           ],
+          mainAxisAlignment: MainAxisAlignment.center,
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height / 100,

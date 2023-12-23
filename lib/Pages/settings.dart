@@ -26,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Container(
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.fromLTRB(32, 200, 32, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -35,6 +35,8 @@ class _SettingsPageState extends State<SettingsPage> {
             Text(
                 'bij create task een tussen pagina waarin je een soort activiteit selecteerd met daarbij mooie icons'),
             Text('stel in na hoeveel tijd je een reminder wilt hebben'),
+            Text('Kijk op github voor project bord'),
+            Text('darkmode'),
             TextButton(
               onPressed: () {
                 _authentication.signOut();
@@ -49,7 +51,3 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 }
-
-// hier kunnen projecten worden toegevoegd waar taken aan gekoppeld kunnen worden.
-// darkmode
-// over hoeveel dagen herinneringen sturen regelen
