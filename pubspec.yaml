@@ -52,7 +52,6 @@ flutter:
   assets:
     - assets/img/mewithoutbackground.png
     - assets/img/mewithbackground.png
-    - assets/img/background_general.png
     - assets/img/try.png
     - assets/img/try2.png
     - assets/img/try5.png
@@ -63,12 +62,9 @@ flutter:
     - assets/img/try15.png
     - assets/img/try16.png
     - assets/img/try17.png
-
-
-
-
-
-
+    - assets/img/try18.png
+    - assets/img/try19.png
+    - assets/img/try20.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -99,6 +95,12 @@ flutter:
     - family: RobotoMono
       fonts:
         - asset: assets/fonts/RobotMono/RobotoMono-Bold.ttf
+    - family: BeautifulEveryTime
+      fonts:
+        - asset: assets/fonts/BeautifulEveryTime/BeautifulEveryTime-Dg4m.ttf
+    - family: ShadowsIntoLight
+      fonts:
+        - asset: assets/fonts/ShadowsIntoLight/ShadowsIntoLight-Regular.ttf
        
   # fonts:
   #   - family: Schyler
