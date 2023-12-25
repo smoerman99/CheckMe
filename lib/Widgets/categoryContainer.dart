@@ -35,7 +35,10 @@ class _CategoryContainerState extends State<CategoryContainer> {
                 widget.icon,
                 Text(
                   widget.title,
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontFamily:
+                          Theme.of(context).textTheme.bodyText1.fontFamily),
                 )
               ],
             ),

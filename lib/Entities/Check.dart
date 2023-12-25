@@ -1,8 +1,10 @@
+import 'package:checkit/Entities/Category.dart';
+
 import 'Enums/Priority.dart';
 
 class Check {
   String title;
-  String project;
+  String category;
   Priorities priority;
   DateTime dateTime;
   int remember;
@@ -10,13 +12,13 @@ class Check {
 
   Check(
       {String title,
-      String project,
+      String category,
       Priorities priority,
       DateTime dateTime,
       int rembember,
       bool done}) {
     this.title = title;
-    this.project = project;
+    this.category = category;
     this.priority = priority;
     this.dateTime = dateTime;
     this.remember = rembember;
@@ -25,7 +27,7 @@ class Check {
 
   Check.fromJson(Map<String, dynamic> json)
       : title = json['title'],
-        project = json['project'],
+        category = json['category'],
         priority = json['priority'],
         dateTime = json['dateTime'],
         remember = json['remember'],
@@ -33,7 +35,7 @@ class Check {
 
   Map<String, dynamic> toJson() => {
         'title': title,
-        'project': project,
+        'category': category,
         'priority': priority,
         'dateTime': dateTime,
         'remember': remember,

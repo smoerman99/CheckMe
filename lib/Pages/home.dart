@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   FireStore _fireStore = FireStore();
 
-  CheckList _user;
   Map<String, dynamic> fetchedData;
   Iterable<Map<String, dynamic>> categories;
 
@@ -35,15 +34,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _fetchData() async {
+    //need to add icon to the firebase object and map this to the frontend.
     categories = await _fireStore.readAll('Category');
-    print(categories.length.toString());
+
+    //or with and foreach
     // fetchedData.forEach((key, value) {
     //   categories.add(value);
     // });
   }
 
   final Future<String> _calculation = Future<String>.delayed(
-    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 300),
     () => 'Data Loaded',
   );
 
