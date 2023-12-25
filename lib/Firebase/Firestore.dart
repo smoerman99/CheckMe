@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:checkit/Entities/Category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStore {
@@ -25,15 +26,10 @@ class FireStore {
     return null;
   }
 
-  Future<Map<String, dynamic>> readAll(String collection) async {
-    FirebaseFirestore.instance
-        .collection(collection)
-        .get()
-        .then((allValuesFromCollection) {
-      if (allValuesFromCollection.size >= 1) {
-        return allValuesFromCollection;
-      }
-      return null;
-    });
+  Future<Iterable<Map<String, dynamic>>> readAll(String collection) async {
+    var snapshot =
+        await FirebaseFirestore.instance.collection(collection).get();
+
+    return snapshot.docs.map((doc) => doc.data()).toList();
   }
 }
