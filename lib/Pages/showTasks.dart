@@ -23,7 +23,6 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
 
   void _getAvailableChecks() async {
     var result = await _fireStore.read('Check', 'uF3MCELOIFHI4ZkajOj1');
-    _checks = await _fireStore.readAll('Check');
 
     setState(() {
       title = result.entries.elementAt(4).value;

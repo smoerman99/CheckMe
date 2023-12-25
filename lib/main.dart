@@ -32,23 +32,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Check Me',
       theme: ThemeData(
-        //main section
-        //default background color for the app
-        backgroundColor: Colors.grey,
         //for the rest what needs a color
         hintColor: Color.fromRGBO(4, 24, 31, 1),
         primaryColor: Color.fromRGBO(4, 24, 31, 1),
         textTheme: const TextTheme(
           bodyText1: TextStyle(
-            color: Colors.white,
-            fontFamily: "Lato",
+            color: Color.fromRGBO(255, 255, 255, 1),
+            fontFamily: "BeautifulEveryTime",
             fontSize: 25.00,
           ),
           //for the rest
           bodyText2: TextStyle(
-            color: Colors.white,
+            color: Color.fromRGBO(255, 255, 255, 1),
             fontFamily: "Lato",
             fontSize: 22.00,
+          ),
+          headline2: TextStyle(
+            color: Color.fromRGBO(255, 255, 255, 1),
+            fontFamily: "BeautifulEveryTime",
+            fontSize: 25.00,
+            fontWeight: FontWeight.bold,
           ),
         ),
 

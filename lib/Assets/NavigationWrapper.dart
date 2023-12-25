@@ -44,8 +44,15 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(getGreeting() + " \nSander",
-                      style: TextStyle(color: Colors.white, fontSize: 32)),
+                  Text(
+                    getGreeting() + " \nSander",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontFamily:
+                          Theme.of(context).textTheme.bodyText1.fontFamily,
+                    ),
+                  ),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
@@ -56,7 +63,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                       child: Image(
                           image:
                               AssetImage('assets/img/mewithoutbackground.png'),
-                          height: 50),
+                          height: 60),
                     ),
                   ),
                 ],
@@ -69,9 +76,15 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("${_date.day}-${_date.month}-${_date.year}",
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      )),
                   Text('16 task to do!',
-                      style: TextStyle(color: Colors.white, fontSize: 18))
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ))
                 ],
               ),
             )
@@ -82,7 +95,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
       body: Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new ExactAssetImage('assets/img/try17.png'),
+            image: new ExactAssetImage('assets/img/try19.png'),
             fit: BoxFit.cover,
           ),
         ),

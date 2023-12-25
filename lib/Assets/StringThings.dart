@@ -8,12 +8,12 @@ String getGreeting() {
   final now = DateTime.now();
 
   if (now.hour >= 0 && now.hour < 12) {
-    return 'Good morning';
+    return 'Good Morning';
   }
 
   if (now.hour >= 12 && now.hour < 19) {
-    return 'Good afternoon';
+    return 'Good Afternoon';
   } else {
-    return 'Good evening';
+    return 'Good Evening';
   }
 }
