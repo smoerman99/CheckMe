@@ -52,10 +52,6 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
     }
 
     print(list2?.first.value);
-
-    // setState(() {
-    //   dropdownValue = list2?.first.value;
-    // });
   }
 
   @override
