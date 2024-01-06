@@ -21,7 +21,7 @@ main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   Stream authenticateUserStream() {
     return FirebaseAuth.instance.authStateChanges();
@@ -103,8 +103,6 @@ class MyApp extends StatelessWidget {
                   );
                 }
             }
-
-            return null;
           }
         },
       ),

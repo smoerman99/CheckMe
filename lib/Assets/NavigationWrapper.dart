@@ -5,7 +5,7 @@ import 'package:checkit/Pages/showTasks.dart';
 import 'package:flutter/material.dart';
 
 class NavigationWrapper extends StatefulWidget {
-  const NavigationWrapper({Key key}) : super(key: key);
+  const NavigationWrapper({Key? key}) : super(key: key);
 
   @override
   State<NavigationWrapper> createState() => _NavigationWrapperState();
@@ -50,7 +50,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                       color: Colors.white,
                       fontSize: 32,
                       fontFamily:
-                          Theme.of(context).textTheme.bodyText1.fontFamily,
+                          Theme.of(context).textTheme.bodyText1?.fontFamily,
                     ),
                   ),
                   Container(

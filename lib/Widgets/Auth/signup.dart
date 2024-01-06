@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:indexed/indexed.dart';
 
 class SignUpWidget extends StatefulWidget {
-  const SignUpWidget({Key key}) : super(key: key);
+  const SignUpWidget({Key? key}) : super(key: key);
 
   @override
   State<SignUpWidget> createState() => _SignUpWidgetState();
@@ -16,7 +16,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  String message;
+  String message = '';
 
   void dispose() {
     fullNameController.dispose();

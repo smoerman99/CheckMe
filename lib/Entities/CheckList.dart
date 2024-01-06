@@ -1,7 +1,7 @@
 import 'package:checkit/Entities/Check.dart';
 
 class CheckList {
-  List<Check> checks;
+  List<Check>? checks;
 
   CheckList({this.checks});
 

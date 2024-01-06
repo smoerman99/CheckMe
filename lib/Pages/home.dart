@@ -9,7 +9,7 @@ import '../Widgets/categoryContainer.dart';
 //!!!
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -18,8 +18,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   FireStore _fireStore = FireStore();
 
-  Map<String, dynamic> fetchedData;
-  Iterable<Map<String, dynamic>> categories;
+  Map<String, dynamic>? fetchedData;
+  Iterable<Map<String, dynamic>> categories = [];
 
   Map<String, double> dataMap = {
     "To do": 5,
@@ -27,31 +27,16 @@ class _HomePageState extends State<HomePage> {
     "Done": 2,
   };
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchData();
-  }
-
-  Future<void> _fetchData() async {
-    //need to add icon to the firebase object and map this to the frontend.
+  Future<String> _fetchData() async {
     categories = await _fireStore.readAll('Category');
-
-    //or with and foreach
-    // fetchedData.forEach((key, value) {
-    //   categories.add(value);
-    // });
+    print('test');
+    return 'Loaded';
   }
-
-  final Future<String> _calculation = Future<String>.delayed(
-    const Duration(milliseconds: 300),
-    () => 'Data Loaded',
-  );
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _calculation,
+      future: _fetchData(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.hasData) {
           return ListView(
@@ -77,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                               fontFamily: Theme.of(context)
                                   .textTheme
                                   .bodyText2
-                                  .fontFamily,
+                                  ?.fontFamily,
                               fontSize: 15,
                               color: Color.fromRGBO(112, 29, 29, 1),
                             ),
@@ -212,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily:
-                              Theme.of(context).textTheme.bodyText2.fontFamily,
+                              Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
                           color: Color.fromRGBO(112, 29, 29, 1),
                         ),

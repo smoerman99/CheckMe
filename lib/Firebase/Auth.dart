@@ -4,9 +4,9 @@ class FirebaseAuthentication {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<String> signUpUser({
-    String email,
-    String password,
-    String username,
+    required String email,
+    required String password,
+    required String username,
   }) async {
     String res = 'something happened';
 

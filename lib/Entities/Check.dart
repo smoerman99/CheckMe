@@ -3,20 +3,20 @@ import 'package:checkit/Entities/Category.dart';
 import 'Enums/Priority.dart';
 
 class Check {
-  String title;
-  String category;
-  Priorities priority;
-  DateTime dateTime;
-  int remember;
-  bool done;
+  String? title;
+  String? category;
+  Priorities? priority;
+  DateTime? dateTime;
+  int? remember;
+  bool? done;
 
   Check(
-      {String title,
-      String category,
-      Priorities priority,
-      DateTime dateTime,
-      int rembember,
-      bool done}) {
+      {String? title,
+      String? category,
+      Priorities? priority,
+      DateTime? dateTime,
+      int? rembember,
+      bool? done}) {
     this.title = title;
     this.category = category;
     this.priority = priority;

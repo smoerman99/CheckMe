@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../Entities/Check.dart';
-
 class HandleElevatedButton extends StatefulWidget {
   final String title;
   final TextEditingController textController;
+  // final Function executeMethod;
   final bool closePage;
 
   const HandleElevatedButton(
-      {Key key,
-      @required this.title,
-      @required this.textController,
-      @required this.closePage})
+      {Key? key,
+      required this.title,
+      required this.textController,
+      // @required this.executeMethod,
+      required this.closePage})
       : super(key: key);
 
   @override
@@ -26,8 +26,8 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
             backgroundColor:
                 MaterialStateProperty.all(Theme.of(context).primaryColor)),
         onPressed: () {
-          if (widget.textController.text != "" ||
-              widget.textController.text.isNotEmpty) {
+          if (widget.textController.text.isNotEmpty ||
+              widget.textController.text != "") {
             // _wrapper.writeTask(
             //   new Check(
             //     title: widget.textController.text,
@@ -39,6 +39,7 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
 
             if (widget.closePage) {
               Navigator.pop(context, false);
+              print('clicked');
             }
           } else {}
         },

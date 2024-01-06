@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Category {
-  String title;
-  Icon icon;
+  String? title;
+  Icon? icon;
 
-  Category({String title, Icon icon}) {
+  Category({String? title, Icon? icon}) {
     this.title = title;
     this.icon = icon;
   }

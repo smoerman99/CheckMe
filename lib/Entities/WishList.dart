@@ -1,10 +1,10 @@
 import 'Enums/Priority.dart';
 
 class WishList {
-  String title;
-  Priorities priority;
-  int remember;
-  bool done;
+  String? title;
+  Priorities? priority;
+  int? remember;
+  bool? done;
 
   WishList({this.title, this.priority, this.remember, this.done});
 

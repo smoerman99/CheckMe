@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CategoryContainer extends StatefulWidget {
   final int openDoings;
@@ -8,10 +6,10 @@ class CategoryContainer extends StatefulWidget {
   final String title;
 
   const CategoryContainer(
-      {Key key,
-      @required this.openDoings,
-      @required this.icon,
-      @required this.title})
+      {Key? key,
+      required this.openDoings,
+      required this.icon,
+      required this.title})
       : super(key: key);
 
   @override
@@ -38,7 +36,7 @@ class _CategoryContainerState extends State<CategoryContainer> {
                   style: TextStyle(
                       fontSize: 25,
                       fontFamily:
-                          Theme.of(context).textTheme.bodyText1.fontFamily),
+                          Theme.of(context).textTheme.bodyText1?.fontFamily),
                 )
               ],
             ),

@@ -1,8 +1,8 @@
 class ToWatch {
-  String title;
-  String url;
-  int remember;
-  bool done;
+  String? title;
+  String? url;
+  int? remember;
+  bool? done;
 
   ToWatch({this.title, this.url, this.remember, this.done});
 

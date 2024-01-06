@@ -3,7 +3,7 @@ import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -37,6 +37,10 @@ class _SettingsPageState extends State<SettingsPage> {
             Text('stel in na hoeveel tijd je een reminder wilt hebben'),
             Text('Kijk op github voor project bord'),
             Text('darkmode'),
+            Text(
+                'Recepten boek, met daarin categorie voor - hoofd - nagerecht'),
+            Text('Upload formulier met fotos'),
+            Text('Random 3-gangen menu samenstellen'),
             TextButton(
               onPressed: () {
                 _authentication.signOut();

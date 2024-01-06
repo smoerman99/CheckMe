@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Entities/Check.dart';
 
 class ShowTasksPage extends StatefulWidget {
-  const ShowTasksPage({Key key}) : super(key: key);
+  const ShowTasksPage({Key? key}) : super(key: key);
 
   @override
   State<ShowTasksPage> createState() => _ShowTasksPageState();
@@ -11,8 +11,8 @@ class ShowTasksPage extends StatefulWidget {
 
 class _ShowTasksPageState extends State<ShowTasksPage> {
   FireStore _fireStore = FireStore();
-  Map<String, dynamic> _checks;
-  String title;
+  Map<String, dynamic>? _checks;
+  String? title;
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     var result = await _fireStore.read('Check', 'uF3MCELOIFHI4ZkajOj1');
 
     setState(() {
-      title = result.entries.elementAt(4).value;
+      title = result?.entries.elementAt(4).value;
     });
   }
 
@@ -55,7 +55,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            title != null ? Text(title) : Text('data'),
+            title != null ? Text(title!) : Text('data'),
             TextButton(
                 onPressed: _getAvailableChecks, child: Text('Create new task')),
           ],

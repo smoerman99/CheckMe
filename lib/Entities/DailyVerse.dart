@@ -1,9 +1,9 @@
 class DailyVerse {
-  String text;
-  String book;
-  String chapter;
-  String beginVerse;
-  String endVerse;
+  String? text;
+  String? book;
+  String? chapter;
+  String? beginVerse;
+  String? endVerse;
 
   DailyVerse(
       {this.text, this.book, this.chapter, this.beginVerse, this.endVerse});

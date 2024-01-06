@@ -1,7 +1,7 @@
 class Settings {
-  String name;
-  String mood;
-  int tasksEverCompleted;
+  String? name;
+  String? mood;
+  int? tasksEverCompleted;
 
   Settings({
     this.name,

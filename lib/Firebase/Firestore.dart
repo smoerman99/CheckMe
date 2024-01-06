@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:checkit/Entities/Category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStore {
@@ -11,7 +8,7 @@ class FireStore {
     return table.add(newObject);
   }
 
-  Future<Map<String, dynamic>> read(
+  Future<Map<String, dynamic>?> read(
       String collection, String documentId) async {
     CollectionReference firestoreCollection =
         FirebaseFirestore.instance.collection(collection);
@@ -30,6 +27,6 @@ class FireStore {
     var snapshot =
         await FirebaseFirestore.instance.collection(collection).get();
 
-    return snapshot.docs.map((doc) => doc.data()).toList();
+    return snapshot.docs.map((doc) => doc.data());
   }
 }

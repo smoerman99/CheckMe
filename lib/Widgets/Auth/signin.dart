@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:indexed/indexed.dart';
 
 class SignInWidget extends StatefulWidget {
-  const SignInWidget({Key key}) : super(key: key);
+  const SignInWidget({Key? key}) : super(key: key);
 
   @override
   State<SignInWidget> createState() => _LoginWidgetState();
@@ -16,7 +16,7 @@ class _LoginWidgetState extends State<SignInWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  String message;
+  String message = '';
 
   void dispose() {
     emailController.dispose();
@@ -94,10 +94,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                message != null && message.isNotEmpty
-                                    ? message
-                                    : '',
+                            child: Text(message.isNotEmpty ? message : '',
                                 style: TextStyle(fontSize: 13)),
                           ),
                         ]),
