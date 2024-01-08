@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
-              child: Text("Erruer"),
+              child: Text("Erruerr"),
             );
           } else {
             switch (snapshot.connectionState) {
