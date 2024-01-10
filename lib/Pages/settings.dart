@@ -31,16 +31,12 @@ class _SettingsPageState extends State<SettingsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('settings screen from the pages list'),
-            Text('hier kunnen nieuwe projecten aangemaakt worden'),
-            Text(
-                'bij create task een tussen pagina waarin je een soort activiteit selecteerd met daarbij mooie icons'),
             Text('stel in na hoeveel tijd je een reminder wilt hebben'),
             Text('Kijk op github voor project bord'),
             Text('darkmode'),
-            Text(
-                'Recepten boek, met daarin categorie voor - hoofd - nagerecht'),
-            Text('Upload formulier met fotos'),
-            Text('Random 3-gangen menu samenstellen'),
+            Text('taken tonen'),
+            Text('taken op done zetten en niet meer tonen'),
+            Text('taken optellen + verdelen per categorie tonen'),
             TextButton(
               onPressed: () {
                 _authentication.signOut();
