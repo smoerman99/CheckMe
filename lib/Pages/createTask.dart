@@ -3,6 +3,7 @@ import 'package:checkit/Entities/Enums/Priority.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
+
 import 'package:flutter/material.dart';
 
 class CreateTaskPage extends StatefulWidget {
@@ -15,17 +16,14 @@ class CreateTaskPage extends StatefulWidget {
 class _CreateTaskPageState extends State<CreateTaskPage> {
   FireStore _fireStore = FireStore();
 
-  final _formKey = GlobalKey<FormState>();
-
   final _check = Check();
+
   final _titleController = TextEditingController();
-  final _projectController = TextEditingController();
-  final _priority = Priorities;
-  final int remember = 0;
+  final _rememberController = TextEditingController();
 
   Iterable<Map<String, dynamic>> categories = [];
-  String? dropdownValue = 'Music';
-  List<DropdownMenuItem<String>>? list2;
+  String? defaultSelectedCategory = 'Music';
+  List<DropdownMenuItem<String>>? allCategories;
 
   Future<String> _fetchData() async {
     categories = await _fireStore.readAll('Category');
@@ -37,11 +35,11 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   void mapCategoryItems() {
     setState(() {
-      list2 = [];
+      allCategories = [];
     });
 
     for (var item in (categories)) {
-      list2?.add(
+      allCategories?.add(
         new DropdownMenuItem<String>(
           child: Text(
             item['Title'],
@@ -50,8 +48,33 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
         ),
       );
     }
+  }
 
-    print(list2?.first.value);
+  Future<void> _addCheckToDB() async {
+    setState(() {
+      _check.category = defaultSelectedCategory;
+      _check.dateTime = DateTime.now();
+      _check.done = false;
+      _check.priority = Priorities.none.name;
+      _check.remember = int.tryParse(_rememberController.value.text);
+      _check.title = _titleController.value.text;
+    });
+
+    await _fireStore.create('Check', _check.toFirestore());
+
+    clearTextField();
+    popOrNot(true);
+  }
+
+  void clearTextField() {
+    _titleController.clear();
+    _rememberController.clear();
+  }
+
+  void popOrNot(bool popPage) {
+    if (popPage) {
+      Navigator.pop(context, false);
+    }
   }
 
   @override
@@ -70,12 +93,11 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
             ),
             child: ListView(children: [
               SizedBox(
-                height: 24,
+                height: 36,
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
                 child: Container(
-                  height: 300,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -86,44 +108,75 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('Create Task',
-                            style: TextStyle(
-                                fontSize: 32,
-                                color: Color.fromRGBO(150, 90, 90, 1))),
+                        child: Text(
+                          'Create Task',
+                          style: TextStyle(
+                            fontSize: 36,
+                            color: Color.fromRGBO(150, 90, 90, 1),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 18,
                       ),
                       TextFormFieldWithStyling(
                           needsExpanding: false,
                           hintText: 'Title',
                           icon: Icon(Icons.title),
-                          taskNameController: TextEditingController(),
+                          taskNameController: _titleController,
                           textInputType: TextInputType.text),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      TextFormFieldWithStyling(
+                          needsExpanding: false,
+                          hintText: 'Remember',
+                          icon: Icon(Icons.numbers),
+                          taskNameController: _rememberController,
+                          textInputType: TextInputType.number),
                       DropdownButton<String>(
-                        value: dropdownValue,
-                        icon: const Icon(Icons.arrow_downward),
+                        value: defaultSelectedCategory,
+                        icon: const Icon(Icons.arrow_downward,
+                            color: Color.fromRGBO(150, 90, 90, 1)),
                         elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple),
+                        style: const TextStyle(
+                          color: Color.fromRGBO(150, 90, 90, 1),
+                          fontSize: 18,
+                        ),
                         underline: Container(
                           height: 2,
-                          color: Colors.deepPurpleAccent,
+                          color: Color.fromRGBO(150, 90, 90, 1),
                         ),
                         onChanged: (value) {
                           // This is called when the user selects an item.
                           setState(() {
-                            dropdownValue = value;
+                            defaultSelectedCategory = value;
                           });
                         },
-                        items: list2,
+                        items: allCategories,
                       ),
-                      HandleElevatedButton(
-                        title: "Add",
-                        textController: _titleController,
-                        closePage: false,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: _addCheckToDB,
+                            child: Text('Add'),
+                          ),
+                          // HandleElevatedButton(
+                          //   title: "Add",
+                          //   textController: _titleController,
+                          //   closePage: false,
+                          // ),
+                          // SizedBox(
+                          //   width: 18,
+                          // ),
+                          // HandleElevatedButton(
+                          //   title: "Add & Close",
+                          //   textController: _titleController,
+                          //   closePage: true,
+                          // )
+                        ],
                       ),
-                      HandleElevatedButton(
-                        title: "Add & Close",
-                        textController: _titleController,
-                        closePage: true,
-                      )
                     ],
                   ),
                 ),

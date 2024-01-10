@@ -11,7 +11,7 @@ class TextFormFieldWithStyling extends StatelessWidget {
       {Key? key,
       required TextEditingController taskNameController,
       required Icon icon,
-      required textInputType,
+      required TextInputType textInputType,
       required bool needsExpanding,
       required String hintText})
       : _taskNameController = taskNameController,

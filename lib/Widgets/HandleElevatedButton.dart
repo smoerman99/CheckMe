@@ -10,7 +10,6 @@ class HandleElevatedButton extends StatefulWidget {
       {Key? key,
       required this.title,
       required this.textController,
-      // @required this.executeMethod,
       required this.closePage})
       : super(key: key);
 
@@ -23,8 +22,10 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all(Theme.of(context).primaryColor)),
+          backgroundColor: MaterialStateProperty.all(
+            Color.fromRGBO(150, 90, 90, 0.5),
+          ),
+        ),
         onPressed: () {
           if (widget.textController.text.isNotEmpty ||
               widget.textController.text != "") {
@@ -35,7 +36,7 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
             //   ),
             // );
 
-            widget.textController.text == "";
+            widget.textController.text = "";
 
             if (widget.closePage) {
               Navigator.pop(context, false);
@@ -45,7 +46,10 @@ class _HandleElevatedButtonState extends State<HandleElevatedButton> {
         },
         child: Text(
           widget.title,
-          style: TextStyle(color: Colors.blue),
+          style: TextStyle(
+            color: Color.fromRGBO(150, 90, 90, 1),
+            fontWeight: FontWeight.bold,
+          ),
         ));
   }
 }

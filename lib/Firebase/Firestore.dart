@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStore {
-  Future<void> create(String collection, Map<String, dynamic> newObject) {
+  Future<void> create(String collection, Object newObject) {
     CollectionReference table =
         FirebaseFirestore.instance.collection(collection);
 
