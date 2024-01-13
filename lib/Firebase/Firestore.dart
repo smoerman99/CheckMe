@@ -29,4 +29,13 @@ class FireStore {
 
     return snapshot.docs.map((doc) => doc.data());
   }
+
+  Future<int> countCollectionLength(String collection) async {
+    var test;
+    await readAll(collection).then(
+      (value) => {print(value.length), test = value.length},
+    );
+
+    return test;
+  }
 }
