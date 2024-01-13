@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CategoryContainer extends StatefulWidget {
-  final int openDoings;
   final Icon icon;
   final String title;
+  final int openDoings;
 
   const CategoryContainer(
       {Key? key,
-      required this.openDoings,
       required this.icon,
-      required this.title})
+      required this.title,
+      required this.openDoings})
       : super(key: key);
 
   @override
@@ -20,30 +20,33 @@ class _CategoryContainerState extends State<CategoryContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.height / 100 * 15,
-      height: MediaQuery.of(context).size.width / 100 * 25,
+      width: MediaQuery.of(context).size.height / 100 * 13,
+      height: MediaQuery.of(context).size.width / 100 * 22,
       child: Card(
         color: widget.openDoings > 0
             ? Color.fromRGBO(150, 90, 90, 1)
             : Colors.white.withOpacity(1.0),
-        child: Column(
-          children: [
+        child: Container(
+          child: Column(children: [
+            Padding(padding: EdgeInsets.fromLTRB(0, 16, 0, 0)),
             Row(
-              children: [
-                widget.icon,
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontFamily:
-                          Theme.of(context).textTheme.bodyText1?.fontFamily),
-                )
-              ],
-            ),
-            Row(
-              children: [Text('To Do: ' + widget.openDoings.toString())],
-            )
-          ],
+                children: [widget.icon],
+                mainAxisAlignment: MainAxisAlignment.center),
+            widget.openDoings > 0
+                ? Row(
+                    children: [
+                      Text(
+                        widget.openDoings.toString(),
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      )
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.end,
+                  )
+                : Text(
+                    '',
+                    style: TextStyle(color: Colors.black, fontSize: 12),
+                  )
+          ]),
         ),
       ),
     );
