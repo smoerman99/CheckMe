@@ -38,9 +38,6 @@ class _HomePageState extends State<HomePage> {
     dataMap['Done'] =
         checks.where((element) => element['done'] == true).length.toDouble();
 
-    for (var item in (categories.skip(categories.length ~/ 2)))
-      print(categories.where((c) => c['Title'] == item['Title']).length);
-
     return 'Loaded';
   }
 

@@ -31,11 +31,11 @@ class FireStore {
   }
 
   Future<int> countCollectionLength(String collection) async {
-    var test;
+    var collectionLength;
     await readAll(collection).then(
-      (value) => {print(value.length), test = value.length},
+      (value) => collectionLength = value.length,
     );
 
-    return test;
+    return collectionLength;
   }
 }
