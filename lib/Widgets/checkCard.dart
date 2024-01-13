@@ -1,8 +1,9 @@
+import 'package:checkit/Firebase/Firestore.dart';
 import 'package:flutter/material.dart';
 
 class CheckCard extends StatefulWidget {
   final String categorie;
-  final String dateAdded;
+  final DateTime dateAdded;
   final String priority;
   final int remember;
   final String title;
@@ -21,13 +22,17 @@ class CheckCard extends StatefulWidget {
 }
 
 class __CheckCardStateState extends State<CheckCard> {
+  FireStore _fireStore = FireStore();
+
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ListTile(
-          title: Text(widget.title),
-          subtitle: Text(widget.priority),
+          onTap: () => print(widget.title),
+          title:
+              Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: Text('Category: ' + widget.categorie),
         )
       ]),
     );

@@ -38,4 +38,6 @@ class FireStore {
 
     return collectionLength;
   }
+
+  Future<void> update() async {}
 }

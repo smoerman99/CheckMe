@@ -1,6 +1,8 @@
+import 'package:checkit/Assets/TimeStampConverter.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
 import 'package:checkit/Widgets/checkCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../Entities/Check.dart';
 
@@ -15,7 +17,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   FireStore _fireStore = FireStore();
 
   Iterable<Map<String, dynamic>> checks = [];
-  var list = [];
+  List list = [];
 
   void _callRemoveTask(Check checkToRemove) async {
     // var result = await _wrapper.executeUpdate(checkToRemove);
@@ -28,10 +30,20 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     checks = await _fireStore.readAll('Check');
 
     for (Map<String, dynamic> member in checks) {
-      list.add(member);
+      member['dateTime'] = member['dateTime'].toDate();
+
+      list.add(Check.fromJson(member));
     }
 
     return 'Loaded';
+  }
+
+  filterData() {
+    var filteredList =
+        list.where((element) => element['category'] == 'Private').toList();
+    setState(() {
+      list = filteredList;
+    });
   }
 
   // TextButton(
@@ -48,20 +60,22 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
       future: _fetchData(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.hasData) {
-          return ListView.separated(
-            padding: const EdgeInsets.all(8),
-            itemCount: checks.length,
-            itemBuilder: (BuildContext context, int index) {
-              return CheckCard(
-                title: list[index]['title'],
-                categorie: list[index]['category'],
-                dateAdded: list[index]['dateTime'].toString(),
-                priority: list[index]['priority'],
-                remember: 7,
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.separated(
+              itemCount: checks.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CheckCard(
+                  title: list[index].title,
+                  categorie: list[index].category,
+                  dateAdded: list[index].dateTime,
+                  priority: list[index].priority,
+                  remember: list[index].remember,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+            ),
           );
         } else {
           return ListView(shrinkWrap: false, children: [

@@ -37,6 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Text('taken tonen'),
             Text('taken op done zetten en niet meer tonen'),
             Text('taken optellen + verdelen per categorie tonen'),
+            Text('Het maken van een groeps to do lijst'),
             TextButton(
               onPressed: () {
                 _authentication.signOut();
