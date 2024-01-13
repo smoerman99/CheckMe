@@ -20,16 +20,27 @@ class _HomePageState extends State<HomePage> {
 
   Map<String, dynamic>? fetchedData;
   Iterable<Map<String, dynamic>> categories = [];
+  Iterable<Map<String, dynamic>> checks = [];
 
   Map<String, double> dataMap = {
-    "To do": 5,
-    "In progress": 3,
-    "Done": 2,
+    "To do": 0,
+    "In progress": 2,
+    "Done": 0,
   };
 
   Future<String> _fetchData() async {
     categories = await _fireStore.readAll('Category');
-    print('test');
+    checks = await _fireStore.readAll('Check');
+
+    dataMap['To do'] =
+        checks.where((element) => element['done'] == false).length.toDouble();
+
+    dataMap['Done'] =
+        checks.where((element) => element['done'] == true).length.toDouble();
+
+    for (var item in (categories.skip(categories.length ~/ 2)))
+      print(categories.where((c) => c['Title'] == item['Title']).length);
+
     return 'Loaded';
   }
 
@@ -93,10 +104,15 @@ class _HomePageState extends State<HomePage> {
                   //provide all the things u want to horizontally scroll here
                   for (var item in (categories.take(categories.length ~/ 2)))
                     CategoryContainer(
-                      openDoings: 2,
-                      title: item['Title'] != null ? item['Title'] : '',
-                      icon: Icon(Icons.abc),
-                    )
+                        title: item['Title'] != null ? item['Title'] : '',
+                        icon: Icon(
+                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
+                            size: 55),
+                        openDoings: checks
+                            .where((c) =>
+                                c['category'] == item['Title'] &&
+                                c['done'] == false)
+                            .length)
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
@@ -105,10 +121,15 @@ class _HomePageState extends State<HomePage> {
                   //provide all the things u want to horizontally scroll here
                   for (var item in (categories.skip(categories.length ~/ 2)))
                     CategoryContainer(
-                      openDoings: 2,
-                      title: item['Title'] != null ? item['Title'] : '',
-                      icon: Icon(Icons.abc),
-                    )
+                        title: item['Title'] != null ? item['Title'] : '',
+                        icon: Icon(
+                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
+                            size: 55),
+                        openDoings: checks
+                            .where((c) =>
+                                c['category'] == item['Title'] &&
+                                c['done'] == false)
+                            .length),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
@@ -119,8 +140,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 100 * 20,
-                    width: MediaQuery.of(context).size.width / 100 * 95,
+                    height: MediaQuery.of(context).size.height / 100 * 16,
+                    width: MediaQuery.of(context).size.width / 100 * 85,
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -135,7 +156,8 @@ class _HomePageState extends State<HomePage> {
                             ],
                             chartValuesOptions: ChartValuesOptions(
                                 decimalPlaces: 1,
-                                showChartValuesInPercentage: true),
+                                showChartValues: true,
+                                showChartValuesInPercentage: false),
                           ),
                         ),
                       ),
@@ -152,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                         TextButton(
                           style: ButtonStyle(
                             foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.blue),
+                                MaterialStateProperty.all<Color>(Colors.black),
                           ),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -215,13 +237,6 @@ class _HomePageState extends State<HomePage> {
 }
         
         
-  
-
-
-// statistieken tonen van hoeveel taken nog te doen
-// hoeveel afgerond/
-// loop je op schema
-
 // wanneer je op add drukt wat wil je toevoegen
 // taak
 // youtube filmpje
