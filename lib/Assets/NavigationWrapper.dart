@@ -33,7 +33,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   }
 
   Future<String> _fetchData() async {
-    _amountOfCheck = await _fireStore.countCollectionLength('Check');
+    _amountOfCheck = await _fireStore.countNotDoneChecks('Check');
     return 'Loaded';
   }
 

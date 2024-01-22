@@ -1,8 +1,6 @@
-import 'package:checkit/Assets/TimeStampConverter.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
 import 'package:checkit/Widgets/checkCard.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../Entities/Check.dart';
 
@@ -17,6 +15,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   FireStore _fireStore = FireStore();
 
   Iterable<Map<String, dynamic>> checks = [];
+
   List list = [];
 
   void _callRemoveTask(Check checkToRemove) async {
@@ -30,12 +29,19 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     checks = await _fireStore.readAll('Check');
 
     for (Map<String, dynamic> member in checks) {
-      member['dateTime'] = member['dateTime'].toDate();
+      if (!member['done']) {
+        member['dateTime'] = member['dateTime'].toDate();
 
-      list.add(Check.fromJson(member));
+        list.add(Check.fromJson(member));
+      }
     }
 
     return 'Loaded';
+  }
+
+  void _update(int count) {
+    setState(
+        () => list = list.where((element) => element.done == true).toList());
   }
 
   filterData() {
@@ -46,14 +52,6 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     });
   }
 
-  // TextButton(
-  //   onPressed: () {
-  //     Navigator.of(context).push(MaterialPageRoute(
-  //         builder: (context) => CreateTaskPage()));
-  //   },
-  //   child: Text('Nieuwe taak aanmaken'),
-  // ),
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -63,15 +61,34 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView.separated(
-              itemCount: checks.length,
+              shrinkWrap: false,
+              itemCount: list.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                return CheckCard(
-                  title: list[index].title,
-                  categorie: list[index].category,
-                  dateAdded: list[index].dateTime,
-                  priority: list[index].priority,
-                  remember: list[index].remember,
-                );
+                if (index == list.length) {
+                  return TextButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CreateTaskPage()));
+                    },
+                    child: Text('Nieuwe taak aanmaken'),
+                  );
+                } else {
+                  return CheckCard(
+                    update: _update,
+                    id: list[index].id,
+                    title: list[index].title,
+                    categorie: list[index].category,
+                    dateAdded: list[index].dateTime,
+                    priority: list[index].priority,
+                    remember: list[index].remember,
+                  );
+                }
               },
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),

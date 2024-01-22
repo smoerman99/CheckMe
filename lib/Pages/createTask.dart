@@ -73,7 +73,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   void popOrNot(bool popPage) {
     if (popPage) {
-      Navigator.pop(context, false);
+      Navigator.pop(context, true);
     }
   }
 

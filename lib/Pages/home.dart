@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                               Colors.lightBlueAccent
                             ],
                             chartValuesOptions: ChartValuesOptions(
-                                decimalPlaces: 1,
+                                decimalPlaces: 0,
                                 showChartValues: true,
                                 showChartValuesInPercentage: false),
                           ),
