@@ -27,17 +27,19 @@ class FireStore {
     var snapshot =
         await FirebaseFirestore.instance.collection(collection).get();
 
-    return snapshot.docs.map((doc) => doc.data());
+    return snapshot.docs.map((doc) => ({...doc.data(), 'id': doc.id}));
   }
 
-  Future<int> countCollectionLength(String collection) async {
-    var collectionLength;
-    await readAll(collection).then(
-      (value) => collectionLength = value.length,
-    );
+  Future<int> countNotDoneChecks(String collection) async {
+    var getCollectionLength = await readAll(collection);
 
-    return collectionLength;
+    return getCollectionLength
+        .where((element) => element['done'] == false)
+        .length;
   }
 
-  Future<void> update() async {}
+  Future<void> update(
+      String collection, String docId, Map<String, dynamic> data) async {
+    FirebaseFirestore.instance.collection(collection).doc(docId).update(data);
+  }
 }

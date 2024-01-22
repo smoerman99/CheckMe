@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Check {
+  String? id;
   String? title;
   String? category;
   String? priority;
@@ -9,12 +10,14 @@ class Check {
   bool? done;
 
   Check(
-      {String? title,
+      {String? id,
+      String? title,
       String? category,
       String? priority,
       DateTime? dateTime,
       int? remember,
       bool? done}) {
+    this.id = id;
     this.title = title;
     this.category = category;
     this.priority = priority;
@@ -24,7 +27,8 @@ class Check {
   }
 
   Check.fromJson(Map<String, dynamic> json)
-      : title = json['title'],
+      : id = json['id'],
+        title = json['title'],
         category = json['category'],
         priority = json['priority'],
         dateTime = json['dateTime'],
@@ -32,6 +36,7 @@ class Check {
         done = json['done'];
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'title': title,
         'category': category,
         'priority': priority,
@@ -46,6 +51,7 @@ class Check {
   ) {
     final data = snapshot.data();
     return Check(
+      id: data?['id'],
       title: data?['title'],
       category: data?['category'],
       priority: data?['priority'],
@@ -57,6 +63,7 @@ class Check {
 
   Map<String, dynamic> toFirestore() {
     return {
+      if (id != null) "id": id,
       if (title != null) "title": title,
       if (category != null) "category": category,
       if (priority != null) "priority": priority,
