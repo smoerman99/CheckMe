@@ -32,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Text('settings screen from the pages list'),
             Text('bepaal hier na hoeveel tijd je een reminder wilt hebben.'),
-            Text('Kijk op github voor project bord'),
+            Text('Zie Github project bord voor de openstaande taken'),
             TextButton(
               onPressed: () {
                 _authentication.signOut();
