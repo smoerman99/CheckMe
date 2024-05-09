@@ -1,4 +1,7 @@
+import 'package:checkit/Assets/GetBibleVerses.dart';
+import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Entities/CheckList.dart';
+import 'package:checkit/Entities/DailyVerse.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -22,6 +25,8 @@ class _HomePageState extends State<HomePage> {
   Iterable<Map<String, dynamic>> categories = [];
   Iterable<Map<String, dynamic>> checks = [];
 
+  DailyVerse _dailyVerse = DailyVerse();
+
   Map<String, double> dataMap = {
     "To do": 0,
     "In progress": 2,
@@ -29,6 +34,8 @@ class _HomePageState extends State<HomePage> {
   };
 
   Future<String> _fetchData() async {
+    _dailyVerse = await fetchBibleVerse();
+
     categories = await _fireStore.readAll('Category');
     checks = await _fireStore.readAll('Check');
 
@@ -64,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Loof den HEERE, mijn ziel, en vergeet geen van Zijn weldaden. Die al uw ongerechtigheid vergeeft, die al uw krankheden geneest.',
+                            stripHtmlIfNeeded(_dailyVerse.content ?? ''),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: Theme.of(context)
@@ -76,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Text(
-                            'Psalm 103: 2-3',
+                            _dailyVerse.reference ?? '',
                             style: TextStyle(fontSize: 16),
                           )
                         ],

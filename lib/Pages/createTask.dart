@@ -122,7 +122,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                       TextFormFieldWithStyling(
                           needsExpanding: false,
                           hintText: 'Title',
-                          icon: Icon(Icons.title),
+                          icon: Icon(Icons.menu),
                           taskNameController: _titleController,
                           textInputType: TextInputType.text),
                       SizedBox(

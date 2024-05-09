@@ -1,25 +1,21 @@
 class DailyVerse {
-  String? text;
-  String? book;
-  String? chapter;
-  String? beginVerse;
-  String? endVerse;
+  String? id;
+  String? bookId;
+  String? reference;
+  String? content;
 
-  DailyVerse(
-      {this.text, this.book, this.chapter, this.beginVerse, this.endVerse});
+  DailyVerse({this.id, this.bookId, this.reference, this.content});
 
   DailyVerse.fromJson(Map<String, dynamic> json)
-      : text = json['text'],
-        book = json['book'],
-        chapter = json['chapter'],
-        beginVerse = json['beginVerse'],
-        endVerse = json['endVerse'];
+      : id = json['id'],
+        bookId = json['bookId'],
+        reference = json['reference'],
+        content = json['content'];
 
   Map<String, dynamic> toJson() => {
-        'text': text,
-        'book': book,
-        'chapter': chapter,
-        'beginVerse': beginVerse,
-        'endVerse': endVerse
+        'id': id,
+        'bookId': bookId,
+        'reference': reference,
+        'content': content,
       };
 }
