@@ -53,15 +53,15 @@ class TextFormFieldWithStyling extends StatelessWidget {
             // This optional block of code can be used to run
             // code when the user saves the form.
           },
-          validator: (String? value) {
-            if (value?.isEmpty != null) {
-              if (value!.contains('@')) {
-                return 'Do not use the @ char.';
-              }
-            } else {
-              return null;
-            }
-          },
+          // validator: (String? value) {
+          //   if (value?.isEmpty != null) {
+          //     if (value!.contains('@')) {
+          //       return 'Do not use the @ char.';
+          //     }
+          //   } else {
+          //     return null;
+          //   }
+          // },
         ),
       ),
     );
