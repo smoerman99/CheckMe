@@ -17,3 +17,7 @@ String getGreeting() {
     return 'Good Evening';
   }
 }
+
+String stripHtmlIfNeeded(String text) {
+  return text.replaceAll(RegExp(r'<[^>]*>|&[^;]+;|\d+|¶'), ' ');
+}
