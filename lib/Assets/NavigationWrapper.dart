@@ -49,7 +49,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             appBar: AppBar(
               toolbarHeight: 150,
               elevation: 0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Color.fromRGBO(55, 63, 78, 0.949),
               title: Column(
                 children: [
                   Padding(
@@ -95,11 +95,13 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                               color: Colors.white,
                               fontSize: 16,
                             )),
-                        Text(_amountOfCheck.toString() + ' task to do!',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ))
+                        _amountOfCheck > 1
+                            ? Text(_amountOfCheck.toString() + ' tasks to do!')
+                            : Text(_amountOfCheck.toString() + ' task to do!',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ))
                       ],
                     ),
                   )
@@ -110,8 +112,8 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             body: Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new ExactAssetImage('assets/img/try19.png'),
-                  fit: BoxFit.cover,
+                  image: new ExactAssetImage('assets/img/try35.png'),
+                  fit: BoxFit.fitHeight,
                 ),
               ),
               child: _pageOptions.elementAt(_selectedPageIndex),
@@ -175,7 +177,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                           fontFamily:
                               Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(112, 29, 29, 1),
+                          color: Color.fromRGBO(158, 177, 219, 1),
                         ),
                       ),
                     ],

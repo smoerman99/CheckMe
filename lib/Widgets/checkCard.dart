@@ -42,7 +42,7 @@ class __CheckCardStateState extends State<CheckCard> {
           onLongPress: () => updateTask(),
           title:
               Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text('Category: ' + widget.id),
+          subtitle: Text('Category: ' + widget.categorie),
         )
       ]),
     );

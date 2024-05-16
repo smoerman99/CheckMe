@@ -68,7 +68,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                   return TextButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
+                          MaterialStateProperty.all<Color>(Colors.white),
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.black),
                     ),
@@ -108,13 +108,13 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Loading data.',
+                        'Loading data...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily:
                               Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(112, 29, 29, 1),
+                          color: Color.fromRGBO(158, 177, 219, 1),
                         ),
                       ),
                     ],

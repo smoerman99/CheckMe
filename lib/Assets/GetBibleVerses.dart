@@ -22,6 +22,14 @@ Future<DailyVerse> fetchBibleVerse() async {
 
     return DailyVerse.fromJson(json['data']);
   } else {
-    throw Exception('Failed to load DailyVerse');
+    return DailyVerse(
+      bookId: 'PSA',
+      content:
+          'For as the heaven is high above the earth, so great is his mercy toward them that fear Him.',
+      id: 'PSA.103.11',
+      reference: 'Psalms 103:11',
+    );
+
+    // throw Exception('Failed to load DailyVerse');
   }
 }

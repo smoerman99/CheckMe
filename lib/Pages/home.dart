@@ -1,6 +1,5 @@
 import 'package:checkit/Assets/GetBibleVerses.dart';
 import 'package:checkit/Assets/StringThings.dart';
-import 'package:checkit/Entities/CheckList.dart';
 import 'package:checkit/Entities/DailyVerse.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
@@ -74,17 +73,18 @@ class _HomePageState extends State<HomePage> {
                             stripHtmlIfNeeded(_dailyVerse.content ?? ''),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontFamily: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.fontFamily,
-                              fontSize: 15,
-                              color: Color.fromRGBO(112, 29, 29, 1),
-                            ),
+                                fontFamily: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.fontFamily,
+                                fontSize: 15,
+                                color: Color.fromRGBO(158, 177, 219, 1),
+                                fontWeight: FontWeight.w400),
                           ),
                           Text(
                             _dailyVerse.reference ?? '',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
@@ -103,39 +103,52 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  //provide all the things u want to horizontally scroll here
-                  for (var item in (categories.take(categories.length ~/ 2)))
-                    CategoryContainer(
-                        title: item['Title'] != null ? item['Title'] : '',
-                        icon: Icon(
-                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
-                            size: 55),
-                        openDoings: checks
-                            .where((c) =>
-                                c['category'] == item['Title'] &&
-                                c['done'] == false)
-                            .length)
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
+              Container(
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    //provide all the things u want to horizontally scroll here
+                    for (var item in (categories.take(categories.length ~/ 2)))
+                      CategoryContainer(
+                          title: item['Title'] != null ? item['Title'] : '',
+                          icon: Icon(
+                              IconData(item['Icon'],
+                                  fontFamily: 'MaterialIcons'),
+                              size: 55),
+                          openDoings: checks
+                              .where((c) =>
+                                  c['category'] == item['Title'] &&
+                                  c['done'] == false)
+                              .length),
+
+                    const VerticalDivider(
+                      width: 0,
+                      color: Colors.transparent,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
               ),
-              Row(
-                children: [
-                  //provide all the things u want to horizontally scroll here
-                  for (var item in (categories.skip(categories.length ~/ 2)))
-                    CategoryContainer(
-                        title: item['Title'] != null ? item['Title'] : '',
-                        icon: Icon(
-                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
-                            size: 55),
-                        openDoings: checks
-                            .where((c) =>
-                                c['category'] == item['Title'] &&
-                                c['done'] == false)
-                            .length),
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
+              Container(
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    //provide all the things u want to horizontally scroll here
+                    for (var item in (categories.skip(categories.length ~/ 2)))
+                      CategoryContainer(
+                          title: item['Title'] != null ? item['Title'] : '',
+                          icon: Icon(
+                              IconData(item['Icon'],
+                                  fontFamily: 'MaterialIcons'),
+                              size: 55),
+                          openDoings: checks
+                              .where((c) =>
+                                  c['category'] == item['Title'] &&
+                                  c['done'] == false)
+                              .length),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 100,
@@ -156,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                             colorList: [
                               Colors.black,
                               Colors.blueGrey,
-                              Colors.lightBlueAccent
+                              Color.fromRGBO(158, 177, 219, 1)
                             ],
                             chartValuesOptions: ChartValuesOptions(
                                 decimalPlaces: 0,
@@ -219,13 +232,13 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Loading data.',
+                        'Loading data...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily:
                               Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(112, 29, 29, 1),
+                          color: Color.fromRGBO(158, 177, 219, 1),
                         ),
                       ),
                     ],

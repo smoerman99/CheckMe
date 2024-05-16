@@ -3,6 +3,7 @@ import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'firebase_options.dart';
 
 // https://github.com/flutter/flutter/issues/17592
@@ -29,6 +30,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return MaterialApp(
       title: 'Check Me',
       theme: ThemeData(
@@ -38,18 +44,18 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyText1: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
-            fontFamily: "BeautifulEveryTime",
+            fontFamily: "Aptos",
             fontSize: 25.00,
           ),
           //for the rest
           bodyText2: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
-            fontFamily: "Lato",
+            fontFamily: "Aptos",
             fontSize: 22.00,
           ),
           headline2: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
-            fontFamily: "BeautifulEveryTime",
+            fontFamily: "Aptos",
             fontSize: 25.00,
             fontWeight: FontWeight.bold,
           ),
@@ -57,8 +63,8 @@ class MyApp extends StatelessWidget {
 
         //navigation scheme settings
         navigationBarTheme: NavigationBarThemeData(
-          backgroundColor: Color.fromRGBO(1, 50, 70, 1),
-          indicatorColor: Colors.white,
+          backgroundColor: Color.fromRGBO(158, 177, 219, 1),
+          indicatorColor: Colors.black,
         ),
 
         //styling for the buttons
