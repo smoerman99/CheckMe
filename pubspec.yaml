@@ -54,18 +54,19 @@ flutter:
     - assets/img/mewithoutbackground.png
     - assets/img/mewithbackground.png
     - assets/img/try.png
-    - assets/img/try2.png
+    - assets/img/try2.jpg
+    - assets/img/try3.jpg
+    - assets/img/try4.png
     - assets/img/try5.png
-    - assets/img/try10.jpg
-    - assets/img/try11.jpg
-    - assets/img/try12.jpg
-    - assets/img/try13.jpg
-    - assets/img/try15.png
-    - assets/img/try16.png
-    - assets/img/try17.png
-    - assets/img/try18.png
-    - assets/img/try19.png
-    - assets/img/try20.png
+    - assets/img/try6.png
+    - assets/img/try7.png
+    - assets/img/try8.jpeg
+    - assets/img/try9.jpeg
+    - assets/img/try10.jpeg
+    - assets/img/try11.jpeg
+    - assets/img/try12.png
+    - assets/img/try13.png
+    - assets/img/try14.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -102,6 +103,9 @@ flutter:
     - family: ShadowsIntoLight
       fonts:
         - asset: assets/fonts/ShadowsIntoLight/ShadowsIntoLight-Regular.ttf
+    - family: Aptos
+      fonts:
+        - asset: assets/fonts/Aptos/Aptos.ttf
        
   # fonts:
   #   - family: Schyler
