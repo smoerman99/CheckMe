@@ -112,7 +112,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             body: Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new ExactAssetImage('assets/img/try14.png'),
+                  image: new ExactAssetImage('assets/img/try15.png'),
                   fit: BoxFit.fill,
                 ),
               ),
