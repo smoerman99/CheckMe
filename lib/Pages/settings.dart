@@ -10,10 +10,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  //at some point you can change your username or password
-  // TextEditingController _usernameEditingController = TextEditingController();
-  // TextEditingController _passwordEditingController = TextEditingController();
-
   FirebaseAuthentication _authentication = FirebaseAuthentication();
 
   @override

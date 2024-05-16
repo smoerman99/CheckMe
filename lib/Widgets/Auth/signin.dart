@@ -33,7 +33,7 @@ class _LoginWidgetState extends State<SignInWidget> {
         child: Container(
           decoration: new BoxDecoration(
             image: new DecorationImage(
-              image: new ExactAssetImage('assets/img/try10.jpg'),
+              image: new ExactAssetImage('assets/img/try14.png'),
               fit: BoxFit.fill,
             ),
           ),
