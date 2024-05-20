@@ -70,8 +70,14 @@ class _LoginWidgetState extends State<SignInWidget> {
                         child: Column(children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text('Welkom', style: TextStyle(fontSize: 42)),
+                            child: Text('Welkom',
+                                style: TextStyle(
+                                  fontSize: 42,
+                                  fontFamily: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.fontFamily,
+                                )),
                           ),
                           SizedBox(
                             height: 20,
