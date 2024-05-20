@@ -25,7 +25,7 @@ class _CategoryContainerState extends State<CategoryContainer> {
       child: Card(
         elevation: 0.0,
         color: widget.openDoings > 0
-            ? Color.fromRGBO(55, 63, 78, 0.949)
+            ? Color.fromRGBO(113, 131, 165, 0.945)
             : Colors.white.withOpacity(1.0),
         child: Container(
           child: Column(children: [

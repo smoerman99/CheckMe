@@ -87,7 +87,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
               child: Container(
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new ExactAssetImage('assets/img/try14.png'),
+                image: new ExactAssetImage('assets/img/try18.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -102,7 +102,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: Color.fromRGBO(255, 255, 255, 0.8),
+                    color: Color.fromRGBO(255, 255, 255, 1),
                   ),
                   child: Column(
                     children: [
@@ -112,7 +112,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                           'Create Task',
                           style: TextStyle(
                             fontSize: 36,
-                            color: Color.fromRGBO(150, 90, 90, 1),
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -122,7 +122,10 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                       TextFormFieldWithStyling(
                           needsExpanding: false,
                           hintText: 'Title',
-                          icon: Icon(Icons.menu),
+                          icon: Icon(
+                            Icons.menu,
+                            color: Colors.blueGrey,
+                          ),
                           taskNameController: _titleController,
                           textInputType: TextInputType.text),
                       SizedBox(
@@ -131,21 +134,26 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                       TextFormFieldWithStyling(
                           needsExpanding: false,
                           hintText: 'Remember',
-                          icon: Icon(Icons.numbers),
+                          icon: Icon(
+                            Icons.numbers,
+                            color: Colors.blueGrey,
+                          ),
                           taskNameController: _rememberController,
                           textInputType: TextInputType.number),
                       DropdownButton<String>(
                         value: defaultSelectedCategory,
-                        icon: const Icon(Icons.arrow_downward,
-                            color: Color.fromRGBO(150, 90, 90, 1)),
+                        icon: const Icon(
+                          Icons.arrow_downward,
+                          color: Colors.blueGrey,
+                        ),
                         elevation: 16,
                         style: const TextStyle(
-                          color: Color.fromRGBO(150, 90, 90, 1),
+                          color: Colors.blueGrey,
                           fontSize: 18,
                         ),
                         underline: Container(
                           height: 2,
-                          color: Color.fromRGBO(150, 90, 90, 1),
+                          color: Colors.blueGrey,
                         ),
                         onChanged: (value) {
                           // This is called when the user selects an item.
@@ -156,11 +164,24 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         items: allCategories,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.blueGrey),
+                            ),
                             onPressed: _addCheckToDB,
                             child: Text('Add'),
+                          ),
+
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.blueGrey),
+                            ),
+                            onPressed: () => Navigator.pop(context, false),
+                            child: Text('Close'),
                           ),
                           // HandleElevatedButton(
                           //   title: "Add",

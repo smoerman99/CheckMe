@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Check Me',
       theme: ThemeData(
+        // iconTheme: IconThemeData(color: Colors.blueGrey, size: 22),
         //for the rest what needs a color
         hintColor: Color.fromRGBO(4, 24, 31, 1),
         primaryColor: Color.fromRGBO(4, 24, 31, 1),
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           ),
           //for the rest
           bodyText2: TextStyle(
-            color: Color.fromRGBO(255, 255, 255, 1),
+            color: Color.fromRGBO(113, 131, 165, 0.945),
             fontFamily: "Aptos",
             fontSize: 22.00,
           ),

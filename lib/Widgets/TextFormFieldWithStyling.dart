@@ -37,10 +37,15 @@ class TextFormFieldWithStyling extends StatelessWidget {
           keyboardType: _textInputType,
           decoration: InputDecoration(
             focusColor: Colors.black,
-            label: Text(_hintText, style: TextStyle(color: Colors.grey)),
+            iconColor: Colors.green,
+            label: Text(_hintText, style: TextStyle(color: Colors.blueGrey)),
             prefixIcon: _icon,
+            prefixIconColor: Colors.blueGrey,
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.grey, width: 1.5),
+              borderSide: const BorderSide(
+                color: Colors.grey,
+                width: 1.5,
+              ),
             ),
             border: OutlineInputBorder(),
             errorBorder: UnderlineInputBorder(

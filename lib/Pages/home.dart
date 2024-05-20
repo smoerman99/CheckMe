@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                                     .bodyText2
                                     ?.fontFamily,
                                 fontSize: 15,
-                                color: Color.fromRGBO(158, 177, 219, 1),
+                                color: Color.fromRGBO(113, 131, 165, 0.945),
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
@@ -103,52 +103,44 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Container(
-                color: Colors.white,
-                child: Row(
-                  children: [
-                    //provide all the things u want to horizontally scroll here
-                    for (var item in (categories.take(categories.length ~/ 2)))
-                      CategoryContainer(
-                          title: item['Title'] != null ? item['Title'] : '',
-                          icon: Icon(
-                              IconData(item['Icon'],
-                                  fontFamily: 'MaterialIcons'),
-                              size: 55),
-                          openDoings: checks
-                              .where((c) =>
-                                  c['category'] == item['Title'] &&
-                                  c['done'] == false)
-                              .length),
+              Row(
+                children: [
+                  //provide all the things u want to horizontally scroll here
+                  for (var item in (categories.take(categories.length ~/ 2)))
+                    CategoryContainer(
+                        title: item['Title'] != null ? item['Title'] : '',
+                        icon: Icon(
+                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
+                            size: 55),
+                        openDoings: checks
+                            .where((c) =>
+                                c['category'] == item['Title'] &&
+                                c['done'] == false)
+                            .length),
 
-                    const VerticalDivider(
-                      width: 0,
-                      color: Colors.transparent,
-                    ),
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
+                  const VerticalDivider(
+                    width: 0,
+                    color: Colors.transparent,
+                  ),
+                ],
+                mainAxisAlignment: MainAxisAlignment.center,
               ),
-              Container(
-                color: Colors.white,
-                child: Row(
-                  children: [
-                    //provide all the things u want to horizontally scroll here
-                    for (var item in (categories.skip(categories.length ~/ 2)))
-                      CategoryContainer(
-                          title: item['Title'] != null ? item['Title'] : '',
-                          icon: Icon(
-                              IconData(item['Icon'],
-                                  fontFamily: 'MaterialIcons'),
-                              size: 55),
-                          openDoings: checks
-                              .where((c) =>
-                                  c['category'] == item['Title'] &&
-                                  c['done'] == false)
-                              .length),
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
+              Row(
+                children: [
+                  //provide all the things u want to horizontally scroll here
+                  for (var item in (categories.skip(categories.length ~/ 2)))
+                    CategoryContainer(
+                        title: item['Title'] != null ? item['Title'] : '',
+                        icon: Icon(
+                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
+                            size: 55),
+                        openDoings: checks
+                            .where((c) =>
+                                c['category'] == item['Title'] &&
+                                c['done'] == false)
+                            .length),
+                ],
+                mainAxisAlignment: MainAxisAlignment.center,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 100,

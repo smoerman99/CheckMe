@@ -49,7 +49,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             appBar: AppBar(
               toolbarHeight: 150,
               elevation: 0,
-              backgroundColor: Color.fromRGBO(55, 63, 78, 0.949),
+              backgroundColor: Colors.transparent,
               title: Column(
                 children: [
                   Padding(
@@ -112,21 +112,22 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             body: Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new ExactAssetImage('assets/img/try15.png'),
-                  fit: BoxFit.fill,
+                  image: new ExactAssetImage('assets/img/try18.png'),
+                  fit: BoxFit.fitHeight,
                 ),
               ),
               child: _pageOptions.elementAt(_selectedPageIndex),
             ),
             bottomNavigationBar: BottomNavigationBar(
               selectedIconTheme: IconThemeData(
-                color: Colors.white,
-                size: 40,
+                color: Color.fromRGBO(0, 29, 45, 70),
+                size: 45,
               ),
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Color.fromRGBO(255, 255, 255, 0.7),
+              selectedItemColor: Color.fromRGBO(0, 29, 45, 70),
+              selectedFontSize: 16.0,
+              unselectedItemColor: Color.fromRGBO(0, 0, 0, 0.692),
               elevation: 0.0,
-              backgroundColor: Color(0x00ffffff),
+              backgroundColor: Colors.transparent,
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
