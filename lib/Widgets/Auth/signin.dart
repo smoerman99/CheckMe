@@ -78,7 +78,10 @@ class _LoginWidgetState extends State<SignInWidget> {
                           ),
                           TextFormFieldWithStyling(
                               taskNameController: emailController,
-                              icon: Icon(Icons.email),
+                              icon: Icon(
+                                Icons.email,
+                                color: Colors.blueGrey,
+                              ),
                               textInputType: TextInputType.emailAddress,
                               needsExpanding: false,
                               hintText: 'Gebruikersnaam'),
@@ -87,7 +90,10 @@ class _LoginWidgetState extends State<SignInWidget> {
                           ),
                           TextFormFieldWithStyling(
                             taskNameController: passwordController,
-                            icon: Icon(Icons.password),
+                            icon: Icon(
+                              Icons.password,
+                              color: Colors.blueGrey,
+                            ),
                             textInputType: TextInputType.name,
                             needsExpanding: true,
                             hintText: 'Wachtwoord',
@@ -111,17 +117,19 @@ class _LoginWidgetState extends State<SignInWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          child: Text('Niet klikken dit gaat fout'),
+                          child: Text('Inloggen'),
                           onPressed: signIn,
                           style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 121, 62, 62)),
+                            primary: Colors.blueGrey,
+                          ),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => SignUpWidget()));
                           },
-                          child: Text("Nog geen account? Doe dat hier"),
+                          child: Text("Nog geen account? Doe dat hier",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ],
                     ),
