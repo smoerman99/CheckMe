@@ -78,8 +78,8 @@ class _HomePageState extends State<HomePage> {
                                     .bodyText2
                                     ?.fontFamily,
                                 fontSize: 15,
-                                color: Color.fromRGBO(113, 131, 165, 0.945),
-                                fontWeight: FontWeight.w400),
+                                color: Color.fromARGB(188, 231, 143, 12),
+                                fontWeight: FontWeight.w500),
                           ),
                           Text(
                             _dailyVerse.reference ?? '',
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height / 100 * 4,
                   width: MediaQuery.of(context).size.width / 100 * 40,
@@ -110,8 +110,13 @@ class _HomePageState extends State<HomePage> {
                     CategoryContainer(
                         title: item['Title'] != null ? item['Title'] : '',
                         icon: Icon(
-                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
-                            size: 55),
+                          IconData(
+                            item['Icon'],
+                            fontFamily: 'MaterialIcons',
+                          ),
+                          size: 45,
+                          color: Colors.black,
+                        ),
                         openDoings: checks
                             .where((c) =>
                                 c['category'] == item['Title'] &&
@@ -133,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                         title: item['Title'] != null ? item['Title'] : '',
                         icon: Icon(
                             IconData(item['Icon'], fontFamily: 'MaterialIcons'),
-                            size: 55),
+                            size: 45),
                         openDoings: checks
                             .where((c) =>
                                 c['category'] == item['Title'] &&
@@ -149,8 +154,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 100 * 16,
-                    width: MediaQuery.of(context).size.width / 100 * 85,
+                    height: MediaQuery.of(context).size.height / 100 * 14,
+                    width: MediaQuery.of(context).size.width / 100 * 78,
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -159,9 +164,9 @@ class _HomePageState extends State<HomePage> {
                             dataMap: dataMap,
                             animationDuration: Duration(milliseconds: 200),
                             colorList: [
-                              Colors.black,
-                              Colors.blueGrey,
-                              Color.fromRGBO(158, 177, 219, 1)
+                              Color.fromARGB(255, 0, 0, 0),
+                              Color.fromARGB(255, 136, 143, 146),
+                              Color.fromRGBO(238, 213, 146, 1)
                             ],
                             chartValuesOptions: ChartValuesOptions(
                                 decimalPlaces: 0,
@@ -175,25 +180,42 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                child: Card(
-                  child: ListTile(
-                    title: Column(
-                      children: [
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.black),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => CreateTaskPage()));
-                          },
-                          child: Text('Nieuwe taak aanmaken'),
-                        )
-                      ],
-                    ),
-                  ),
+                padding: const EdgeInsets.fromLTRB(12, 35, 12, 16),
+                child: Column(
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          primary: Color.fromARGB(123, 255, 153, 0),
+                          onSurface: Colors.green,
+                          maximumSize: Size(300, 100),
+                          backgroundColor: Colors.white,
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              color: Color.fromARGB(188, 231, 143, 12))),
+
+                      // style: ButtonStyle(
+                      //     foregroundColor:
+                      //         MaterialStateProperty.all<Color>(Colors.black),
+                      //     backgroundColor:
+                      //         MaterialStateProperty.all<Color>(Colors.white),
+                      //     maximumSize:
+                      //         MaterialStateProperty.all<Size>(Size(400, 200)),
+                      //     textStyle: MaterialStateProperty.all(
+                      //         TextStyle(color: Colors.black))),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CreateTaskPage()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        child: Text('Aanmaken taak',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 25,
+                            )),
+                      ),
+                    )
+                  ],
                 ),
               )
             ],
@@ -230,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                           fontFamily:
                               Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(158, 177, 219, 1),
+                          color: Color.fromARGB(188, 231, 143, 12),
                         ),
                       ),
                     ],

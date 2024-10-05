@@ -80,14 +80,14 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                   );
                 } else {
                   return CheckCard(
-                    update: _update,
-                    id: list[index].id,
-                    title: list[index].title,
-                    categorie: list[index].category,
-                    dateAdded: list[index].dateTime,
-                    priority: list[index].priority,
-                    remember: list[index].remember,
-                  );
+                      update: _update,
+                      id: list[index].id,
+                      title: list[index].title,
+                      categorie: list[index].category,
+                      dateAdded: list[index].dateTime,
+                      priority: list[index].priority,
+                      remember: 0 // list[index].remember ,
+                      );
                 }
               },
               separatorBuilder: (BuildContext context, int index) =>

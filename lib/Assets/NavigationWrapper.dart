@@ -49,7 +49,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             appBar: AppBar(
               toolbarHeight: 150,
               elevation: 0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Color.fromARGB(188, 231, 143, 12),
               title: Column(
                 children: [
                   Padding(
@@ -58,7 +58,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          getGreeting() + " \nSander 213",
+                          getGreeting() + " \nSander",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 32,
@@ -112,7 +112,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             body: Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new ExactAssetImage('assets/img/try18.png'),
+                  image: new ExactAssetImage('assets/img/try19.png'),
                   fit: BoxFit.fitHeight,
                 ),
               ),
@@ -120,14 +120,19 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             ),
             bottomNavigationBar: BottomNavigationBar(
               selectedIconTheme: IconThemeData(
-                color: Color.fromRGBO(0, 29, 45, 70),
+                color: Color.fromRGBO(236, 235, 233, 1),
                 size: 45,
               ),
-              selectedItemColor: Color.fromRGBO(0, 29, 45, 70),
+              selectedItemColor: Color.fromRGBO(0, 0, 0, 0.722),
               selectedFontSize: 16.0,
-              unselectedItemColor: Color.fromRGBO(0, 0, 0, 0.692),
+              selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+              unselectedItemColor: Color.fromRGBO(0, 0, 0, 0.722),
+              unselectedIconTheme: IconThemeData(
+                color: Color.fromRGBO(236, 235, 233, 1),
+                size: 30,
+              ),
               elevation: 0.0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Color.fromARGB(188, 231, 143, 12),
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),

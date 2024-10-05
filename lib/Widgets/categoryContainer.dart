@@ -20,12 +20,12 @@ class _CategoryContainerState extends State<CategoryContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.height / 100 * 13,
-      height: MediaQuery.of(context).size.width / 100 * 22,
+      width: MediaQuery.of(context).size.height / 100 * 12,
+      height: MediaQuery.of(context).size.width / 100 * 20,
       child: Card(
         elevation: 0.0,
         color: widget.openDoings > 0
-            ? Color.fromRGBO(113, 131, 165, 0.945)
+            ? Color.fromARGB(125, 231, 143, 12)
             : Colors.white.withOpacity(1.0),
         child: Container(
           child: Column(children: [
