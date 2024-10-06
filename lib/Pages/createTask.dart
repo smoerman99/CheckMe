@@ -13,6 +13,8 @@ class CreateTaskPage extends StatefulWidget {
   State<CreateTaskPage> createState() => _CreateTaskPageState();
 }
 
+enum Categories { Music, YouTube, Web, Private, Appointment, Study }
+
 class _CreateTaskPageState extends State<CreateTaskPage> {
   FireStore _fireStore = FireStore();
 
@@ -79,6 +81,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   @override
   Widget build(BuildContext context) {
+    Categories? _character = Categories.Appointment;
+
     return FutureBuilder(
       future: _fetchData(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -87,7 +91,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
               child: Container(
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new ExactAssetImage('assets/img/try18.png'),
+                image: new ExactAssetImage('assets/img/try19.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -102,7 +106,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: Color.fromRGBO(243, 243, 243, 0.158),
                   ),
                   child: Column(
                     children: [
@@ -111,9 +115,15 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         child: Text(
                           'Create Task',
                           style: TextStyle(
-                            fontSize: 36,
-                            color: Colors.black,
-                          ),
+                              fontFamily: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1
+                                  ?.fontFamily,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 36,
+                              color: Colors.white,
+                              decoration: TextDecoration.underline),
+                          softWrap: true,
                         ),
                       ),
                       SizedBox(
@@ -124,7 +134,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                           hintText: 'Title',
                           icon: Icon(
                             Icons.menu,
-                            color: Colors.blueGrey,
+                            color: Colors.white,
                           ),
                           taskNameController: _titleController,
                           textInputType: TextInputType.text),
@@ -132,71 +142,143 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         height: 8,
                       ),
                       TextFormFieldWithStyling(
-                          needsExpanding: false,
-                          hintText: 'Remember',
-                          icon: Icon(
-                            Icons.numbers,
-                            color: Colors.blueGrey,
-                          ),
-                          taskNameController: _rememberController,
-                          textInputType: TextInputType.number),
-                      DropdownButton<String>(
-                        value: defaultSelectedCategory,
-                        icon: const Icon(
-                          Icons.arrow_downward,
-                          color: Colors.blueGrey,
+                        needsExpanding: false,
+                        hintText: 'Remember',
+                        icon: Icon(
+                          Icons.numbers,
+                          color: Colors.white,
                         ),
-                        elevation: 16,
-                        style: const TextStyle(
-                          color: Colors.blueGrey,
-                          fontSize: 18,
-                        ),
-                        underline: Container(
-                          height: 2,
-                          color: Colors.blueGrey,
-                        ),
-                        onChanged: (value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            defaultSelectedCategory = value;
-                          });
-                        },
-                        items: allCategories,
+                        taskNameController: _rememberController,
+                        textInputType: TextInputType.number,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      Column(
                         children: [
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blueGrey),
+                          ListTile(
+                            title: const Text('Appointment'),
+                            leading: Radio<Categories>(
+                              value: Categories.Appointment,
+                              groupValue: _character,
+                              onChanged: (Categories? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
                             ),
-                            onPressed: _addCheckToDB,
-                            child: Text('Add'),
                           ),
-
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blueGrey),
+                          ListTile(
+                            title: const Text('Music'),
+                            leading: Radio<Categories>(
+                              value: Categories.Music,
+                              groupValue: _character,
+                              onChanged: (Categories? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
                             ),
-                            onPressed: () => Navigator.pop(context, false),
-                            child: Text('Close'),
                           ),
-                          // HandleElevatedButton(
-                          //   title: "Add",
-                          //   textController: _titleController,
-                          //   closePage: false,
-                          // ),
-                          // SizedBox(
-                          //   width: 18,
-                          // ),
-                          // HandleElevatedButton(
-                          //   title: "Add & Close",
-                          //   textController: _titleController,
-                          //   closePage: true,
-                          // )
+                          ListTile(
+                            title: const Text('Private'),
+                            leading: Radio<Categories>(
+                              value: Categories.Private,
+                              groupValue: _character,
+                              onChanged: (Categories? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: const Text('Study'),
+                            leading: Radio<Categories>(
+                              value: Categories.Study,
+                              groupValue: _character,
+                              onChanged: (Categories? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: const Text('Web'),
+                            leading: Radio<Categories>(
+                              value: Categories.Web,
+                              groupValue: _character,
+                              onChanged: (Categories? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: const Text('YouTube'),
+                            leading: Radio<Categories>(
+                              value: Categories.YouTube,
+                              groupValue: _character,
+                              onChanged: (Categories? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            ),
+                          ),
                         ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 22, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 119, 110, 96)),
+                              ),
+                              onPressed: _addCheckToDB,
+                              child: Text(
+                                'Add',
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  backgroundColor:
+                                      Color.fromARGB(255, 119, 110, 96),
+                                ),
+                              ),
+                            ),
+
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 119, 110, 96)),
+                              ),
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text(
+                                'Close',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  backgroundColor:
+                                      Color.fromARGB(255, 119, 110, 96),
+                                ),
+                              ),
+                            ),
+                            // HandleElevatedButton(
+                            //   title: "Add",
+                            //   textController: _titleController,
+                            //   closePage: false,
+                            // ),
+                            // SizedBox(
+                            //   width: 18,
+                            // ),
+                            // HandleElevatedButton(
+                            //   title: "Add & Close",
+                            //   textController: _titleController,
+                            //   closePage: true,
+                            // )
+                          ],
+                        ),
                       ),
                     ],
                   ),

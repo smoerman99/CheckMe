@@ -28,23 +28,36 @@ class TextFormFieldWithStyling extends StatelessWidget {
       child: SizedBox(
         height: 50,
         child: TextFormField(
+          showCursor: true,
           obscureText: _needsExpanding,
           expands: false,
           controller: _taskNameController,
           style: TextStyle(
             fontSize: 18,
+            color: Colors.white,
           ),
           keyboardType: _textInputType,
           decoration: InputDecoration(
-            focusColor: Colors.black,
-            iconColor: Colors.green,
-            label: Text(_hintText, style: TextStyle(color: Colors.blueGrey)),
+            filled: true,
+            fillColor: Color.fromARGB(255, 119, 110, 96),
+            iconColor: Colors.white,
+            label: Text(_hintText,
+                style: TextStyle(
+                  color: Colors.white,
+                )),
             prefixIcon: _icon,
             prefixIconColor: Colors.blueGrey,
+            focusColor: Colors.white,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.white, // Unfocused border color
+                width: 1.5, // Border width
+              ),
+            ),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                color: Colors.grey,
-                width: 1.5,
+                color: Colors.white,
+                width: 2.5,
               ),
             ),
             border: OutlineInputBorder(),
@@ -52,7 +65,7 @@ class TextFormFieldWithStyling extends StatelessWidget {
               borderSide: BorderSide(color: Colors.red, width: 2),
             ),
           ),
-          cursorColor: Colors.black,
+          cursorColor: Colors.white,
           autovalidateMode: AutovalidateMode.always,
           onSaved: (String? value) {
             // This optional block of code can be used to run

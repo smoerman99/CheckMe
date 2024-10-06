@@ -76,6 +76,12 @@ class MyApp extends StatelessWidget {
 
         //specific styling for cards
         cardTheme: CardTheme(),
+
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.orange, // Cursor color
+          selectionColor: Colors.orange, // Color when text is selected
+          selectionHandleColor: Colors.orange, // Handle color
+        ),
       ),
       home: StreamBuilder(
         stream: authenticateUserStream(),
