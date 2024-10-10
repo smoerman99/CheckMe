@@ -76,7 +76,9 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => CreateTaskPage()));
                     },
-                    child: Text('Nieuwe taak aanmaken'),
+                    child: Text('Nieuwe taak aanmaken',
+                        style: TextStyle(
+                            color: Color.fromARGB(188, 231, 143, 12))),
                   );
                 } else {
                   return CheckCard(
@@ -114,7 +116,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                           fontFamily:
                               Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(158, 177, 219, 1),
+                          color: Color.fromARGB(188, 231, 143, 12),
                         ),
                       ),
                     ],

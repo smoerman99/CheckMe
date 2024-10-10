@@ -27,6 +27,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
   String? defaultSelectedCategory = 'Music';
   List<DropdownMenuItem<String>>? allCategories;
 
+  Categories? _character = Categories.Appointment;
+
   Future<String> _fetchData() async {
     categories = await _fireStore.readAll('Category');
 
@@ -54,7 +56,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   Future<void> _addCheckToDB() async {
     setState(() {
-      _check.category = defaultSelectedCategory;
+      _check.category = _character.toString().split('.').last;
       _check.dateTime = DateTime.now();
       _check.done = false;
       _check.priority = Priorities.none.name;
@@ -81,8 +83,6 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    Categories? _character = Categories.Appointment;
-
     return FutureBuilder(
       future: _fetchData(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -106,24 +106,29 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: Color.fromRGBO(243, 243, 243, 0.158),
+                    color: Color.fromARGB(239, 206, 201, 194),
                   ),
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Create Task',
-                          style: TextStyle(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(8.0, 4, 8, 0),
+                          child: Text(
+                            'Create Task',
+                            style: TextStyle(
                               fontFamily: Theme.of(context)
                                   .textTheme
                                   .bodyText1
                                   ?.fontFamily,
                               fontStyle: FontStyle.italic,
-                              fontSize: 36,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline),
-                          softWrap: true,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
+                            ),
+                            softWrap: true,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -152,10 +157,17 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         textInputType: TextInputType.number,
                       ),
                       Column(
-                        children: [
+                        children: <Widget>[
                           ListTile(
-                            title: const Text('Appointment'),
+                            style: ListTileStyle.drawer,
+                            title: const Text(
+                              'Appointment',
+                              style: TextStyle(
+                                  color: Color.fromARGB(188, 231, 143, 12),
+                                  fontSize: 20),
+                            ),
                             leading: Radio<Categories>(
+                              activeColor: Colors.black,
                               value: Categories.Appointment,
                               groupValue: _character,
                               onChanged: (Categories? value) {
@@ -166,8 +178,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ),
                           ),
                           ListTile(
-                            title: const Text('Music'),
+                            style: ListTileStyle.drawer,
+                            title: const Text(
+                              'Music',
+                              style: TextStyle(
+                                color: Color.fromARGB(188, 231, 143, 12),
+                                fontSize: 20,
+                              ),
+                            ),
                             leading: Radio<Categories>(
+                              activeColor: Colors.black,
                               value: Categories.Music,
                               groupValue: _character,
                               onChanged: (Categories? value) {
@@ -178,8 +198,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ),
                           ),
                           ListTile(
-                            title: const Text('Private'),
+                            style: ListTileStyle.drawer,
+                            title: const Text(
+                              'Private',
+                              style: TextStyle(
+                                color: Color.fromARGB(188, 231, 143, 12),
+                                fontSize: 20,
+                              ),
+                            ),
                             leading: Radio<Categories>(
+                              activeColor: Colors.black,
                               value: Categories.Private,
                               groupValue: _character,
                               onChanged: (Categories? value) {
@@ -190,8 +218,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ),
                           ),
                           ListTile(
-                            title: const Text('Study'),
+                            style: ListTileStyle.drawer,
+                            title: const Text(
+                              'Study',
+                              style: TextStyle(
+                                color: Color.fromARGB(188, 231, 143, 12),
+                                fontSize: 20,
+                              ),
+                            ),
                             leading: Radio<Categories>(
+                              activeColor: Colors.black,
                               value: Categories.Study,
                               groupValue: _character,
                               onChanged: (Categories? value) {
@@ -202,8 +238,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ),
                           ),
                           ListTile(
-                            title: const Text('Web'),
+                            style: ListTileStyle.drawer,
+                            title: const Text(
+                              'Web',
+                              style: TextStyle(
+                                color: Color.fromARGB(188, 231, 143, 12),
+                                fontSize: 20,
+                              ),
+                            ),
                             leading: Radio<Categories>(
+                              activeColor: Colors.black,
                               value: Categories.Web,
                               groupValue: _character,
                               onChanged: (Categories? value) {
@@ -214,8 +258,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ),
                           ),
                           ListTile(
-                            title: const Text('YouTube'),
+                            style: ListTileStyle.drawer,
+                            title: const Text(
+                              'YouTube',
+                              style: TextStyle(
+                                color: Color.fromARGB(188, 231, 143, 12),
+                                fontSize: 20,
+                              ),
+                            ),
                             leading: Radio<Categories>(
+                              activeColor: Colors.black,
                               value: Categories.YouTube,
                               groupValue: _character,
                               onChanged: (Categories? value) {
@@ -306,7 +358,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                           fontFamily:
                               Theme.of(context).textTheme.bodyText2?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(112, 29, 29, 1),
+                          color: Color.fromARGB(188, 231, 143, 12),
                         ),
                       ),
                     ],

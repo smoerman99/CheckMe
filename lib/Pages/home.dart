@@ -7,9 +7,6 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/categoryContainer.dart';
 
-//https://pub.dev/packages/pie_chart
-//!!!
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -210,8 +207,8 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                         child: Text('Aanmaken taak',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 25,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 19,
                             )),
                       ),
                     )

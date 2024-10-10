@@ -50,8 +50,8 @@ class TextFormFieldWithStyling extends StatelessWidget {
             focusColor: Colors.white,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.white, // Unfocused border color
-                width: 1.5, // Border width
+                color: Colors.black, // Unfocused border color
+                width: 2, // Border width
               ),
             ),
             focusedBorder: OutlineInputBorder(
@@ -62,7 +62,10 @@ class TextFormFieldWithStyling extends StatelessWidget {
             ),
             border: OutlineInputBorder(),
             errorBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.red, width: 2),
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 2,
+              ),
             ),
           ),
           cursorColor: Colors.white,

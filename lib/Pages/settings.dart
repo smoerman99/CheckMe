@@ -19,42 +19,35 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 100 * 4,
-          width: MediaQuery.of(context).size.width / 100 * 40,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+      child: ListView(children: [
+        SizedBox(
+          height: 90,
         ),
-      ),
-      SizedBox(
-        height: MediaQuery.of(context).size.height / 100 * 30,
-        width: MediaQuery.of(context).size.width / 100 * 85,
-        child: Card(
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white),
-            width: 200,
+        SizedBox(
+          child: Card(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+              padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Settings screen from the pages list',
                     style: TextStyle(
-                      color: Color.fromRGBO(158, 177, 219, 1),
+                      color: Color.fromARGB(188, 231, 143, 12),
                     ),
                   ),
                   Text(
                     'bepaal hier na hoeveel tijd je een reminder wilt hebben.',
                     style: TextStyle(
-                      color: Color.fromRGBO(158, 177, 219, 1),
+                      color: Color.fromARGB(188, 231, 143, 12),
                     ),
                   ),
                   Text(
                     'Zie Github project bord voor de openstaande taken',
                     style: TextStyle(
-                      color: Color.fromRGBO(158, 177, 219, 1),
+                      color: Color.fromARGB(188, 231, 143, 12),
                     ),
                   ),
                   TextButton(
@@ -63,14 +56,16 @@ class _SettingsPageState extends State<SettingsPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SignInWidget()));
                     },
-                    child: Text("Log uit!"),
+                    child: Text("Log uit!",
+                        style: TextStyle(
+                            color: Color.fromARGB(188, 231, 143, 12))),
                   ),
                 ],
               ),
             ),
           ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 }
