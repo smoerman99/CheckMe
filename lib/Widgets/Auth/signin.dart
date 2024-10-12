@@ -33,7 +33,7 @@ class _LoginWidgetState extends State<SignInWidget> {
         child: Container(
           decoration: new BoxDecoration(
             image: new DecorationImage(
-              image: new ExactAssetImage('assets/img/try18.png'),
+              image: new ExactAssetImage('assets/img/try19.png'),
               fit: BoxFit.fill,
             ),
           ),
@@ -66,33 +66,39 @@ class _LoginWidgetState extends State<SignInWidget> {
                       height: 250,
                       width: 400,
                       child: Card(
-                        color: Colors.white,
+                        color: Color.fromARGB(235, 185, 173, 157),
                         child: Column(children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'Welkom',
                               style: TextStyle(
-                                fontSize: 42,
                                 fontFamily: Theme.of(context)
                                     .textTheme
-                                    .bodyText2
+                                    .bodyText1
                                     ?.fontFamily,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40,
+                                color: Colors.black,
+                                decoration: TextDecoration.none,
                               ),
+                              softWrap: true,
                             ),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           TextFormFieldWithStyling(
-                              taskNameController: emailController,
-                              icon: Icon(
-                                Icons.email,
-                                color: Colors.blueGrey,
-                              ),
-                              textInputType: TextInputType.emailAddress,
-                              needsExpanding: false,
-                              hintText: 'Gebruikersnaam'),
+                            taskNameController: emailController,
+                            icon: Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
+                            textInputType: TextInputType.emailAddress,
+                            needsExpanding: false,
+                            hintText: 'Gebruikersnaam',
+                          ),
                           SizedBox(
                             height: 20,
                           ),
@@ -100,7 +106,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                             taskNameController: passwordController,
                             icon: Icon(
                               Icons.password,
-                              color: Colors.blueGrey,
+                              color: Colors.white,
                             ),
                             textInputType: TextInputType.name,
                             needsExpanding: true,
@@ -128,7 +134,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                           child: Text('Inloggen'),
                           onPressed: signIn,
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey,
+                            primary: Color.fromARGB(188, 231, 143, 12),
                           ),
                         ),
                         TextButton(
@@ -137,7 +143,9 @@ class _LoginWidgetState extends State<SignInWidget> {
                                 builder: (context) => SignUpWidget()));
                           },
                           child: Text("Nog geen account? Doe dat hier",
-                              style: TextStyle(color: Colors.black)),
+                              style: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
                       ],
                     ),
@@ -150,18 +158,6 @@ class _LoginWidgetState extends State<SignInWidget> {
       ),
     );
   }
-
-  //https://stackoverflow.com/questions/67617502/what-are-the-error-codes-for-flutter-firebase-auth-exception
-  //https://medium.flutterdevs.com/facebook-login-in-flutter-b26ef043484b
-
-  //nog een vlekken achtergrond toevoegen of iets in die vorm?!
-
-  // decoration: BoxDecoration(
-  //               image: DecorationImage(
-  //                 image: AssetImage("assets/img/background_general.png"),
-  //                 fit: BoxFit.cover,
-  //               ),
-  //             ),
 
   Future signIn() async {
     try {

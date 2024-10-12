@@ -189,16 +189,6 @@ class _HomePageState extends State<HomePage> {
                           textStyle: TextStyle(
                               fontSize: 15,
                               color: Color.fromARGB(188, 231, 143, 12))),
-
-                      // style: ButtonStyle(
-                      //     foregroundColor:
-                      //         MaterialStateProperty.all<Color>(Colors.black),
-                      //     backgroundColor:
-                      //         MaterialStateProperty.all<Color>(Colors.white),
-                      //     maximumSize:
-                      //         MaterialStateProperty.all<Size>(Size(400, 200)),
-                      //     textStyle: MaterialStateProperty.all(
-                      //         TextStyle(color: Colors.black))),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => CreateTaskPage()));

@@ -300,7 +300,6 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                                 ),
                               ),
                             ),
-
                             ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
@@ -316,19 +315,6 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                                 ),
                               ),
                             ),
-                            // HandleElevatedButton(
-                            //   title: "Add",
-                            //   textController: _titleController,
-                            //   closePage: false,
-                            // ),
-                            // SizedBox(
-                            //   width: 18,
-                            // ),
-                            // HandleElevatedButton(
-                            //   title: "Add & Close",
-                            //   textController: _titleController,
-                            //   closePage: true,
-                            // )
                           ],
                         ),
                       ),

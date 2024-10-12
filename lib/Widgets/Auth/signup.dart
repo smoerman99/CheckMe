@@ -30,171 +30,132 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: Color.fromARGB(255, 206, 206, 206),
-        child: Container(
-          child: Indexer(children: [
-            Indexed(
-                index: 1,
-                child: Container(
-                  color: Color.fromARGB(255, 121, 62, 62),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(90.0),
-                        child: Image(
-                            image: AssetImage(
-                                'assets/img/mewithoutbackground.png'),
-                            height: 125),
-                      ),
-                    ],
-                  ),
-                )),
-            Indexed(
-              index: 2,
-              child: Positioned(
-                top: MediaQuery.of(context).size.height / 3.2,
-                left: 50,
-                child: Container(
-                  margin: EdgeInsets.all(5),
-                  height: 330,
-                  width: 250,
-                  child: Card(
-                    color: Colors.white,
-                    child: Column(children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Welcome,'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(22, 0, 0, 22),
-                        child: Text(
-                          'Fill in this form and you are ready to use the app!',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 25,
-                          child: TextField(
-                            expands: false,
-                            controller: fullNameController,
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.person),
-                              hintText: 'Fullname',
-                              enabledBorder: UnderlineInputBorder(),
-                              focusedBorder: UnderlineInputBorder(),
-                              focusColor: Color(0x00115C2E),
-                              border: InputBorder.none,
-                              errorBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 2),
-                              ),
-                            ),
-                            cursorColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 25,
-                          child: TextField(
-                            expands: false,
-                            controller: passwordController,
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                            keyboardType: TextInputType.visiblePassword,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.web_outlined),
-                              hintText: 'Password',
-                              enabledBorder: UnderlineInputBorder(),
-                              focusedBorder: UnderlineInputBorder(),
-                              focusColor: Color(0x00115C2E),
-                              border: InputBorder.none,
-                              errorBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 2),
-                              ),
-                            ),
-                            cursorColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 25,
-                          child: TextField(
-                            expands: false,
-                            controller: emailController,
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.email),
-                              hintText: 'Email',
-                              enabledBorder: UnderlineInputBorder(),
-                              focusedBorder: UnderlineInputBorder(),
-                              focusColor: Color(0x00115C2E),
-                              border: InputBorder.none,
-                              errorBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 2),
-                              ),
-                            ),
-                            cursorColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                            message != null && message.isNotEmpty
-                                ? message
-                                : '',
-                            style: TextStyle(
-                                fontSize: 13, color: Colors.redAccent)),
-                      ),
-                    ]),
-                  ),
-                ),
-              ),
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new ExactAssetImage('assets/img/try19.png'),
+              fit: BoxFit.fill,
             ),
-            Indexed(
-              index: 3,
-              child: Positioned(
-                left: 140,
-                bottom: 190,
-                child: Column(
+          ),
+          child: ListView(
+            children: [
+              Container(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      child: Text('Sign Up'),
-                      onPressed: signUp,
-                      style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 121, 62, 62)),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(90, 90, 90, 60),
+                      child: Image(
+                          image:
+                              AssetImage('assets/img/mewithoutbackground.png'),
+                          height: 115),
                     ),
                   ],
                 ),
               ),
-            ),
-          ]),
-        ),
-      ),
+              Container(
+                margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+
+                // margin: EdgeInsets.all(5),
+                height: MediaQuery.of(context).size.height / 100 * 40,
+                width: MediaQuery.of(context).size.width / 100 * 70,
+                child: Card(
+                  color: Color.fromARGB(235, 185, 173, 157),
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Welkom,',
+                        style: TextStyle(
+                          fontFamily:
+                              Theme.of(context).textTheme.bodyText1?.fontFamily,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40,
+                          color: Colors.black,
+                          decoration: TextDecoration.none,
+                        ),
+                        softWrap: true,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(22, 0, 0, 22),
+                      child: Text(
+                        'Vull in dit formulier en je bent klaar om de app te gaan gebruiken!',
+                        style: TextStyle(
+                          fontFamily:
+                              Theme.of(context).textTheme.bodyText1?.fontFamily,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Colors.black,
+                          decoration: TextDecoration.none,
+                        ),
+                        softWrap: true,
+                      ),
+                    ),
+                    TextFormFieldWithStyling(
+                      taskNameController: fullNameController,
+                      icon: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
+                      textInputType: TextInputType.name,
+                      needsExpanding: false,
+                      hintText: 'Voor + achternaam',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormFieldWithStyling(
+                      taskNameController: passwordController,
+                      icon: Icon(
+                        Icons.web_outlined,
+                        color: Colors.white,
+                      ),
+                      textInputType: TextInputType.name,
+                      needsExpanding: true,
+                      hintText: 'Password',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormFieldWithStyling(
+                      taskNameController: emailController,
+                      icon: Icon(
+                        Icons.email,
+                        color: Colors.white,
+                      ),
+                      textInputType: TextInputType.emailAddress,
+                      needsExpanding: false,
+                      hintText: 'Email',
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                          message != null && message.isNotEmpty ? message : '',
+                          style:
+                              TextStyle(fontSize: 13, color: Colors.redAccent)),
+                    ),
+                  ]),
+                ),
+              ),
+              SizedBox(
+                height: 36,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    child: Text('Sign Up'),
+                    onPressed: signUp,
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(188, 231, 143, 12),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          )),
     );
   }
 
@@ -204,6 +165,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+
+      setState(() {
+        fullNameController.text = '';
+        emailController.text = '';
+        passwordController.text = '';
+      });
+
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => SignInWidget()));
     } on FirebaseAuthException catch (exception) {
       print(exception.code);
       if (exception.code == 'email-already-in-use') {
@@ -224,8 +194,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         });
       } else {
         print('object');
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => SignInWidget()));
+
         // setState(() {
         //   message = 'Please insert something before submitting';
         // });
