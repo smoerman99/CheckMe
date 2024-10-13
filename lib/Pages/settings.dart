@@ -1,5 +1,6 @@
 import 'package:checkit/Firebase/Auth.dart';
 import 'package:checkit/Widgets/Auth/signin.dart';
+import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -11,6 +12,15 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   FirebaseAuthentication _authentication = FirebaseAuthentication();
+  final TextEditingController _displayNameController = TextEditingController();
+
+  _updateDisplayName(String dispalyName) async {
+    setState(() {
+      _displayNameController.text = '';
+    });
+
+    await _authentication.updateDisplayName(dispalyName);
+  }
 
   @override
   void initState() {
@@ -32,6 +42,31 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  TextFormFieldWithStyling(
+                    needsExpanding: false,
+                    hintText: 'New display name',
+                    icon: Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                    ),
+                    taskNameController: _displayNameController,
+                    textInputType: TextInputType.text,
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 119, 110, 96)),
+                    ),
+                    onPressed: _updateDisplayName(_displayNameController.text),
+                    child: Text(
+                      'update display name',
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 17,
+                        backgroundColor: Color.fromARGB(255, 119, 110, 96),
+                      ),
+                    ),
+                  ),
                   Text(
                     'Settings screen from the pages list',
                     style: TextStyle(

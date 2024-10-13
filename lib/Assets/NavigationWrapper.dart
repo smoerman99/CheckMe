@@ -3,6 +3,7 @@ import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/home.dart';
 import 'package:checkit/Pages/settings.dart';
 import 'package:checkit/Pages/showTasks.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NavigationWrapper extends StatefulWidget {
@@ -14,6 +15,8 @@ class NavigationWrapper extends StatefulWidget {
 
 class _NavigationWrapperState extends State<NavigationWrapper> {
   FireStore _fireStore = FireStore();
+
+  String? test = FirebaseAuth.instance.currentUser?.displayName;
 
   int _selectedPageIndex = 0;
   int _amountOfCheck = 0;
@@ -33,7 +36,10 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   }
 
   Future<String> _fetchData() async {
-    _amountOfCheck = await _fireStore.countNotDoneChecks('Check');
+    _amountOfCheck = await _fireStore.countNotDoneChecks(
+      'Check',
+      FirebaseAuth.instance.currentUser?.uid,
+    );
     return 'Loaded';
   }
 
@@ -58,7 +64,9 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          getGreeting() + " \nSander",
+                          getGreeting() +
+                              " \n" +
+                              (test != null && test != '' ? test! : ''),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 32,

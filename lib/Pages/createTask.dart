@@ -3,6 +3,7 @@ import 'package:checkit/Entities/Enums/Priority.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
@@ -62,6 +63,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
       _check.priority = Priorities.none.name;
       _check.remember = int.tryParse(_rememberController.value.text);
       _check.title = _titleController.value.text;
+      _check.userid = FirebaseAuth.instance.currentUser?.uid;
     });
 
     await _fireStore.create('Check', _check.toFirestore());
@@ -135,14 +137,15 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         height: 18,
                       ),
                       TextFormFieldWithStyling(
-                          needsExpanding: false,
-                          hintText: 'Title',
-                          icon: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                          taskNameController: _titleController,
-                          textInputType: TextInputType.text),
+                        needsExpanding: false,
+                        hintText: 'Title',
+                        icon: Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                        ),
+                        taskNameController: _titleController,
+                        textInputType: TextInputType.text,
+                      ),
                       SizedBox(
                         height: 8,
                       ),

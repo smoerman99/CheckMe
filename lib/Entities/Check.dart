@@ -8,6 +8,7 @@ class Check {
   DateTime? dateTime;
   int? remember;
   bool? done;
+  String? userid;
 
   Check(
       {String? id,
@@ -16,7 +17,8 @@ class Check {
       String? priority,
       DateTime? dateTime,
       int? remember,
-      bool? done}) {
+      bool? done,
+      String? userid}) {
     this.id = id;
     this.title = title;
     this.category = category;
@@ -24,6 +26,7 @@ class Check {
     this.dateTime = dateTime;
     this.remember = remember;
     this.done = done;
+    this.userid = userid;
   }
 
   Check.fromJson(Map<String, dynamic> json)
@@ -33,7 +36,8 @@ class Check {
         priority = json['priority'],
         dateTime = json['dateTime'],
         remember = json['remember'],
-        done = json['done'];
+        done = json['done'],
+        userid = json['userid'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -42,7 +46,8 @@ class Check {
         'priority': priority,
         'dateTime': dateTime,
         'remember': remember,
-        'done': done
+        'done': done,
+        'userid': userid
       };
 
   factory Check.fromFirestore(
@@ -51,14 +56,14 @@ class Check {
   ) {
     final data = snapshot.data();
     return Check(
-      id: data?['id'],
-      title: data?['title'],
-      category: data?['category'],
-      priority: data?['priority'],
-      dateTime: data?['dateTime'],
-      remember: data?['remember'],
-      done: data?['done'],
-    );
+        id: data?['id'],
+        title: data?['title'],
+        category: data?['category'],
+        priority: data?['priority'],
+        dateTime: data?['dateTime'],
+        remember: data?['remember'],
+        done: data?['done'],
+        userid: data?['userid']);
   }
 
   Map<String, dynamic> toFirestore() {
@@ -70,6 +75,7 @@ class Check {
       if (dateTime != null) "dateTime": dateTime,
       if (remember != null) "remember": remember,
       if (done != null) "done": done,
+      if (userid != null) "userid": userid,
     };
   }
 }

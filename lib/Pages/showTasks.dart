@@ -1,6 +1,7 @@
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
 import 'package:checkit/Widgets/checkCard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Entities/Check.dart';
 
@@ -29,7 +30,8 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
     checks = await _fireStore.readAll('Check');
 
     for (Map<String, dynamic> member in checks) {
-      if (!member['done']) {
+      if (!member['done'] &&
+          member['userid'] == FirebaseAuth.instance.currentUser?.uid) {
         member['dateTime'] = member['dateTime'].toDate();
 
         list.add(Check.fromJson(member));

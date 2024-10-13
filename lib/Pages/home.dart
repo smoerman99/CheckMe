@@ -3,6 +3,7 @@ import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Entities/DailyVerse.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/categoryContainer.dart';
@@ -117,7 +118,9 @@ class _HomePageState extends State<HomePage> {
                         openDoings: checks
                             .where((c) =>
                                 c['category'] == item['Title'] &&
-                                c['done'] == false)
+                                c['done'] == false &&
+                                c['userid'] ==
+                                    FirebaseAuth.instance.currentUser?.uid)
                             .length),
 
                   const VerticalDivider(
@@ -139,7 +142,9 @@ class _HomePageState extends State<HomePage> {
                         openDoings: checks
                             .where((c) =>
                                 c['category'] == item['Title'] &&
-                                c['done'] == false)
+                                c['done'] == false &&
+                                c['userid'] ==
+                                    FirebaseAuth.instance.currentUser?.uid)
                             .length),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
