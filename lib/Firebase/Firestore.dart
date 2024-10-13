@@ -30,11 +30,12 @@ class FireStore {
     return snapshot.docs.map((doc) => ({...doc.data(), 'id': doc.id}));
   }
 
-  Future<int> countNotDoneChecks(String collection) async {
+  Future<int> countNotDoneChecks(String collection, String? userid) async {
     var getCollectionLength = await readAll(collection);
 
     return getCollectionLength
         .where((element) => element['done'] == false)
+        .where((element) => element['userid'] == userid)
         .length;
   }
 
