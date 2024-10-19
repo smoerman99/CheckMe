@@ -14,7 +14,8 @@ class _SettingsPageState extends State<SettingsPage> {
   FirebaseAuthentication _authentication = FirebaseAuthentication();
   final TextEditingController _displayNameController = TextEditingController();
 
-  _updateDisplayName(String dispalyName) async {
+  //this function needs to be fixed
+  Future<void> _updateDisplayName(String dispalyName) async {
     setState(() {
       _displayNameController.text = '';
     });
@@ -57,7 +58,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       backgroundColor: MaterialStateProperty.all(
                           Color.fromARGB(255, 119, 110, 96)),
                     ),
-                    onPressed: _updateDisplayName(_displayNameController.text),
+                    onPressed: () async {
+                      await _updateDisplayName(_displayNameController.text);
+                    },
                     child: Text(
                       'update display name',
                       textAlign: TextAlign.justify,

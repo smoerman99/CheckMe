@@ -36,11 +36,19 @@ class _HomePageState extends State<HomePage> {
     categories = await _fireStore.readAll('Category');
     checks = await _fireStore.readAll('Check');
 
-    dataMap['To do'] =
-        checks.where((element) => element['done'] == false).length.toDouble();
+    dataMap['To do'] = checks
+        .where((element) =>
+            element['done'] == false &&
+            element['userid'] == FirebaseAuth.instance.currentUser?.uid)
+        .length
+        .toDouble();
 
-    dataMap['Done'] =
-        checks.where((element) => element['done'] == true).length.toDouble();
+    dataMap['Done'] = checks
+        .where((element) =>
+            element['done'] == true &&
+            element['userid'] == FirebaseAuth.instance.currentUser?.uid)
+        .length
+        .toDouble();
 
     return 'Loaded';
   }

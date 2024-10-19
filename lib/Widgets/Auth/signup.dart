@@ -2,7 +2,6 @@ import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:checkit/Widgets/textFormFieldWithStyling.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:indexed/indexed.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
@@ -131,8 +130,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          message != null && message.isNotEmpty ? message : '',
+                      child: Text(message.isNotEmpty ? message : '',
                           style:
                               TextStyle(fontSize: 13, color: Colors.redAccent)),
                     ),

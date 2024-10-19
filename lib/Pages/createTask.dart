@@ -1,7 +1,6 @@
 import 'package:checkit/Entities/Check.dart';
 import 'package:checkit/Entities/Enums/Priority.dart';
 import 'package:checkit/Firebase/Firestore.dart';
-import 'package:checkit/Widgets/HandleElevatedButton.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
