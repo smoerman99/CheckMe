@@ -29,7 +29,5 @@ Future<DailyVerse> fetchBibleVerse() async {
       id: 'PSA.103.11',
       reference: 'Psalms 103:11',
     );
-
-    // throw Exception('Failed to load DailyVerse');
   }
 }

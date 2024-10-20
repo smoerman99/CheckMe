@@ -19,13 +19,6 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
 
   List list = [];
 
-  void _callRemoveTask(Check checkToRemove) async {
-    // var result = await _wrapper.executeUpdate(checkToRemove);
-    // setState(() {
-    //   _checkList.checkList = result;
-    // });
-  }
-
   Future<String> _fetchData() async {
     checks = await _fireStore.readAll('Check');
 
@@ -70,9 +63,9 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                   return TextButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
+                          WidgetStateProperty.all<Color>(Colors.white),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
+                          WidgetStateProperty.all<Color>(Colors.black),
                     ),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
@@ -115,8 +108,10 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                         'Loading data...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily:
-                              Theme.of(context).textTheme.bodyText2?.fontFamily,
+                          fontFamily: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.fontFamily,
                           fontSize: 25,
                           color: Color.fromARGB(188, 231, 143, 12),
                         ),

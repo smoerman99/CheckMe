@@ -66,7 +66,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         'Welkom,',
                         style: TextStyle(
                           fontFamily:
-                              Theme.of(context).textTheme.bodyText1?.fontFamily,
+                              Theme.of(context).textTheme.bodyLarge?.fontFamily,
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.bold,
                           fontSize: 40,
@@ -82,7 +82,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         'Vull in dit formulier en je bent klaar om de app te gaan gebruiken!',
                         style: TextStyle(
                           fontFamily:
-                              Theme.of(context).textTheme.bodyText1?.fontFamily,
+                              Theme.of(context).textTheme.bodyLarge?.fontFamily,
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -147,7 +147,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     child: Text('Sign Up'),
                     onPressed: signUp,
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(188, 231, 143, 12),
+                      backgroundColor: Color.fromARGB(188, 231, 143, 12),
                     ),
                   ),
                 ],

@@ -72,7 +72,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                             fontSize: 32,
                             fontFamily: Theme.of(context)
                                 .textTheme
-                                .bodyText1
+                                .bodyLarge
                                 ?.fontFamily,
                           ),
                         ),
@@ -188,8 +188,10 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                         'Loading data.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily:
-                              Theme.of(context).textTheme.bodyText2?.fontFamily,
+                          fontFamily: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.fontFamily,
                           fontSize: 25,
                           color: Color.fromRGBO(158, 177, 219, 1),
                         ),

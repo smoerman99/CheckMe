@@ -75,7 +75,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                               style: TextStyle(
                                 fontFamily: Theme.of(context)
                                     .textTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.fontFamily,
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                           child: Text('Inloggen'),
                           onPressed: signIn,
                           style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(188, 231, 143, 12),
+                            backgroundColor: Color.fromARGB(188, 231, 143, 12),
                           ),
                         ),
                         TextButton(

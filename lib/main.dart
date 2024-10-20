@@ -43,18 +43,18 @@ class MyApp extends StatelessWidget {
         hintColor: Color.fromRGBO(4, 24, 31, 1),
         primaryColor: Color.fromRGBO(4, 24, 31, 1),
         textTheme: const TextTheme(
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
             fontFamily: "Aptos",
             fontSize: 25.00,
           ),
           //for the rest
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             color: Color.fromRGBO(113, 131, 165, 0.945),
             fontFamily: "Aptos",
             fontSize: 22.00,
           ),
-          headline2: TextStyle(
+          displayMedium: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
             fontFamily: "Aptos",
             fontSize: 25.00,

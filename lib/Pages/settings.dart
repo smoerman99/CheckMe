@@ -55,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
+                      backgroundColor: WidgetStateProperty.all(
                           Color.fromARGB(255, 119, 110, 96)),
                     ),
                     onPressed: () async {

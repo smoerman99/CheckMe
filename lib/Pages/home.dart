@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                                 fontFamily: Theme.of(context)
                                     .textTheme
-                                    .bodyText2
+                                    .bodyMedium
                                     ?.fontFamily,
                                 fontSize: 15,
                                 color: Color.fromARGB(188, 231, 143, 12),
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width / 100 * 40,
                   child: Text(
                     'Category',
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
               ),
@@ -195,8 +195,9 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     TextButton(
                       style: TextButton.styleFrom(
-                          primary: Color.fromARGB(123, 255, 153, 0),
-                          onSurface: Colors.green,
+                          foregroundColor: Color.fromARGB(123, 255, 153, 0),
+                          disabledForegroundColor:
+                              Colors.green.withOpacity(0.38),
                           maximumSize: Size(300, 100),
                           backgroundColor: Colors.white,
                           textStyle: TextStyle(
@@ -249,8 +250,10 @@ class _HomePageState extends State<HomePage> {
                         'Loading data...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily:
-                              Theme.of(context).textTheme.bodyText2?.fontFamily,
+                          fontFamily: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.fontFamily,
                           fontSize: 25,
                           color: Color.fromARGB(188, 231, 143, 12),
                         ),

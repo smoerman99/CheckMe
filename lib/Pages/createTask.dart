@@ -120,7 +120,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             style: TextStyle(
                               fontFamily: Theme.of(context)
                                   .textTheme
-                                  .bodyText1
+                                  .bodyLarge
                                   ?.fontFamily,
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold,
@@ -288,7 +288,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                           children: [
                             ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
                                     Color.fromARGB(255, 119, 110, 96)),
                               ),
                               onPressed: _addCheckToDB,
@@ -304,7 +304,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ),
                             ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
                                     Color.fromARGB(255, 119, 110, 96)),
                               ),
                               onPressed: () => Navigator.pop(context, false),
@@ -343,8 +343,10 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         'Loading data.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily:
-                              Theme.of(context).textTheme.bodyText2?.fontFamily,
+                          fontFamily: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.fontFamily,
                           fontSize: 25,
                           color: Color.fromARGB(188, 231, 143, 12),
                         ),
