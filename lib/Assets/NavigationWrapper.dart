@@ -26,7 +26,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
   List<Widget> _pageOptions = <Widget>[
     HomePage(),
     ShowTasksPage(),
-    SettingsPage()
+    SettingsPage(),
   ];
 
   void _onTappedNavigationItem(int index) {
@@ -153,6 +153,10 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
                   label: 'Settings',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.notification_add),
+                  label: 'Notification',
                 ),
               ],
               currentIndex: _selectedPageIndex,

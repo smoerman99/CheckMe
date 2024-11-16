@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:checkit/Firebase/Auth.dart';
 import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
@@ -13,6 +14,18 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   FirebaseAuthentication _authentication = FirebaseAuthentication();
   final TextEditingController _displayNameController = TextEditingController();
+
+  void getNotification() {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 10,
+      channelKey: 'basic_channel',
+      actionType: ActionType.Default,
+      title: 'Hello World!',
+      body: 'This is my first notification!',
+      icon: 'resource://drawable/testicon',
+    ));
+  }
 
   //this function needs to be fixed
   Future<void> _updateDisplayName(String dispalyName) async {
@@ -33,6 +46,10 @@ class _SettingsPageState extends State<SettingsPage> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       child: ListView(children: [
+        ElevatedButton(
+          onPressed: getNotification, // Attach the function to the button
+          child: Text('Press Me'),
+        ),
         SizedBox(
           height: 90,
         ),
