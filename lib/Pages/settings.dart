@@ -23,7 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
       actionType: ActionType.Default,
       title: 'Hello World!',
       body: 'This is my first notification!',
-      icon: 'resource://drawable/testicon',
+      icon: 'resource://drawable/smallicon',
     ));
   }
 
