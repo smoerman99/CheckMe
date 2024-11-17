@@ -7,13 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'firebase_options.dart';
-
-// https://github.com/flutter/flutter/issues/17592
+import 'package:cron/cron.dart';
 
 // adb handy
 // https://stackoverflow.com/questions/37267335/android-studio-wireless-adb-error-10061
 
 main() async {
+  final cron = Cron();
+
   AwesomeNotifications().initialize(
     // set the icon to null if you want to use the default app icon
     'resource://drawable/res_app_icon',
@@ -37,7 +38,6 @@ main() async {
 
   AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
     if (!isAllowed) {
-      // This will prompt the user to enable notifications
       AwesomeNotifications().requestPermissionToSendNotifications();
     }
   });
@@ -48,15 +48,24 @@ main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  cron.schedule(Schedule.parse('*/3 * * * *'), () async {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 10,
+      channelKey: 'basic_channel',
+      actionType: ActionType.Default,
+      title: 'Hello World!',
+      body: 'This is my first notification!',
+      icon: 'resource://drawable/smallicon',
+    ));
+  });
+
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
-
-  static const String name = 'Awesome Notifications - Example App';
-  static const Color mainColor = Colors.deepPurple;
 
   const MyApp({Key? key}) : super(key: key);
 
