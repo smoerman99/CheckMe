@@ -154,10 +154,6 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                   icon: Icon(Icons.settings),
                   label: 'Settings',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.notification_add),
-                  label: 'Notification',
-                ),
               ],
               currentIndex: _selectedPageIndex,
               onTap: _onTappedNavigationItem,
