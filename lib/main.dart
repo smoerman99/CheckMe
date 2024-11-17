@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:checkit/Assets/NavigationWrapper.dart';
 import 'package:checkit/Assets/NotificationController.dart';
+import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,27 @@ import 'package:cron/cron.dart';
 // https://stackoverflow.com/questions/37267335/android-studio-wireless-adb-error-10061
 
 main() async {
+  FireStore _fireStore = FireStore();
+
+  int _amountOfCheck = 0;
+
+  Future<void> _getAmountAndSendNotification() async {
+    _amountOfCheck = await _fireStore.countNotDoneChecks(
+      'Check',
+      FirebaseAuth.instance.currentUser?.uid,
+    );
+
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 10,
+      channelKey: 'basic_channel',
+      actionType: ActionType.Default,
+      title: 'Hello there!',
+      body: 'Don"' "t forget your ${_amountOfCheck} remaining task(s)'",
+      icon: 'resource://drawable/smallicon',
+    ));
+  }
+
   final cron = Cron();
 
   AwesomeNotifications().initialize(
@@ -48,16 +70,11 @@ main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  cron.schedule(Schedule.parse('*/3 * * * *'), () async {
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 10,
-      channelKey: 'basic_channel',
-      actionType: ActionType.Default,
-      title: 'Hello World!',
-      body: 'This is my first notification!',
-      icon: 'resource://drawable/smallicon',
-    ));
+  // cron.schedule(Schedule.parse('*/3 * * * *') - testing
+  // cron.schedule(Schedule.parse('0 19 * * *') - live
+
+  cron.schedule(Schedule.parse('0 19 * * *'), () async {
+    await _getAmountAndSendNotification();
   });
 
   runApp(MyApp());
@@ -80,21 +97,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Stream authenticateUserStream() {
     return FirebaseAuth.instance.authStateChanges();
-  }
-
-  @override
-  void initState() {
-    // Only after at least the action method is set, the notification events are delivered
-    AwesomeNotifications().setListeners(
-        onActionReceivedMethod: NotificationController.onActionReceivedMethod,
-        onNotificationCreatedMethod:
-            NotificationController.onNotificationCreatedMethod,
-        onNotificationDisplayedMethod:
-            NotificationController.onNotificationDisplayedMethod,
-        onDismissActionReceivedMethod:
-            NotificationController.onDismissActionReceivedMethod);
-
-    super.initState();
   }
 
   // This widget is the root of your application.
@@ -120,10 +122,11 @@ class _MyAppState extends State<MyApp> {
           ),
           //for the rest
           bodyMedium: TextStyle(
-            color: Color.fromRGBO(113, 131, 165, 0.945),
-            fontFamily: "Aptos",
-            fontSize: 22.00,
-          ),
+              color: Color.fromARGB(188, 231, 143, 12),
+              fontFamily: "Aptos",
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              height: 1.1),
           displayMedium: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
             fontFamily: "Aptos",

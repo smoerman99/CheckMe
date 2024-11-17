@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             shrinkWrap: false,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(32, 30, 32, 16),
+                padding: const EdgeInsets.fromLTRB(25, 30, 25, 16),
                 child: AspectRatio(
                   aspectRatio: 30 / 8,
                   child: Card(
@@ -75,17 +75,12 @@ class _HomePageState extends State<HomePage> {
                       title: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            stripHtmlIfNeeded(_dailyVerse.content ?? ''),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.fontFamily,
-                                fontSize: 15,
-                                color: Color.fromARGB(188, 231, 143, 12),
-                                fontWeight: FontWeight.w500),
+                          Container(
+                            child: Text(
+                              stripHtmlIfNeeded(_dailyVerse.content ?? ''),
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ),
                           Text(
                             _dailyVerse.reference ?? '',
@@ -114,22 +109,23 @@ class _HomePageState extends State<HomePage> {
                   //provide all the things u want to horizontally scroll here
                   for (var item in (categories.take(categories.length ~/ 2)))
                     CategoryContainer(
-                        title: item['Title'] != null ? item['Title'] : '',
-                        icon: Icon(
-                          IconData(
-                            item['Icon'],
-                            fontFamily: 'MaterialIcons',
-                          ),
-                          size: 45,
-                          color: Colors.black,
+                      title: item['Title'] != null ? item['Title'] : '',
+                      icon: Icon(
+                        IconData(
+                          item['Icon'],
+                          fontFamily: 'MaterialIcons',
                         ),
-                        openDoings: checks
-                            .where((c) =>
-                                c['category'] == item['Title'] &&
-                                c['done'] == false &&
-                                c['userid'] ==
-                                    FirebaseAuth.instance.currentUser?.uid)
-                            .length),
+                        size: 45,
+                        color: Colors.black,
+                      ),
+                      openDoings: checks
+                          .where((c) =>
+                              c['category'] == item['Title'] &&
+                              c['done'] == false &&
+                              c['userid'] ==
+                                  FirebaseAuth.instance.currentUser?.uid)
+                          .length,
+                    ),
 
                   const VerticalDivider(
                     width: 0,
@@ -145,8 +141,9 @@ class _HomePageState extends State<HomePage> {
                     CategoryContainer(
                         title: item['Title'] != null ? item['Title'] : '',
                         icon: Icon(
-                            IconData(item['Icon'], fontFamily: 'MaterialIcons'),
-                            size: 45),
+                          IconData(item['Icon'], fontFamily: 'MaterialIcons'),
+                          size: 45,
+                        ),
                         openDoings: checks
                             .where((c) =>
                                 c['category'] == item['Title'] &&
