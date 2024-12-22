@@ -1,4 +1,5 @@
-buildscript {
+plugins {
+
 }
 
 allprojects {
@@ -28,6 +29,6 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
-}
+// tasks.register("clean", Delete) {
+//     delete rootProject.buildDir
+// }

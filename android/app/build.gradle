@@ -1,7 +1,9 @@
 plugins {
+    id "org.jetbrains.kotlin.android"
     id "com.android.application"
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
+    id "dev.flutter.flutter-gradle-plugin"    
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
 }
 
 def localProperties = new Properties()
@@ -23,6 +25,9 @@ if (flutterVersionName == null) {
 }
 
 android {    
+    compileSdkVersion 34
+    namespace = "com.example.checkit"
+
     buildFeatures {
         buildConfig = true
     }
@@ -36,9 +41,6 @@ android {
         jvmTarget = "1.8"  
     }
     
-    compileSdkVersion 34
-    namespace = "com.example.checkit"
-
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
