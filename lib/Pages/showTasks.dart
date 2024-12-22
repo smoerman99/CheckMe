@@ -1,3 +1,4 @@
+import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
 import 'package:checkit/Widgets/checkCard.dart';
@@ -15,14 +16,10 @@ class ShowTasksPage extends StatefulWidget {
 class _ShowTasksPageState extends State<ShowTasksPage> {
   FireStore _fireStore = FireStore();
 
-  Iterable<Map<String, dynamic>> checks = [];
-
   List list = [];
 
   Future<String> _fetchData() async {
-    checks = await _fireStore.readAll('Check');
-
-    for (Map<String, dynamic> member in checks) {
+    for (Map<String, dynamic> member in await _fireStore.readAll('Check')) {
       if (!member['done'] &&
           member['userid'] == FirebaseAuth.instance.currentUser?.uid) {
         member['dateTime'] = member['dateTime'].toDate();
@@ -71,15 +68,21 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => CreateTaskPage()));
                     },
-                    child: Text('Nieuwe taak aanmaken',
-                        style: TextStyle(
-                            color: Color.fromARGB(188, 231, 143, 12))),
+                    child: Text(
+                      'Nieuwe taak aanmaken',
+                      style: TextStyle(
+                        color: Color.fromARGB(188, 231, 143, 12),
+                      ),
+                    ),
                   );
                 } else {
                   return CheckCard(
                       update: _update,
                       id: list[index].id,
-                      title: list[index].title,
+                      title: list[index]
+                          .title
+                          .toString()
+                          .makeFirstLetterCapitalize(),
                       categorie: list[index].category,
                       dateAdded: list[index].dateTime,
                       priority: list[index].priority,

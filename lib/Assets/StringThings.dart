@@ -1,7 +1,12 @@
 extension StringExtension on String {
   String makeFirstLetterCapitalize() {
+    if (this.isEmpty) return this; // Handle empty string case
     return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
   }
+}
+
+String stripHtmlIfNeeded(String text) {
+  return text.replaceAll(RegExp(r'<[^>]*>|&[^;]+;|\d+|¶'), ' ');
 }
 
 String getGreeting() {
@@ -16,8 +21,4 @@ String getGreeting() {
   } else {
     return 'Good Evening';
   }
-}
-
-String stripHtmlIfNeeded(String text) {
-  return text.replaceAll(RegExp(r'<[^>]*>|&[^;]+;|\d+|¶'), ' ');
 }

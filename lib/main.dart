@@ -1,6 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:checkit/Assets/NavigationWrapper.dart';
-import 'package:checkit/Assets/NotificationController.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,12 +41,13 @@ main() async {
     'resource://drawable/res_app_icon',
     [
       NotificationChannel(
-          channelGroupKey: 'basic_channel_group',
-          channelKey: 'basic_channel',
-          channelName: 'Basic notifications',
-          channelDescription: 'Notification channel for basic tests',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Colors.white)
+        channelGroupKey: 'basic_channel_group',
+        channelKey: 'basic_channel',
+        channelName: 'Basic notifications',
+        channelDescription: 'Notification channel for basic tests',
+        defaultColor: Color(0xFF9D50DD),
+        ledColor: Colors.white,
+      )
     ],
     // Channel groups are only visual and are not required
     channelGroups: [
