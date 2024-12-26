@@ -7,54 +7,35 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'firebase_options.dart';
-import 'package:cron/cron.dart';
 
 // adb handy
 // https://stackoverflow.com/questions/37267335/android-studio-wireless-adb-error-10061
 
 main() async {
-  FireStore _fireStore = FireStore();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  int _amountOfCheck = 0;
-
-  Future<void> _getAmountAndSendNotification() async {
-    _amountOfCheck = await _fireStore.countNotDoneChecks(
-      'Check',
-      FirebaseAuth.instance.currentUser?.uid,
-    );
-
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 10,
-      channelKey: 'basic_channel',
-      actionType: ActionType.Default,
-      title: 'Hello there!',
-      body: 'Don"' "t forget your ${_amountOfCheck} remaining task(s)'",
-      icon: 'resource://drawable/smallicon',
-    ));
-  }
-
-  final cron = Cron();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   AwesomeNotifications().initialize(
-    // set the icon to null if you want to use the default app icon
     'resource://drawable/res_app_icon',
     [
       NotificationChannel(
         channelGroupKey: 'basic_channel_group',
         channelKey: 'basic_channel',
         channelName: 'Basic notifications',
-        channelDescription: 'Notification channel for basic tests',
+        channelDescription: 'Notification channel for daily reminders',
         defaultColor: Color(0xFF9D50DD),
         ledColor: Colors.white,
+        importance: NotificationImportance.High,
       )
     ],
-    // Channel groups are only visual and are not required
-    channelGroups: [
-      NotificationChannelGroup(
-          channelGroupKey: 'basic_channel_group',
-          channelGroupName: 'Basic group')
-    ],
+    // channelGroups: [
+    //   NotificationChannelGroup(
+    //       channelGroupKey: 'basic_channel_group',
+    //       channelGroupName: 'Basic group')
+    // ],
     debug: true,
   );
 
@@ -64,20 +45,40 @@ main() async {
     }
   });
 
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  // cron.schedule(Schedule.parse('*/3 * * * *') - testing
-  // cron.schedule(Schedule.parse('0 19 * * *') - live
-
-  cron.schedule(Schedule.parse('0 19 * * *'), () async {
-    await _getAmountAndSendNotification();
-  });
+  scheduleDailyNotification();
 
   runApp(MyApp());
+}
+
+Future<int> _getAmountAndSendNotification() async {
+  FireStore _fireStore = FireStore();
+
+  return await _fireStore.countNotDoneChecks(
+    'Check',
+    FirebaseAuth.instance.currentUser?.uid,
+  );
+}
+
+void scheduleDailyNotification() async {
+  var _amountOfCheck = await _getAmountAndSendNotification();
+
+  AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: 10, // Unique ID for the notification
+      channelKey: 'basic_channel',
+      title: 'Daily Reminder',
+      body: 'Don"' "t forget your ${_amountOfCheck} remaining task(s)'",
+      notificationLayout: NotificationLayout.Default,
+      icon: 'resource://drawable/smallicon',
+    ),
+    // there is an utf time difference of 1 hour. so 11 hour = 12 hours
+    schedule: NotificationCalendar(
+      hour: 18, // 7 PM
+      minute: 0,
+      second: 0,
+      repeats: true,
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
