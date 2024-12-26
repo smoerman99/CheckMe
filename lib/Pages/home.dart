@@ -65,12 +65,12 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 25, 16),
                 child: AspectRatio(
-                  aspectRatio: 30 / 8,
+                  aspectRatio: 30 / 11,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: Color.fromRGBO(230, 210, 240, 0.835),
                     child: ListTile(
                       title: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +85,9 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             _dailyVerse.reference ?? '',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           )
                         ],
                       ),
@@ -155,13 +157,14 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 100,
+                height: MediaQuery.of(context).size.height / 100 * 3,
+                width: MediaQuery.of(context).size.width / 100 * 40,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 100 * 14,
+                    height: MediaQuery.of(context).size.height / 100 * 13,
                     width: MediaQuery.of(context).size.width / 100 * 78,
                     child: Card(
                       child: Padding(
@@ -171,9 +174,9 @@ class _HomePageState extends State<HomePage> {
                             dataMap: dataMap,
                             animationDuration: Duration(milliseconds: 200),
                             colorList: [
+                              Color.fromARGB(255, 212, 88, 88),
                               Color.fromARGB(255, 0, 0, 0),
-                              Color.fromARGB(255, 136, 143, 146),
-                              Color.fromRGBO(238, 213, 146, 1)
+                              Color.fromRGBO(22, 223, 4, 1)
                             ],
                             chartValuesOptions: ChartValuesOptions(
                                 decimalPlaces: 0,
@@ -187,19 +190,14 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(12, 35, 12, 16),
+                padding: const EdgeInsets.fromLTRB(12, 10, 12, 16),
                 child: Column(
                   children: [
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Color.fromARGB(123, 255, 153, 0),
-                          disabledForegroundColor:
-                              Colors.green.withOpacity(0.38),
-                          maximumSize: Size(300, 100),
-                          backgroundColor: Colors.white,
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(188, 231, 143, 12))),
+                        maximumSize: Size(300, 100),
+                        backgroundColor: Colors.white,
+                      ),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => CreateTaskPage()));
@@ -208,6 +206,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                         child: Text('Aanmaken taak',
                             style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
                               fontStyle: FontStyle.italic,
                               fontSize: 19,
                             )),

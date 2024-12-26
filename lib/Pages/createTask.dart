@@ -92,7 +92,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
               child: Container(
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new ExactAssetImage('assets/img/try19.png'),
+                image: new ExactAssetImage('assets/img/try21.png'),
                 fit: BoxFit.fill,
               ),
             ),

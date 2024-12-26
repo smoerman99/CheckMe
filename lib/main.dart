@@ -123,10 +123,10 @@ class _MyAppState extends State<MyApp> {
           ),
           //for the rest
           bodyMedium: TextStyle(
-              color: Color.fromARGB(188, 231, 143, 12),
+              color: Color.fromARGB(255, 0, 0, 0),
               fontFamily: "Aptos",
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
+              fontSize: 17,
+              fontWeight: FontWeight.w500,
               height: 1.1),
           displayMedium: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),

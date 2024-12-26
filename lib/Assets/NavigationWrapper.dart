@@ -55,7 +55,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             appBar: AppBar(
               toolbarHeight: 150,
               elevation: 0,
-              backgroundColor: Color.fromARGB(188, 231, 143, 12),
+              backgroundColor: Color.fromARGB(0, 231, 143, 12),
               title: Column(
                 children: [
                   Padding(
@@ -69,6 +69,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                               (test != null && test != '' ? test! : ''),
                           style: TextStyle(
                             color: Colors.white,
+                            fontWeight: FontWeight.w500,
                             fontSize: 32,
                             fontFamily: Theme.of(context)
                                 .textTheme
@@ -86,7 +87,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                             child: Image(
                                 image: AssetImage(
                                     'assets/img/mewithoutbackground.png'),
-                                height: 60),
+                                height: 65),
                           ),
                         ),
                       ],
@@ -101,14 +102,18 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                         Text("${_date.day}-${_date.month}-${_date.year}",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 20,
                             )),
                         _amountOfCheck > 1
-                            ? Text(_amountOfCheck.toString() + ' tasks to do!')
+                            ? Text(_amountOfCheck.toString() + ' tasks to do!',
+                                style: TextStyle(
+                                  color: const Color.fromARGB(255, 54, 37, 37),
+                                  fontSize: 20,
+                                ))
                             : Text(_amountOfCheck.toString() + ' task to do!',
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontSize: 20,
                                 ))
                       ],
                     ),
@@ -120,7 +125,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             body: Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new ExactAssetImage('assets/img/try19.png'),
+                  image: new ExactAssetImage('assets/img/try21.png'),
                   fit: BoxFit.fitHeight,
                 ),
               ),
@@ -140,7 +145,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                 size: 30,
               ),
               elevation: 0.0,
-              backgroundColor: Color.fromARGB(188, 231, 143, 12),
+              backgroundColor: Color.fromARGB(50, 0, 0, 25),
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
