@@ -38,6 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         SizedBox(
           child: Card(
+            color: Colors.transparent,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
               child: Column(
@@ -56,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
-                          Color.fromARGB(255, 119, 110, 96)),
+                          Color.fromARGB(185, 180, 115, 39)),
                     ),
                     onPressed: () async {
                       await _updateDisplayName(_displayNameController.text);
@@ -65,8 +66,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       'update display name',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        fontSize: 17,
-                        backgroundColor: Color.fromARGB(255, 119, 110, 96),
+                        color: Colors.white,
+                        fontSize: 16,
                       ),
                     ),
                   ),

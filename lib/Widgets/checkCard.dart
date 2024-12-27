@@ -40,8 +40,12 @@ class __CheckCardStateState extends State<CheckCard> {
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ListTile(
           onLongPress: () => updateTask(),
-          title:
-              Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           subtitle: Text('Category: ' + widget.categorie),
         )
       ]),

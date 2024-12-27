@@ -31,34 +31,30 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       child: Container(
           decoration: new BoxDecoration(
             image: new DecorationImage(
-              image: new ExactAssetImage('assets/img/try19.png'),
+              image: new ExactAssetImage('assets/img/try21.png'),
               fit: BoxFit.fill,
             ),
           ),
-          child: ListView(
+          child: Column(
             children: [
               Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(90, 90, 90, 60),
-                      child: Image(
-                          image:
-                              AssetImage('assets/img/mewithoutbackground.png'),
-                          height: 115),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(90, 150, 90, 15),
+                  child: Image(
+                      image: AssetImage(
+                        'assets/img/mewithoutbackground.png',
+                      ),
+                      height: 180),
                 ),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                // margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
 
                 // margin: EdgeInsets.all(5),
-                height: MediaQuery.of(context).size.height / 100 * 40,
-                width: MediaQuery.of(context).size.width / 100 * 70,
+                height: 420,
+                width: 350,
                 child: Card(
-                  color: Color.fromARGB(235, 185, 173, 157),
+                  color: Colors.transparent,
                   child: Column(children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -103,7 +99,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       hintText: 'Voor + achternaam',
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     TextFormFieldWithStyling(
                       taskNameController: passwordController,
@@ -116,7 +112,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       hintText: 'Password',
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     TextFormFieldWithStyling(
                       taskNameController: emailController,
@@ -134,23 +130,23 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           style:
                               TextStyle(fontSize: 13, color: Colors.redAccent)),
                     ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          child: Text(
+                            'Meld je aan',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                          onPressed: signUp,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(185, 180, 115, 39),
+                          ),
+                        ),
+                      ],
+                    ),
                   ]),
                 ),
-              ),
-              SizedBox(
-                height: 36,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    child: Text('Sign Up'),
-                    onPressed: signUp,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(188, 231, 143, 12),
-                    ),
-                  ),
-                ],
               ),
             ],
           )),

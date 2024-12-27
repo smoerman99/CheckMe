@@ -7,14 +7,14 @@ class TextFormFieldWithStyling extends StatelessWidget {
   final TextInputType _textInputType;
   final bool _needsExpanding;
 
-  const TextFormFieldWithStyling(
-      {Key? key,
-      required TextEditingController taskNameController,
-      required Icon icon,
-      required TextInputType textInputType,
-      required bool needsExpanding,
-      required String hintText})
-      : _taskNameController = taskNameController,
+  const TextFormFieldWithStyling({
+    Key? key,
+    required TextEditingController taskNameController,
+    required Icon icon,
+    required TextInputType textInputType,
+    required bool needsExpanding,
+    required String hintText,
+  })  : _taskNameController = taskNameController,
         _icon = icon,
         _textInputType = textInputType,
         _hintText = hintText,
@@ -24,65 +24,70 @@ class TextFormFieldWithStyling extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: SizedBox(
-        height: 50,
+        height: 60, // Slightly taller for a cleaner look
         child: TextFormField(
           showCursor: true,
           obscureText: _needsExpanding,
           expands: false,
           controller: _taskNameController,
           style: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
+            fontSize: 20,
+            color: Colors.black87, // Dark text for better readability
           ),
           keyboardType: _textInputType,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Color.fromARGB(255, 119, 110, 96),
-            iconColor: Colors.white,
-            label: Text(_hintText,
-                style: TextStyle(
-                  color: Colors.white,
-                )),
-            prefixIcon: _icon,
-            prefixIconColor: Colors.blueGrey,
-            focusColor: Colors.white,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.black, // Unfocused border color
-                width: 2, // Border width
-              ),
+            // fillColor:
+            //     Color(0xFFF7F7F7), // Light gray background for subtle elegance
+            labelText: _hintText,
+            labelStyle: TextStyle(
+              color: Colors.grey[700], // Softer gray color for the label text
+              fontSize: 16,
+              fontWeight:
+                  FontWeight.bold, // Slightly bolder for better readability
             ),
+            prefixIcon: _icon,
+            prefixIconColor: Colors.yellow, // More subtle color for the icon
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                color: Colors.white,
+                color: Colors.black, // Bright color on focus
                 width: 2.5,
               ),
+              borderRadius: BorderRadius.circular(
+                  12), // Rounded borders for a modern look
             ),
-            border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey[400]!, // Subtle border when not focused
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12), // Rounded borders
+            ),
             errorBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.red,
+                color: Colors.red, // Red border on error
                 width: 2,
               ),
             ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey[400]!, // Default border color
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12), // Rounded borders
+            ),
+            contentPadding: EdgeInsets.symmetric(
+                vertical: 10, horizontal: 12), // Padding inside the text field
           ),
-          cursorColor: Colors.white,
-          autovalidateMode: AutovalidateMode.always,
+          cursorColor: Colors.blue, // Cursor color is blue
+          autovalidateMode: AutovalidateMode
+              .onUserInteraction, // Validate when user interacts
           onSaved: (String? value) {
             // This optional block of code can be used to run
             // code when the user saves the form.
           },
-          // validator: (String? value) {
-          //   if (value?.isEmpty != null) {
-          //     if (value!.contains('@')) {
-          //       return 'Do not use the @ char.';
-          //     }
-          //   } else {
-          //     return null;
-          //   }
-          // },
         ),
       ),
     );
