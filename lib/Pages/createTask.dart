@@ -107,7 +107,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: Color.fromARGB(239, 206, 201, 194),
+                    color: Color.fromARGB(6, 206, 201, 194),
                   ),
                   child: Column(
                     children: [

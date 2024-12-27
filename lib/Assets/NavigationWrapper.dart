@@ -7,7 +7,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NavigationWrapper extends StatefulWidget {
-  const NavigationWrapper({Key? key}) : super(key: key);
+  const NavigationWrapper({
+    Key? key,
+    required this.openTaskPage,
+  }) : super(key: key);
+
+  final bool openTaskPage;
 
   @override
   State<NavigationWrapper> createState() => _NavigationWrapperState();
@@ -28,6 +33,16 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
     ShowTasksPage(),
     SettingsPage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.openTaskPage) {
+      setState(() {
+        _selectedPageIndex = 1;
+      });
+    }
+  }
 
   void _onTappedNavigationItem(int index) {
     setState(() {
@@ -105,16 +120,22 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                               fontSize: 20,
                             )),
                         _amountOfCheck > 1
-                            ? Text(_amountOfCheck.toString() + ' tasks to do!',
+                            ? Text(
+                                _amountOfCheck.toString() + ' tasks to do!',
                                 style: TextStyle(
                                   color: const Color.fromARGB(255, 54, 37, 37),
                                   fontSize: 20,
-                                ))
-                            : Text(_amountOfCheck.toString() + ' task to do!',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                            : Text(
+                                _amountOfCheck.toString() + ' task to do!',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
-                                ))
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
                       ],
                     ),
                   )
@@ -198,7 +219,8 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                               .bodyMedium
                               ?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromRGBO(158, 177, 219, 1),
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromARGB(255, 0, 0, 0),
                         ),
                       ),
                     ],

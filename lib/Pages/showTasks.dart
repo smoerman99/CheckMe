@@ -1,3 +1,4 @@
+import 'package:checkit/Assets/NavigationWrapper.dart';
 import 'package:checkit/Assets/StringThings.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Pages/createTask.dart';
@@ -16,15 +17,19 @@ class ShowTasksPage extends StatefulWidget {
 class _ShowTasksPageState extends State<ShowTasksPage> {
   FireStore _fireStore = FireStore();
 
-  List list = [];
+  List filteredData = [];
+  List orginalData = [];
 
   Future<String> _fetchData() async {
-    for (Map<String, dynamic> member in await _fireStore.readAll('Check')) {
-      if (!member['done'] &&
-          member['userid'] == FirebaseAuth.instance.currentUser?.uid) {
-        member['dateTime'] = member['dateTime'].toDate();
+    if (orginalData.length == 0) {
+      for (Map<String, dynamic> member in await _fireStore.readAll('Check')) {
+        if (!member['done'] &&
+            member['userid'] == FirebaseAuth.instance.currentUser?.uid) {
+          member['dateTime'] = member['dateTime'].toDate();
 
-        list.add(Check.fromJson(member));
+          filteredData.add(Check.fromJson(member));
+          orginalData.add(Check.fromJson(member));
+        }
       }
     }
 
@@ -32,101 +37,263 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   }
 
   void _update(int count) {
-    setState(
-        () => list = list.where((element) => element.done == true).toList());
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NavigationWrapper(
+          openTaskPage: true,
+        ),
+      ),
+    );
   }
 
-  filterData() {
-    var filteredList =
-        list.where((element) => element['category'] == 'Private').toList();
+  filterData(String category) {
+    filteredData = orginalData;
+
+    var test =
+        filteredData.where((element) => element.category == category).toList();
+
     setState(() {
-      list = filteredList;
+      filteredData = test;
     });
+  }
+
+  void resetFilter() {
+    setState(() {
+      filteredData = orginalData;
+      // Refetch or reset to the original unfiltered list.
+    });
+
+    _fetchData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _fetchData(),
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.hasData) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView.separated(
-              shrinkWrap: false,
-              itemCount: list.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == list.length) {
-                  return TextButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(Colors.white),
-                      foregroundColor:
-                          WidgetStateProperty.all<Color>(Colors.black),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => CreateTaskPage()));
-                    },
-                    child: Text(
-                      'Nieuwe taak aanmaken',
-                      style: TextStyle(
-                        color: Color.fromARGB(188, 231, 143, 12),
-                      ),
-                    ),
-                  );
-                } else {
-                  return CheckCard(
-                      update: _update,
-                      id: list[index].id,
-                      title: list[index]
-                          .title
-                          .toString()
-                          .makeFirstLetterCapitalize(),
-                      categorie: list[index].category,
-                      dateAdded: list[index].dateTime,
-                      priority: list[index].priority,
-                      remember: 0 // list[index].remember ,
-                      );
-                }
-              },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-            ),
-          );
-        } else {
-          return ListView(shrinkWrap: false, children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 30, 32, 16),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: FutureBuilder(
+        future: _fetchData(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 100 * 22,
                 ),
-                color: Color.fromRGBO(255, 255, 255, 1),
-                child: ListTile(
-                  title: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                // Horizontal ListView (Buttons for filtering)
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.symmetric(),
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
                     children: [
-                      Text(
-                        'Loading data...',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.fontFamily,
-                          fontSize: 25,
-                          color: Color.fromARGB(188, 231, 143, 12),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => filterData('Music'),
+                          child: Text(
+                            'Music',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => filterData('YouTube'),
+                          child: Text(
+                            'YouTube',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => filterData('Web'),
+                          child: Text(
+                            'Web',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => filterData('Private'),
+                          child: Text(
+                            'Private',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => filterData('Appointment'),
+                          child: Text(
+                            'Appointment',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => filterData('Study'),
+                          child: Text(
+                            'Study',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ElevatedButton(
+                          onPressed: () => resetFilter(),
+                          child: Text(
+                            'Reset',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            )
-          ]);
-        }
-      },
+                SizedBox(
+                  height: 50,
+                ),
+                // Flexible Widget for the Vertical ListView
+                Flexible(
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(),
+                    itemCount: filteredData.length + 1,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == filteredData.length) {
+                        // Add the "Nieuwe taak aanmaken" button at the end
+                        return TextButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all<Color>(Colors.white),
+                            foregroundColor:
+                                WidgetStateProperty.all<Color>(Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateTaskPage()),
+                            ).then((_) {
+                              // Replace the current page with a new instance
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NavigationWrapper(
+                                    openTaskPage: true,
+                                  ),
+                                ),
+                              );
+                            });
+                          },
+                          child: Text(
+                            'Nieuwe taak aanmaken',
+                            style: TextStyle(
+                              color: Color.fromARGB(188, 231, 143, 12),
+                            ),
+                          ),
+                        );
+                      } else {
+                        // List items for filteredData
+                        return Column(
+                          children: [
+                            CheckCard(
+                              update: _update,
+                              id: filteredData[index].id,
+                              title: filteredData[index]
+                                  .title
+                                  .toString()
+                                  .makeFirstLetterCapitalize(),
+                              categorie: filteredData[index].category,
+                              dateAdded: filteredData[index].dateTime,
+                              priority: filteredData[index].priority,
+                              remember: 0, // list[index].remember ,
+                            ),
+                            const Divider(
+                              indent: 0,
+                              height: 5,
+                              thickness: 0,
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            // While data is loading, show a loading indicator
+            return Center(child: CircularProgressIndicator());
+          } else {
+            // Error handling
+            return ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 30, 32, 16),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    child: ListTile(
+                      title: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Loading data...',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.fontFamily,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 }

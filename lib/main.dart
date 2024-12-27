@@ -186,7 +186,9 @@ class _MyAppState extends State<MyApp> {
                   return const SignInWidget();
                 } else {
                   return Container(
-                    child: const NavigationWrapper(),
+                    child: const NavigationWrapper(
+                      openTaskPage: false,
+                    ),
                   );
                 }
             }
