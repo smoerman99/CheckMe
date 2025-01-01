@@ -89,7 +89,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       ),
                     ),
                     TextFormFieldWithStyling(
-                      taskNameController: fullNameController,
+                      controller: fullNameController,
                       icon: Icon(
                         Icons.person,
                         color: Colors.white,
@@ -102,7 +102,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       height: 10,
                     ),
                     TextFormFieldWithStyling(
-                      taskNameController: passwordController,
+                      controller: passwordController,
                       icon: Icon(
                         Icons.web_outlined,
                         color: Colors.white,
@@ -115,7 +115,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       height: 10,
                     ),
                     TextFormFieldWithStyling(
-                      taskNameController: emailController,
+                      controller: emailController,
                       icon: Icon(
                         Icons.email,
                         color: Colors.white,

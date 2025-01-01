@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       Icons.menu,
                       color: Colors.white,
                     ),
-                    taskNameController: _displayNameController,
+                    controller: _displayNameController,
                     textInputType: TextInputType.text,
                   ),
                   ElevatedButton(

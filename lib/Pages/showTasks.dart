@@ -191,35 +191,41 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                     itemCount: filteredData.length + 1,
                     itemBuilder: (BuildContext context, int index) {
                       if (index == filteredData.length) {
-                        // Add the "Nieuwe taak aanmaken" button at the end
-                        return TextButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                WidgetStateProperty.all<Color>(Colors.white),
-                            foregroundColor:
-                                WidgetStateProperty.all<Color>(Colors.black),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CreateTaskPage()),
-                            ).then((_) {
-                              // Replace the current page with a new instance
-                              Navigator.pushReplacement(
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(100, 15, 100, 0),
+                          child: TextButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all<Color>(
+                                    Colors.white),
+                                foregroundColor: WidgetStateProperty.all<Color>(
+                                    Colors.black),
+                                fixedSize: WidgetStateProperty.all<Size>(
+                                    Size.fromWidth(250))),
+                            onPressed: () {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => NavigationWrapper(
-                                    openTaskPage: true,
+                                    builder: (context) => CreateTaskPage()),
+                              ).then((_) {
+                                // Replace the current page with a new instance
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NavigationWrapper(
+                                      openTaskPage: true,
+                                    ),
                                   ),
-                                ),
-                              );
-                            });
-                          },
-                          child: Text(
-                            'Nieuwe taak aanmaken',
-                            style: TextStyle(
-                              color: Color.fromARGB(188, 231, 143, 12),
+                                );
+                              });
+                            },
+                            child: Text(
+                              'Create task',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 190, 76, 143),
+                                fontWeight: FontWeight.w600,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 19,
+                              ),
                             ),
                           ),
                         );
@@ -243,6 +249,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                               indent: 0,
                               height: 5,
                               thickness: 0,
+                              color: Colors.amber,
                             ),
                           ],
                         );
@@ -253,10 +260,8 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
               ],
             );
           } else if (snapshot.connectionState == ConnectionState.waiting) {
-            // While data is loading, show a loading indicator
             return Center(child: CircularProgressIndicator());
           } else {
-            // Error handling
             return ListView(
               shrinkWrap: true,
               children: [
@@ -281,7 +286,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                                   ?.fontFamily,
                               fontSize: 25,
                               fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: Color.fromARGB(255, 190, 76, 143),
                             ),
                           ),
                         ],

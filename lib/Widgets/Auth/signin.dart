@@ -72,7 +72,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                   height: 10,
                 ),
                 TextFormFieldWithStyling(
-                  taskNameController: emailController,
+                  controller: emailController,
                   icon: Icon(
                     Icons.email,
                     color: Colors.white,
@@ -85,7 +85,7 @@ class _LoginWidgetState extends State<SignInWidget> {
                   height: 10,
                 ),
                 TextFormFieldWithStyling(
-                  taskNameController: passwordController,
+                  controller: passwordController,
                   icon: Icon(
                     Icons.password,
                     color: Colors.white,

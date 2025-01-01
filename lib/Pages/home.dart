@@ -168,15 +168,15 @@ class _HomePageState extends State<HomePage> {
                     width: MediaQuery.of(context).size.width / 100 * 78,
                     child: Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
                         child: ListTile(
                           title: PieChart(
                             dataMap: dataMap,
                             animationDuration: Duration(milliseconds: 200),
                             colorList: [
-                              Color.fromARGB(255, 212, 88, 88),
+                              Color.fromARGB(255, 190, 76, 143),
                               Color.fromARGB(255, 0, 0, 0),
-                              Color.fromRGBO(22, 223, 4, 1)
+                              Color.fromRGBO(87, 184, 80, 1)
                             ],
                             chartValuesOptions: ChartValuesOptions(
                                 decimalPlaces: 0,
@@ -204,9 +204,9 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                        child: Text('Aanmaken taak',
+                        child: Text('Create task',
                             style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: Color.fromARGB(255, 190, 76, 143),
                               fontStyle: FontStyle.italic,
                               fontSize: 19,
                             )),

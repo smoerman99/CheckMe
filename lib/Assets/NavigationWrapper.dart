@@ -95,14 +95,13 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(0, 0, 0, 1),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Image(
                                 image: AssetImage(
                                     'assets/img/mewithoutbackground.png'),
-                                height: 65),
+                                height: 75),
                           ),
                         ),
                       ],
@@ -211,7 +210,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Loading data.',
+                        'Loading data...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: Theme.of(context)
@@ -220,7 +219,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                               ?.fontFamily,
                           fontSize: 25,
                           fontWeight: FontWeight.w500,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Color.fromARGB(255, 190, 76, 143),
                         ),
                       ),
                     ],

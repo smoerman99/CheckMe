@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 class CheckCard extends StatefulWidget {
   final ValueChanged<int> update;
   final String id;
-  final String categorie;
-  final DateTime dateAdded;
-  final String priority;
-  final int remember;
   final String title;
+  final String categorie;
+  final String priority;
+  final DateTime dateAdded;
+  final int remember;
 
   const CheckCard({
     Key? key,
     required this.update,
     required this.id,
-    required this.categorie,
-    required this.dateAdded,
-    required this.priority,
-    required this.remember,
     required this.title,
+    required this.categorie,
+    required this.priority,
+    required this.dateAdded,
+    required this.remember,
   }) : super(key: key);
 
   @override
@@ -41,7 +41,7 @@ class __CheckCardStateState extends State<CheckCard> {
         ListTile(
           onLongPress: () => updateTask(),
           title: Text(
-            widget.title,
+            widget.title + '' + widget.priority,
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),

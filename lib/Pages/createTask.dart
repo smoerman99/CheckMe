@@ -107,7 +107,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: Color.fromARGB(6, 206, 201, 194),
+                    color: Color.fromARGB(19, 206, 201, 194),
                   ),
                   child: Column(
                     children: [
@@ -116,15 +116,14 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(8.0, 4, 8, 0),
                           child: Text(
-                            'Create Task',
+                            'Create new task',
                             style: TextStyle(
                               fontFamily: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
                                   ?.fontFamily,
-                              fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold,
-                              fontSize: 40,
+                              fontSize: 38,
                               color: Colors.black,
                               decoration: TextDecoration.none,
                             ),
@@ -139,10 +138,10 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         needsExpanding: false,
                         hintText: 'Title',
                         icon: Icon(
-                          Icons.menu,
-                          color: Colors.white,
+                          Icons.wysiwyg,
+                          color: Color.fromARGB(255, 190, 76, 143),
                         ),
-                        taskNameController: _titleController,
+                        controller: _titleController,
                         textInputType: TextInputType.text,
                       ),
                       SizedBox(
@@ -152,10 +151,10 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                         needsExpanding: false,
                         hintText: 'Remember',
                         icon: Icon(
-                          Icons.numbers,
-                          color: Colors.white,
+                          Icons.access_alarms,
+                          color: Color.fromARGB(255, 190, 76, 143),
                         ),
-                        taskNameController: _rememberController,
+                        controller: _rememberController,
                         textInputType: TextInputType.number,
                       ),
                       Column(
@@ -165,8 +164,10 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             title: const Text(
                               'Appointment',
                               style: TextStyle(
-                                  color: Color.fromARGB(188, 231, 143, 12),
-                                  fontSize: 20),
+                                color: Color.fromARGB(187, 10, 7, 3),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                              ),
                             ),
                             leading: Radio<Categories>(
                               activeColor: Colors.black,
@@ -184,7 +185,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             title: const Text(
                               'Music',
                               style: TextStyle(
-                                color: Color.fromARGB(188, 231, 143, 12),
+                                color: Color.fromARGB(187, 10, 7, 3),
+                                fontWeight: FontWeight.w500,
                                 fontSize: 20,
                               ),
                             ),
@@ -204,7 +206,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             title: const Text(
                               'Private',
                               style: TextStyle(
-                                color: Color.fromARGB(188, 231, 143, 12),
+                                color: Color.fromARGB(187, 10, 7, 3),
+                                fontWeight: FontWeight.w500,
                                 fontSize: 20,
                               ),
                             ),
@@ -224,7 +227,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             title: const Text(
                               'Study',
                               style: TextStyle(
-                                color: Color.fromARGB(188, 231, 143, 12),
+                                color: Color.fromARGB(187, 10, 7, 3),
+                                fontWeight: FontWeight.w500,
                                 fontSize: 20,
                               ),
                             ),
@@ -244,7 +248,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             title: const Text(
                               'Web',
                               style: TextStyle(
-                                color: Color.fromARGB(188, 231, 143, 12),
+                                color: Color.fromARGB(187, 10, 7, 3),
+                                fontWeight: FontWeight.w500,
                                 fontSize: 20,
                               ),
                             ),
@@ -264,7 +269,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             title: const Text(
                               'YouTube',
                               style: TextStyle(
-                                color: Color.fromARGB(188, 231, 143, 12),
+                                color: Color.fromARGB(187, 10, 7, 3),
+                                fontWeight: FontWeight.w500,
                                 fontSize: 20,
                               ),
                             ),
@@ -289,7 +295,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all(
-                                    Color.fromARGB(255, 119, 110, 96)),
+                                    Color.fromARGB(255, 255, 255, 255)),
                               ),
                               onPressed: _addCheckToDB,
                               child: Text(
@@ -297,23 +303,21 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 17,
-                                  backgroundColor:
-                                      Color.fromARGB(255, 119, 110, 96),
+                                  color: Color.fromARGB(255, 190, 76, 143),
                                 ),
                               ),
                             ),
                             ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all(
-                                    Color.fromARGB(255, 119, 110, 96)),
+                                    Color.fromARGB(255, 255, 255, 255)),
                               ),
                               onPressed: () => Navigator.pop(context, false),
                               child: Text(
                                 'Close',
                                 style: TextStyle(
                                   fontSize: 17,
-                                  backgroundColor:
-                                      Color.fromARGB(255, 119, 110, 96),
+                                  color: Color.fromARGB(255, 190, 76, 143),
                                 ),
                               ),
                             ),
@@ -348,7 +352,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                               .bodyMedium
                               ?.fontFamily,
                           fontSize: 25,
-                          color: Color.fromARGB(188, 231, 143, 12),
+                          color: Color.fromARGB(255, 190, 76, 143),
                         ),
                       ),
                     ],

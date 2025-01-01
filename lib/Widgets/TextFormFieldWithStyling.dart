@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextFormFieldWithStyling extends StatelessWidget {
-  final TextEditingController _taskNameController;
+  final TextEditingController _Controller;
   final String _hintText;
   final Icon _icon;
   final TextInputType _textInputType;
@@ -9,12 +9,12 @@ class TextFormFieldWithStyling extends StatelessWidget {
 
   const TextFormFieldWithStyling({
     Key? key,
-    required TextEditingController taskNameController,
+    required TextEditingController controller,
     required Icon icon,
     required TextInputType textInputType,
     required bool needsExpanding,
     required String hintText,
-  })  : _taskNameController = taskNameController,
+  })  : _Controller = controller,
         _icon = icon,
         _textInputType = textInputType,
         _hintText = hintText,
@@ -26,12 +26,12 @@ class TextFormFieldWithStyling extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: SizedBox(
-        height: 60, // Slightly taller for a cleaner look
+        height: 60,
         child: TextFormField(
           showCursor: true,
           obscureText: _needsExpanding,
           expands: false,
-          controller: _taskNameController,
+          controller: _Controller,
           style: TextStyle(
             fontSize: 20,
             color: Colors.black87, // Dark text for better readability
@@ -43,13 +43,13 @@ class TextFormFieldWithStyling extends StatelessWidget {
             //     Color(0xFFF7F7F7), // Light gray background for subtle elegance
             labelText: _hintText,
             labelStyle: TextStyle(
-              color: Colors.grey[700], // Softer gray color for the label text
-              fontSize: 16,
+              color: Colors.black, // Softer gray color for the label text
+              fontSize: 18,
               fontWeight:
                   FontWeight.bold, // Slightly bolder for better readability
             ),
             prefixIcon: _icon,
-            prefixIconColor: Colors.yellow, // More subtle color for the icon
+
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: Colors.black, // Bright color on focus
