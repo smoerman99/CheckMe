@@ -42,6 +42,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
       MaterialPageRoute(
         builder: (context) => NavigationWrapper(
           openTaskPage: true,
+          openSettingsPage: false,
         ),
       ),
     );
@@ -213,6 +214,7 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
                                   MaterialPageRoute(
                                     builder: (context) => NavigationWrapper(
                                       openTaskPage: true,
+                                      openSettingsPage: false,
                                     ),
                                   ),
                                 );

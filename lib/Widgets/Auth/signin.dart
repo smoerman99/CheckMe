@@ -145,6 +145,7 @@ class _LoginWidgetState extends State<SignInWidget> {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => NavigationWrapper(
                 openTaskPage: false,
+                openSettingsPage: false,
               )));
     } on FirebaseAuthException catch (exception) {
       if (exception.code == 'user-not-found') {

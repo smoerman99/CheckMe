@@ -10,9 +10,11 @@ class NavigationWrapper extends StatefulWidget {
   const NavigationWrapper({
     Key? key,
     required this.openTaskPage,
+    required this.openSettingsPage,
   }) : super(key: key);
 
   final bool openTaskPage;
+  final bool openSettingsPage;
 
   @override
   State<NavigationWrapper> createState() => _NavigationWrapperState();
@@ -21,7 +23,8 @@ class NavigationWrapper extends StatefulWidget {
 class _NavigationWrapperState extends State<NavigationWrapper> {
   FireStore _fireStore = FireStore();
 
-  String? test = FirebaseAuth.instance.currentUser?.displayName;
+  String? displayNameCurrentUser =
+      FirebaseAuth.instance.currentUser?.displayName;
 
   int _selectedPageIndex = 0;
   int _amountOfCheck = 0;
@@ -40,6 +43,12 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
     if (widget.openTaskPage) {
       setState(() {
         _selectedPageIndex = 1;
+      });
+    }
+
+    if (widget.openSettingsPage) {
+      setState(() {
+        _selectedPageIndex = 2;
       });
     }
   }
@@ -81,7 +90,10 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
                         Text(
                           getGreeting() +
                               " \n" +
-                              (test != null && test != '' ? test! : ''),
+                              (displayNameCurrentUser != null &&
+                                      displayNameCurrentUser != ''
+                                  ? displayNameCurrentUser!
+                                  : ''),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,

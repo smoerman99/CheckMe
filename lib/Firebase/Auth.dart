@@ -4,7 +4,7 @@ class FirebaseAuthentication {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   updateDisplayName(String? dispalyName) async {
-    _firebaseAuth.currentUser?.updateDisplayName(dispalyName);
+    await _firebaseAuth.currentUser?.updateDisplayName(dispalyName);
   }
 
   Future<String> signUpUser({

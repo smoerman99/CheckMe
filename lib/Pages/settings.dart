@@ -1,3 +1,4 @@
+import 'package:checkit/Assets/NavigationWrapper.dart';
 import 'package:checkit/Firebase/Auth.dart';
 import 'package:checkit/Widgets/Auth/signin.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
@@ -21,6 +22,16 @@ class _SettingsPageState extends State<SettingsPage> {
     });
 
     await _authentication.updateDisplayName(dispalyName);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NavigationWrapper(
+          openTaskPage: false,
+          openSettingsPage: true,
+        ),
+      ),
+    );
   }
 
   @override

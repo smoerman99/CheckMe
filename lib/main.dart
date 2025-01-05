@@ -188,6 +188,7 @@ class _MyAppState extends State<MyApp> {
                   return Container(
                     child: const NavigationWrapper(
                       openTaskPage: false,
+                      openSettingsPage: false,
                     ),
                   );
                 }
