@@ -38,14 +38,14 @@ class _CategoryContainerState extends State<CategoryContainer> {
                     children: [
                       Text(
                         widget.openDoings.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 12),
+                        style: TextStyle(color: Colors.yellow, fontSize: 12),
                       )
                     ],
                     mainAxisAlignment: MainAxisAlignment.end,
                   )
                 : Text(
                     '',
-                    style: TextStyle(color: Colors.black, fontSize: 12),
+                    style: TextStyle(color: Colors.yellow, fontSize: 12),
                   )
           ]),
         ),

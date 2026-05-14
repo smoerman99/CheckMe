@@ -43,4 +43,9 @@ class FireStore {
       String collection, String docId, Map<String, dynamic> data) async {
     FirebaseFirestore.instance.collection(collection).doc(docId).update(data);
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> readCollection(
+      String collection) async {
+    return await FirebaseFirestore.instance.collection(collection).get();
+  }
 }

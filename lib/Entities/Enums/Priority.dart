@@ -1,1 +1,1 @@
-enum Priorities { asap, thisweek, none, custom }
+enum Priorities { high, low, medium, none }

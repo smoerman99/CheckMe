@@ -51,11 +51,11 @@ class _ShowTasksPageState extends State<ShowTasksPage> {
   filterData(String category) {
     filteredData = orginalData;
 
-    var test =
+    var tempFilteredData =
         filteredData.where((element) => element.category == category).toList();
 
     setState(() {
-      filteredData = test;
+      filteredData = tempFilteredData;
     });
   }
 

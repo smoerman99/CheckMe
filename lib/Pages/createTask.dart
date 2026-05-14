@@ -3,7 +3,6 @@ import 'package:checkit/Entities/Enums/Priority.dart';
 import 'package:checkit/Firebase/Firestore.dart';
 import 'package:checkit/Widgets/TextFormFieldWithStyling.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 
 class CreateTaskPage extends StatefulWidget {
@@ -13,356 +12,345 @@ class CreateTaskPage extends StatefulWidget {
   State<CreateTaskPage> createState() => _CreateTaskPageState();
 }
 
-enum Categories { Music, YouTube, Web, Private, Appointment, Study }
-
 class _CreateTaskPageState extends State<CreateTaskPage> {
-  FireStore _fireStore = FireStore();
+  final FireStore _fireStore = FireStore();
+  Priorities _selectedPriority = Priorities.none;
+
+  List<String> categories = [];
 
   final _check = Check();
 
   final _titleController = TextEditingController();
   final _rememberController = TextEditingController();
 
-  Iterable<Map<String, dynamic>> categories = [];
-  String? defaultSelectedCategory = 'Music';
-  List<DropdownMenuItem<String>>? allCategories;
+  String? _selectedCategory;
 
-  Categories? _character = Categories.Appointment;
-
-  Future<String> _fetchData() async {
-    categories = await _fireStore.readAll('Category');
-
-    mapCategoryItems();
-
-    return 'Loaded';
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
   }
 
-  void mapCategoryItems() {
+  Future<void> _loadCategories() async {
+    final snapshot = await _fireStore.readCollection('Category');
     setState(() {
-      allCategories = [];
+      categories = snapshot.docs.map((doc) => doc['Title'] as String).toList();
     });
-
-    for (var item in (categories)) {
-      allCategories?.add(
-        new DropdownMenuItem<String>(
-          child: Text(
-            item['Title'],
-          ),
-          value: item['Title'],
-        ),
-      );
-    }
   }
 
   Future<void> _addCheckToDB() async {
-    setState(() {
-      _check.category = _character.toString().split('.').last;
-      _check.dateTime = DateTime.now();
-      _check.done = false;
-      _check.priority = Priorities.none.name;
-      _check.remember = int.tryParse(_rememberController.value.text);
-      _check.title = _titleController.value.text;
-      _check.userid = FirebaseAuth.instance.currentUser?.uid;
-    });
+    _check.category = _selectedCategory;
+    _check.dateTime = DateTime.now();
+    _check.done = false;
+    _check.priority = _selectedPriority.name;
+    _check.remember = int.tryParse(_rememberController.text);
+    _check.title = _titleController.text;
+    _check.userid = FirebaseAuth.instance.currentUser?.uid;
 
     await _fireStore.create('Check', _check.toFirestore());
 
-    clearTextField();
-    popOrNot(true);
-  }
-
-  void clearTextField() {
     _titleController.clear();
     _rememberController.clear();
-  }
 
-  void popOrNot(bool popPage) {
-    if (popPage) {
-      Navigator.pop(context, true);
-    }
+    Navigator.pop(context, true);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _fetchData(),
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.hasData) {
-          return Material(
-              child: Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: new ExactAssetImage('assets/img/try21.png'),
-                fit: BoxFit.fill,
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.grey.shade100,
+        foregroundColor: Colors.black,
+        centerTitle: true,
+        title: const Text(
+          'Add new Task',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Container(
+              padding: const EdgeInsets.all(22),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Organize your work and stay productive.',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 15,
+                    ),
+                  ),
+
+                  const SizedBox(height: 28),
+
+                  // TITLE
+                  const Text(
+                    'Title',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  TextFormFieldWithStyling(
+                    needsExpanding: false,
+                    hintText: 'Enter task title',
+                    icon: const Icon(
+                      Icons.edit_outlined,
+                      color: Color(0xFFBE4C8F),
+                    ),
+                    controller: _titleController,
+                    textInputType: TextInputType.text,
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // REMEMBER
+                  const Text(
+                    'Reminder',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  TextFormFieldWithStyling(
+                    needsExpanding: false,
+                    hintText: 'Reminder in days',
+                    icon: const Icon(
+                      Icons.alarm_outlined,
+                      color: Color(0xFFBE4C8F),
+                    ),
+                    controller: _rememberController,
+                    textInputType: TextInputType.number,
+                  ),
+
+                  const SizedBox(height: 28),
+
+                  // CATEGORY
+                  const Text(
+                    'Category',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: categories.map((category) {
+                      final isSelected = _selectedCategory == category;
+
+                      return ChoiceChip(
+                        label: Text(
+                          category,
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : Colors.black87,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        selected: isSelected,
+                        selectedColor: const Color(0xFFBE4C8F),
+                        backgroundColor: Colors.grey.shade200,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        onSelected: (_) {
+                          setState(() {
+                            _selectedCategory = category;
+                          });
+                        },
+                      );
+                    }).toList(),
+                  ),
+
+                  const SizedBox(height: 28),
+
+// PRIORITY
+                  const Text(
+                    'Priority',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Column(
+                    children: [
+                      CheckboxListTile(
+                        value: _selectedPriority == Priorities.high,
+                        activeColor: Colors.red,
+                        dense: true,
+                        visualDensity: VisualDensity(vertical: -2),
+                        contentPadding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        title: const Text(
+                          'High Priority',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        secondary: const Icon(
+                          Icons.priority_high,
+                          color: Colors.red,
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedPriority = value == true
+                                ? Priorities.high
+                                : Priorities.none;
+                          });
+                        },
+                      ),
+                      CheckboxListTile(
+                        value: _selectedPriority == Priorities.medium,
+                        activeColor: Colors.orange,
+                        dense: true,
+                        visualDensity: VisualDensity(vertical: -2),
+                        contentPadding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        title: const Text(
+                          'Medium Priority',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        secondary: const Icon(
+                          Icons.remove,
+                          color: Colors.orange,
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedPriority = value == true
+                                ? Priorities.medium
+                                : Priorities.none;
+                          });
+                        },
+                      ),
+                      CheckboxListTile(
+                        value: _selectedPriority == Priorities.low,
+                        activeColor: Colors.green,
+                        dense: true,
+                        visualDensity: VisualDensity(vertical: -2),
+                        contentPadding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        title: const Text(
+                          'Low Priority',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        secondary: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.green,
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedPriority = value == true
+                                ? Priorities.low
+                                : Priorities.none;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 40),
+
+                  // BUTTONS
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFBE4C8F),
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                          onPressed: _addCheckToDB,
+                          child: const Text(
+                            'Create Task',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16,
+                            ),
+                            side: BorderSide(
+                              color: Colors.grey.shade300,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: const Text(
+                            'Cancel',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            child: ListView(children: [
-              SizedBox(
-                height: 36,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    color: Color.fromARGB(19, 206, 201, 194),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8.0, 4, 8, 0),
-                          child: Text(
-                            'Create new task',
-                            style: TextStyle(
-                              fontFamily: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 38,
-                              color: Colors.black,
-                              decoration: TextDecoration.none,
-                            ),
-                            softWrap: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 18,
-                      ),
-                      TextFormFieldWithStyling(
-                        needsExpanding: false,
-                        hintText: 'Title',
-                        icon: Icon(
-                          Icons.wysiwyg,
-                          color: Color.fromARGB(255, 190, 76, 143),
-                        ),
-                        controller: _titleController,
-                        textInputType: TextInputType.text,
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      TextFormFieldWithStyling(
-                        needsExpanding: false,
-                        hintText: 'Remember',
-                        icon: Icon(
-                          Icons.access_alarms,
-                          color: Color.fromARGB(255, 190, 76, 143),
-                        ),
-                        controller: _rememberController,
-                        textInputType: TextInputType.number,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          ListTile(
-                            style: ListTileStyle.drawer,
-                            title: const Text(
-                              'Appointment',
-                              style: TextStyle(
-                                color: Color.fromARGB(187, 10, 7, 3),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            leading: Radio<Categories>(
-                              activeColor: Colors.black,
-                              value: Categories.Appointment,
-                              groupValue: _character,
-                              onChanged: (Categories? value) {
-                                setState(() {
-                                  _character = value;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            style: ListTileStyle.drawer,
-                            title: const Text(
-                              'Music',
-                              style: TextStyle(
-                                color: Color.fromARGB(187, 10, 7, 3),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            leading: Radio<Categories>(
-                              activeColor: Colors.black,
-                              value: Categories.Music,
-                              groupValue: _character,
-                              onChanged: (Categories? value) {
-                                setState(() {
-                                  _character = value;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            style: ListTileStyle.drawer,
-                            title: const Text(
-                              'Private',
-                              style: TextStyle(
-                                color: Color.fromARGB(187, 10, 7, 3),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            leading: Radio<Categories>(
-                              activeColor: Colors.black,
-                              value: Categories.Private,
-                              groupValue: _character,
-                              onChanged: (Categories? value) {
-                                setState(() {
-                                  _character = value;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            style: ListTileStyle.drawer,
-                            title: const Text(
-                              'Study',
-                              style: TextStyle(
-                                color: Color.fromARGB(187, 10, 7, 3),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            leading: Radio<Categories>(
-                              activeColor: Colors.black,
-                              value: Categories.Study,
-                              groupValue: _character,
-                              onChanged: (Categories? value) {
-                                setState(() {
-                                  _character = value;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            style: ListTileStyle.drawer,
-                            title: const Text(
-                              'Web',
-                              style: TextStyle(
-                                color: Color.fromARGB(187, 10, 7, 3),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            leading: Radio<Categories>(
-                              activeColor: Colors.black,
-                              value: Categories.Web,
-                              groupValue: _character,
-                              onChanged: (Categories? value) {
-                                setState(() {
-                                  _character = value;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            style: ListTileStyle.drawer,
-                            title: const Text(
-                              'YouTube',
-                              style: TextStyle(
-                                color: Color.fromARGB(187, 10, 7, 3),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            leading: Radio<Categories>(
-                              activeColor: Colors.black,
-                              value: Categories.YouTube,
-                              groupValue: _character,
-                              onChanged: (Categories? value) {
-                                setState(() {
-                                  _character = value;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 22, 0, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(
-                                    Color.fromARGB(255, 255, 255, 255)),
-                              ),
-                              onPressed: _addCheckToDB,
-                              child: Text(
-                                'Add',
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Color.fromARGB(255, 190, 76, 143),
-                                ),
-                              ),
-                            ),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(
-                                    Color.fromARGB(255, 255, 255, 255)),
-                              ),
-                              onPressed: () => Navigator.pop(context, false),
-                              child: Text(
-                                'Close',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Color.fromARGB(255, 190, 76, 143),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ]),
-          ));
-        } else {
-          return ListView(shrinkWrap: false, children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 30, 32, 16),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                color: Color.fromRGBO(255, 255, 255, 1),
-                child: ListTile(
-                  title: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Loading data.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.fontFamily,
-                          fontSize: 25,
-                          color: Color.fromARGB(255, 190, 76, 143),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ]);
-        }
-      },
+          ],
+        ),
+      ),
     );
   }
 }
