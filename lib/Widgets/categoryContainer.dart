@@ -25,7 +25,7 @@ class _CategoryContainerState extends State<CategoryContainer> {
       child: Card(
         elevation: 0.0,
         color: widget.openDoings > 0
-            ? Color.fromRGBO(173, 156, 182, 0.855)
+            ? Color.fromRGBO(32, 39, 26, 0.212)
             : Colors.white.withOpacity(1.0),
         child: Container(
           child: Column(children: [
@@ -38,14 +38,18 @@ class _CategoryContainerState extends State<CategoryContainer> {
                     children: [
                       Text(
                         widget.openDoings.toString(),
-                        style: TextStyle(color: Colors.yellow, fontSize: 12),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 27, 41, 30),
+                          fontSize: 15,
+                        ),
                       )
                     ],
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                   )
                 : Text(
                     '',
-                    style: TextStyle(color: Colors.yellow, fontSize: 12),
+                    style: TextStyle(color: Colors.yellow, fontSize: 15),
                   )
           ]),
         ),

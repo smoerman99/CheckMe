@@ -157,38 +157,50 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
             body: Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new ExactAssetImage('assets/img/try21.png'),
-                  fit: BoxFit.fitHeight,
+                  image: new ExactAssetImage('assets/img/try23.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
               child: _pageOptions.elementAt(_selectedPageIndex),
             ),
             bottomNavigationBar: BottomNavigationBar(
               selectedIconTheme: IconThemeData(
-                color: Color.fromRGBO(236, 235, 233, 1),
-                size: 45,
+                color: Color.fromRGBO(233, 236, 233, 1),
+                size: 22,
               ),
-              selectedItemColor: Color.fromRGBO(0, 0, 0, 0.722),
-              selectedFontSize: 16.0,
+              selectedItemColor: Color.fromRGBO(0, 0, 0, 1),
+              selectedFontSize: 15.0,
               selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
               unselectedItemColor: Color.fromRGBO(0, 0, 0, 0.722),
               unselectedIconTheme: IconThemeData(
-                color: Color.fromRGBO(236, 235, 233, 1),
-                size: 30,
+                color: Color.fromRGBO(233, 236, 233, 1),
+                size: 22,
               ),
-              elevation: 0.0,
-              backgroundColor: Color.fromARGB(50, 0, 0, 25),
+              elevation: 1.0,
+              backgroundColor: Color.fromARGB(0, 0, 0, 25),
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
+                  icon: Icon(Icons.home_outlined, size: 25),
+                  activeIcon: Icon(
+                    Icons.home_outlined,
+                    size: 35,
+                  ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.task),
+                  icon: Icon(Icons.task_outlined, size: 25),
+                  activeIcon: Icon(
+                    Icons.task_outlined,
+                    size: 35,
+                  ),
                   label: 'Tasks',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
+                  icon: Icon(Icons.settings_outlined, size: 25),
+                  activeIcon: Icon(
+                    Icons.settings_outlined,
+                    size: 35,
+                  ),
                   label: 'Settings',
                 ),
               ],

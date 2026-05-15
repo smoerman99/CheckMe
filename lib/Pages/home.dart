@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    color: Color.fromRGBO(230, 210, 240, 0.835),
+                    color: Color.fromRGBO(130, 216, 59, 0),
                     child: ListTile(
                       title: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -174,9 +174,9 @@ class _HomePageState extends State<HomePage> {
                             dataMap: dataMap,
                             animationDuration: Duration(milliseconds: 200),
                             colorList: [
-                              Color.fromARGB(255, 190, 76, 143),
-                              Color.fromARGB(255, 0, 0, 0),
-                              Color.fromRGBO(87, 184, 80, 1)
+                              Colors.blueGrey,
+                              Color.fromARGB(255, 255, 167, 38),
+                              const Color.fromARGB(137, 103, 170, 105)
                             ],
                             chartValuesOptions: ChartValuesOptions(
                                 decimalPlaces: 0,
@@ -206,8 +206,8 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                         child: Text('Create task',
                             style: TextStyle(
-                              color: Color.fromARGB(255, 190, 76, 143),
-                              fontStyle: FontStyle.italic,
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontStyle: FontStyle.normal,
                               fontSize: 19,
                             )),
                       ),
