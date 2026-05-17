@@ -197,17 +197,21 @@ class _HomePageState extends State<HomePage> {
                       style: TextButton.styleFrom(
                         maximumSize: Size(300, 100),
                         backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(10), // smaller curve
+                        ),
                       ),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => CreateTaskPage()));
                       },
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
                         child: Text('Create task',
                             style: TextStyle(
                               color: Color.fromARGB(255, 0, 0, 0),
-                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
                               fontSize: 19,
                             )),
                       ),
@@ -270,6 +274,5 @@ class _HomePageState extends State<HomePage> {
         
 // wanneer je op add drukt wat wil je toevoegen
 // taak
-// youtube filmpje
-// wensen lijstje
+// link optioneel veld
   

@@ -57,7 +57,7 @@ class _CheckCardState extends State<CheckCard> {
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 10,
+            vertical: 5,
           ),
 
           // CHECK BUTTON
@@ -71,7 +71,7 @@ class _CheckCardState extends State<CheckCard> {
                   color: getPriorityColor(),
                   width: 2,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(4),
               ),
               child: const Icon(
                 Icons.check,

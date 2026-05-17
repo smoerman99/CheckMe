@@ -57,298 +57,305 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.grey.shade100,
-        foregroundColor: Colors.black,
-        centerTitle: true,
-        title: const Text(
-          'Add new Task',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/img/try23.png'),
+          fit: BoxFit.cover,
         ),
       ),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            Container(
-              padding: const EdgeInsets.all(22),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(28),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Organize your work and stay productive.',
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 15,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
+          centerTitle: true,
+          title: const Text(
+            'Add new Task',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        body: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              Container(
+                padding: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(28),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
                     ),
-                  ),
-
-                  const SizedBox(height: 28),
-
-                  // TITLE
-                  const Text(
-                    'Title',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  TextFormFieldWithStyling(
-                    needsExpanding: false,
-                    hintText: 'Enter task title',
-                    icon: const Icon(
-                      Icons.edit_outlined,
-                      color: Color(0xFFBE4C8F),
-                    ),
-                    controller: _titleController,
-                    textInputType: TextInputType.text,
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // REMEMBER
-                  const Text(
-                    'Reminder',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  TextFormFieldWithStyling(
-                    needsExpanding: false,
-                    hintText: 'Reminder in days',
-                    icon: const Icon(
-                      Icons.alarm_outlined,
-                      color: Color(0xFFBE4C8F),
-                    ),
-                    controller: _rememberController,
-                    textInputType: TextInputType.number,
-                  ),
-
-                  const SizedBox(height: 28),
-
-                  // CATEGORY
-                  const Text(
-                    'Category',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-
-                  const SizedBox(height: 16),
-
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: categories.map((category) {
-                      final isSelected = _selectedCategory == category;
-
-                      return ChoiceChip(
-                        label: Text(
-                          category,
-                          style: TextStyle(
-                            color: isSelected ? Colors.white : Colors.black87,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        selected: isSelected,
-                        selectedColor: const Color(0xFFBE4C8F),
-                        backgroundColor: Colors.grey.shade200,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        onSelected: (_) {
-                          setState(() {
-                            _selectedCategory = category;
-                          });
-                        },
-                      );
-                    }).toList(),
-                  ),
-
-                  const SizedBox(height: 28),
-
-// PRIORITY
-                  const Text(
-                    'Priority',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-
-                  const SizedBox(height: 16),
-
-                  Column(
-                    children: [
-                      CheckboxListTile(
-                        value: _selectedPriority == Priorities.high,
-                        activeColor: Colors.red,
-                        dense: true,
-                        visualDensity: VisualDensity(vertical: -2),
-                        contentPadding: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                        title: const Text(
-                          'High Priority',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        secondary: const Icon(
-                          Icons.priority_high,
-                          color: Colors.red,
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedPriority = value == true
-                                ? Priorities.high
-                                : Priorities.none;
-                          });
-                        },
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Organize your work and stay productive.',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 15,
                       ),
-                      CheckboxListTile(
-                        value: _selectedPriority == Priorities.medium,
-                        activeColor: Colors.orange,
-                        dense: true,
-                        visualDensity: VisualDensity(vertical: -2),
-                        contentPadding: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                        title: const Text(
-                          'Medium Priority',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        secondary: const Icon(
-                          Icons.remove,
-                          color: Colors.orange,
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedPriority = value == true
-                                ? Priorities.medium
-                                : Priorities.none;
-                          });
-                        },
-                      ),
-                      CheckboxListTile(
-                        value: _selectedPriority == Priorities.low,
-                        activeColor: Colors.green,
-                        dense: true,
-                        visualDensity: VisualDensity(vertical: -2),
-                        contentPadding: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                        title: const Text(
-                          'Low Priority',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        secondary: const Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.green,
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedPriority = value == true
-                                ? Priorities.low
-                                : Priorities.none;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+                    ),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 28),
 
-                  // BUTTONS
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFBE4C8F),
-                            foregroundColor: Colors.white,
-                            elevation: 0,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          onPressed: _addCheckToDB,
-                          child: const Text(
-                            'Create Task',
+                    // TITLE
+                    const Text(
+                      'Title',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    TextFormFieldWithStyling(
+                      needsExpanding: false,
+                      hintText: 'Enter task title',
+                      icon: const Icon(
+                        Icons.edit_outlined,
+                        color: Color(0xFFBE4C8F),
+                      ),
+                      controller: _titleController,
+                      textInputType: TextInputType.text,
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // REMEMBER
+                    const Text(
+                      'Reminder',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    TextFormFieldWithStyling(
+                      needsExpanding: false,
+                      hintText: 'Reminder in days',
+                      icon: const Icon(
+                        Icons.alarm_outlined,
+                        color: Color(0xFFBE4C8F),
+                      ),
+                      controller: _rememberController,
+                      textInputType: TextInputType.number,
+                    ),
+
+                    const SizedBox(height: 28),
+
+                    // CATEGORY
+                    const Text(
+                      'Category',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: categories.map((category) {
+                        final isSelected = _selectedCategory == category;
+
+                        return ChoiceChip(
+                          label: Text(
+                            category,
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                            ),
-                            side: BorderSide(
-                              color: Colors.grey.shade300,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context, false);
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black87,
+                              color: isSelected ? Colors.white : Colors.black87,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
+                          selected: isSelected,
+                          selectedColor: const Color(0xFFBE4C8F),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          onSelected: (_) {
+                            setState(() {
+                              _selectedCategory = category;
+                            });
+                          },
+                        );
+                      }).toList(),
+                    ),
+
+                    const SizedBox(height: 28),
+
+// PRIORITY
+                    const Text(
+                      'Priority',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    Column(
+                      children: [
+                        CheckboxListTile(
+                          value: _selectedPriority == Priorities.high,
+                          activeColor: Colors.red,
+                          dense: true,
+                          visualDensity: VisualDensity(vertical: -2),
+                          contentPadding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          title: const Text(
+                            'High Priority',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          secondary: const Icon(
+                            Icons.priority_high,
+                            color: Colors.red,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedPriority = value == true
+                                  ? Priorities.high
+                                  : Priorities.none;
+                            });
+                          },
+                        ),
+                        CheckboxListTile(
+                          value: _selectedPriority == Priorities.medium,
+                          activeColor: Colors.orange,
+                          dense: true,
+                          visualDensity: VisualDensity(vertical: -2),
+                          contentPadding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          title: const Text(
+                            'Medium Priority',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          secondary: const Icon(
+                            Icons.remove,
+                            color: Colors.orange,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedPriority = value == true
+                                  ? Priorities.medium
+                                  : Priorities.none;
+                            });
+                          },
+                        ),
+                        CheckboxListTile(
+                          value: _selectedPriority == Priorities.low,
+                          activeColor: Colors.green,
+                          dense: true,
+                          visualDensity: VisualDensity(vertical: -2),
+                          contentPadding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          title: const Text(
+                            'Low Priority',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          secondary: const Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Colors.green,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedPriority = value == true
+                                  ? Priorities.low
+                                  : Priorities.none;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 40),
+
+                    // BUTTONS
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFBE4C8F),
+                              foregroundColor: Colors.white,
+                              elevation: 0,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            onPressed: _addCheckToDB,
+                            child: const Text(
+                              'Create Task',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                              ),
+                              side: BorderSide(
+                                color: Colors.grey.shade300,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context, false);
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
