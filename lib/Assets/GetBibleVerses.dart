@@ -8,7 +8,7 @@ Future<DailyVerse> fetchBibleVerse() async {
   var listOfBibleVerses = ['JHN.3.16', 'ECC.12.13', '1CO.10.31'];
 
   Map<String, String> requestHeaders = {
-    'api-key': '31b591ef3138872c7b3722d569a17477'
+    'api-key': '6d16f4082a1fa2ef440298e0c255b42f'
   };
 
   final response = await http.get(
